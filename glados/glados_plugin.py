@@ -11,15 +11,15 @@ class GladosPlugin(object):
         self._routes = dict()  # type: Dict[RouteType, Dict[str, GladosRoute]]
 
         for route in RouteType._member_names_:
-            self._routes[RouteType[route]] = dict()  # type: Dict[str, GladosRoute]
+            self._routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]
 
     def add_route(self, route_type: RouteType, route: str, function: Callable):
         new_route = GladosRoute(route_type, route, function)
-        if new_route.route in self._routes[new_route.route_type]:
+        if new_route.route in self._routes[new_route.route_type.value]:
             # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError
             raise KeyError(
                     f"a route with the name of {new_route.route} already exists in the route type: {new_route.route_type.name}")
-        self._routes[new_route.route_type][new_route.route] = new_route
+        self._routes[new_route.route_type.value][new_route.route] = new_route
 
     @property
     def routes(self):

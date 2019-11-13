@@ -2,11 +2,15 @@ from typing import Dict, Callable, NoReturn, Optional, List
 from enum import Enum
 
 
+
+
 class RouteType(Enum):
     SendMessage = 1
     Response = 2
     Callback = 3
     Slash = 4
+
+from glados_request import GladosRequest
 
 
 class GladosRoute(object):
@@ -21,7 +25,7 @@ class GladosRouter(object):
         # routes are stored as: {RouteType.SendMessage: {"ask_user",ask_user, "confirm":confirm}}
         self.routes = dict()  # type: Dict[RouteType, Dict[str, GladosRoute]]
         for route in RouteType._member_names_:
-            self.routes[RouteType[route]] = dict()  # type: Dict[str, GladosRoute]
+            self.routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]
 
     def add_route(self, route: GladosRoute) -> NoReturn:
         """Add a route to the router
@@ -37,11 +41,11 @@ class GladosRouter(object):
             a route with the same type and same name already exists
 
         """
-        if route.route in self.routes[route.route_type]:
+        if route.route in self.routes[route.route_type.value]:
             # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError
             raise KeyError(
                     f"a route with the name of {route.route} already exists in the route type: {route.route_type.name}")
-        self.routes[route.route_type][route.route] = route
+        self.routes[route.route_type.value][route.route] = route
 
     def add_routes(self, routes: List[GladosRoute]):
         for route in routes:
@@ -67,11 +71,11 @@ class GladosRouter(object):
         KeyError
             the requested route is not found
         """
-        if not self.routes[route_type].get(route):
+        if not self.routes[route_type.value].get(route):
             # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteError
             raise KeyError(
                     f"no route with the name of {route} exists in route type: {route_type.name}")
-        return self.routes[route_type][route]
+        return self.routes[route_type.value][route]
 
     def route_function(self, route_type: RouteType, route: str) -> Callable:
         """Return only the callable function for the requested GladosRoute.
@@ -91,7 +95,7 @@ class GladosRouter(object):
         """
         return self.get_route(route_type, route).function
 
-    def exec_route(self, route_type: RouteType, route: str, **kwargs) -> bool:
+    def exec_route(self, request: GladosRequest) -> bool:
         """Execute a route function directly
 
         Examples
@@ -135,7 +139,7 @@ class GladosRouter(object):
             Did the function execute successfully
         """
         try:
-            return self.route_function(route_type, route)(**kwargs)
+            return self.route_function(request.route_type, request.route)(request)
         except KeyError as e:
             # TODO(zpriddy): Replace this with logging.
             print("Error calling route function")

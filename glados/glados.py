@@ -1,5 +1,6 @@
 from glados_bot import GladosBot
 from glados_router import GladosRouter, GladosRoute, RouteType
+from glados_request import GladosRequest
 from glados_plugin import GladosPlugin
 from typing import List
 
@@ -12,5 +13,5 @@ class Glados(object):
         self.plugins.append(plugin)
         self.router.add_routes(plugin.routes)
 
-    def request(self, route_type: RouteType, route, **kwargs):
-        self.router.exec_route(route_type, route, **kwargs)
+    def request(self, request: GladosRequest):
+        self.router.exec_route(request)
