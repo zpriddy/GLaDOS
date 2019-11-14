@@ -3,11 +3,13 @@ from test_plugin.test_plugin import TestPlugin
 
 from glados import Glados, GladosBot, GladosRequest, RouteType
 
+from os import getenv
+
 app = Flask(__name__)
 glados = Glados()
 
-BOT_TOKEN = "xoxb-492264639104-819624326178-x2CA7QTRPOODH5XPQujkeB94"
 
+GLADOS_BOT_KEY=getenv("GLADOS_GLADOS_BOT_KEY")
 
 @app.route("/SendMessage/<route>", methods=["POST"])
 def send_message_route(route):
@@ -19,7 +21,7 @@ if __name__ == '__main__':
     app.secret_key = "ThisIsNotSecure"
     app.debug = True
 
-    bot = GladosBot(BOT_TOKEN, "glados")
+    bot = GladosBot(GLADOS_BOT_KEY, "glados")
 
     glados.add_plugin(TestPlugin("test plugin", bot))
 
