@@ -1,17 +1,17 @@
-from glados_bot import GladosBot
-from glados_router import GladosRouter, GladosRoute, RouteType
-from glados_request import GladosRequest
-from glados_plugin import GladosPlugin
 from typing import List
+
+from glados import GladosPlugin, GladosRequest, GladosRouter
+#from glados_router import GladosRouter
+
 
 class Glados(object):
     def __init__(self):
         self.router = GladosRouter()
-        self.plugins = list() # type: List[GladosPlugin]
+        self.plugins = list()  # type: List[GladosPlugin]
 
     def add_plugin(self, plugin: GladosPlugin):
         self.plugins.append(plugin)
         self.router.add_routes(plugin.routes)
 
     def request(self, request: GladosRequest):
-        self.router.exec_route(request)
+        return self.router.exec_route(request)

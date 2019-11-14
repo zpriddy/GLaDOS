@@ -1,4 +1,4 @@
-from glados_router import RouteType
+from glados import RouteType
 
 class GladosParams(object):
     def __init__(self, **kwargs):
@@ -17,6 +17,22 @@ class GladosParams(object):
 
 class GladosRequest(object):
     def __init__(self, route_type: RouteType, route: str, **kwargs):
+        """
+
+        Parameters
+        ----------
+        route_type
+        route
+        kwargs
+
+        Examples
+        --------
+        >>> request = GladosRequest(RouteType.SendMessage, "send_mock", message="my message")
+        >>> print(request.params.message)
+        my message
+        >>> print(request.params.other_param)
+        None
+        """
         self.route_type = route_type
         self.route = route
         self.params = GladosParams(**kwargs)

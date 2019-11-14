@@ -1,14 +1,39 @@
-from glados_bot import GladosBot
-from glados_router import RouteType, GladosRoute
-from typing import Dict, Callable
+from typing import Callable, Dict
+
+from glados import GladosBot, RouteType, GladosRoute
+#from glados_router import GladosRoute
 
 
 class GladosPlugin(object):
     def __init__(self, name, bot: GladosBot, **kwargs):
+        """
+
+        Parameters
+        ----------
+        name
+        bot
+        kwargs
+
+        Examples
+        --------
+        >>> def mock_function(request):
+        ...     print("Mock Function")
+        >>> plugin = GladosPlugin("mock", None)
+        >>> plugin.add_route(RouteType.SendMessage, "send_message", mock_function)
+        >>> from glados import GladosRoute
+        >>> plugin.routes[0].__dict__ == GladosRoute(RouteType.SendMessage, "send_message", mock_function).__dict__
+        True
+        >>> try:
+        ...     plugin.add_route(RouteType.SendMessage, "send_message", mock_function)
+        ... except KeyError:
+        ...     print("Got Error")
+        Got Error
+        """
+        """"""
         self.name = name
         self.bot = bot
 
-        self._routes = dict()  # type: Dict[RouteType, Dict[str, GladosRoute]]
+        self._routes = dict()  # type: Dict[int, Dict[str, GladosRoute]]
 
         for route in RouteType._member_names_:
             self._routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]

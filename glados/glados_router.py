@@ -1,16 +1,6 @@
-from typing import Dict, Callable, NoReturn, Optional, List
-from enum import Enum
+from typing import Callable, Dict, List, NoReturn, Optional
 
-
-
-
-class RouteType(Enum):
-    SendMessage = 1
-    Response = 2
-    Callback = 3
-    Slash = 4
-
-from glados_request import GladosRequest
+from glados import GladosRequest, RouteType
 
 
 class GladosRoute(object):
@@ -95,29 +85,31 @@ class GladosRouter(object):
         """
         return self.get_route(route_type, route).function
 
-    def exec_route(self, request: GladosRequest) -> bool:
+    def exec_route(self, request: GladosRequest):
         """Execute a route function directly
 
         Examples
         ----------
-        >>> def mock_function(message):
-        ...     print(f"Mock Function: {message}")
+        >>> def mock_function(request: GladosRequest):
+        ...     print(f"Mock Function: {request.params.message}")
         ...     return True
         >>> router = GladosRouter()
         >>> route = GladosRoute(RouteType.SendMessage, "send_mock", mock_function)
         >>> router.add_route(route)
-        >>> successful = router.exec_route(RouteType.SendMessage, "send_mock", message="Hello World!")
+        >>> request = GladosRequest(RouteType.SendMessage, "send_mock", message="Hello World!")
+        >>> successful = router.exec_route(request)
         Mock Function: Hello World!
         >>> print(successful)
         True
 
-        >>> def mock_function(message):
-        ...     print(f"Mock Function: {message}")
+        >>> def mock_function(request: GladosRequest):
+        ...     print(f"Mock Function: {request.params.message}")
         ...     return True
         >>> router = GladosRouter()
         >>> route = GladosRoute(RouteType.SendMessage, "send_mock", mock_function)
         >>> router.add_route(route)
-        >>> successful = router.exec_route(RouteType.SendMessage, "send", message="Hello World!")
+        >>> request = GladosRequest(RouteType.SendMessage, "send_mock_fail", message="Hello World!")
+        >>> successful = router.exec_route(request)
         >>> print(successful)
         False
 
@@ -142,6 +134,6 @@ class GladosRouter(object):
             return self.route_function(request.route_type, request.route)(request)
         except KeyError as e:
             # TODO(zpriddy): Replace this with logging.
-            print("Error calling route function")
-            print(str(e))
+            # print("Error calling route function")
+            # print(str(e))
             return False

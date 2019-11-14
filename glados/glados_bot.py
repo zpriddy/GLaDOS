@@ -10,10 +10,10 @@ class GladosBot(object):
         self.client = WebClient(token=token)
 
     def send_message(self, channel: str, message: Message) -> SlackResponse:
-        return self.client.chat_postMessage(channel=channel, as_user=True, **message.to_dict())
+        return self.client.chat_postMessage(channel=channel, as_user=True, **message.to_dict()).data
 
     def update_message(self, channel: str, ts: str, message: Message) -> SlackResponse:
-        return self.client.chat_update(channel=channel, ts=ts, **message.to_dict())
+        return self.client.chat_update(channel=channel, ts=ts, **message.to_dict()).data
 
     def delete_message(self, channel: str, ts: str) -> SlackResponse:
-        return self.client.chat_delete(channel=channel, ts=ts)
+        return self.client.chat_delete(channel=channel, ts=ts).data
