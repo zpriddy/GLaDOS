@@ -40,6 +40,8 @@ class GladosPlugin(object):
 
     def add_route(self, route_type: RouteType, route: str, function: Callable):
         new_route = GladosRoute(route_type, route, function)
+        if route_type in [RouteType.Events]:
+            new_route.route = f"{self.bot.name}_{route}"
         if new_route.route in self._routes[new_route.route_type.value]:
             # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError
             raise KeyError(

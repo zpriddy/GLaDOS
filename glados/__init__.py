@@ -1,5 +1,5 @@
-from .route_type import RouteType
-from .glados_request import GladosRequest
+from .route_type import RouteType, EventRoutes
+from .glados_request import GladosRequest, SlackVerification
 
 from .glados_bot import GladosBot
 from .glados_router import GladosRouter, GladosRoute

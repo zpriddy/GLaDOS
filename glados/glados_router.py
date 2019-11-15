@@ -31,6 +31,7 @@ class GladosRouter(object):
             a route with the same type and same name already exists
 
         """
+        # print(f"Adding route: {route.__dict__}")
         if route.route in self.routes[route.route_type.value]:
             # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError
             raise KeyError(
