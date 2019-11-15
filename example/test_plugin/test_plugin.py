@@ -9,6 +9,7 @@ from slack.web.classes.actions import ActionButton
 from glados import GladosBot, GladosPlugin, GladosRequest, RouteType, EventRoutes
 from glados.message_blocks import ModalBuilder
 
+from .test_plugin_views import HOME_VIEW, SECURITY_MENU_1
 
 class TestPlugin(GladosPlugin):
     def __init__(self, name, bot: GladosBot, **kwargs):
@@ -24,35 +25,12 @@ class TestPlugin(GladosPlugin):
     def app_home(self, request: GladosRequest, **kwargs):
         print("AppHome")
         self.bot.validate_slack_signature(request)
-        # modal =  ModalBuilder()
-        # modal.title("Welcome to Glados!")
-        # modal.close("The cake is a lie...")
-        # modal.section(text=MarkdownTextObject(text="# Welcome to GLaDOS"))
-        # import json
-        # print(json.dumps(modal.to_dict(), indent=4))
-        home = {
-            "type":   "home",
-            "blocks": [
-                SectionBlock(text=MarkdownTextObject(text="*Welcome to GLaDOS*")).to_dict(),
-                DividerBlock().to_dict(),
-                SectionBlock(text="*Security Events*",
-                             fields=["*New Alerts*\n20",
-                                     "*Open Cases*\n5"],
-                             accessory=ButtonElement(text="Go To Security Alerts",
-                                                     action_id="gotoSecurityAlerts",
-                                                     value="go")
-                             ).to_dict(),
-                DividerBlock().to_dict(),
-                SectionBlock(text="*Service Tickets*",
-                             fields=["*Total Tickets*\n23"],
-                             accessory=ButtonElement(text="Go To Service Desk",
-                                                     action_id="gotoServiceDesk",
-                                                     value="go")).to_dict(),
-                DividerBlock().to_dict(),
-                SectionBlock(text="Test External Menu", accessory=ExternalDataSelectElement(placeholder="Loading", action_id="testMenu")).to_dict()
-            ]
-        }
-        self.bot.client.views_publish(user_id=request.params.event.get("user"), view=home)
+
+        if request.params.event.get("tab") == "home":
+            self.bot.client.views_publish(user_id=request.params.event.get("user"), view=HOME_VIEW)
+        # Cool idea but got annoying
+        # else:
+        #    self.bot.send_message(message=Message(text="Hello, I am GLaDOS. How can I help you?"), channel=request.params.event.get("channel"))
         return ""
 
     def send_message(self, request: GladosRequest, **kwargs):
@@ -69,27 +47,21 @@ class TestPlugin(GladosPlugin):
                                        message=message)
 
     def slash_security(self, request: GladosRequest, **kwargs):
-        home = {
-            "type":   "modal",
-            "title": PlainTextObject(text="Security Help Center").to_dict(),
-            "blocks": [
-                SectionBlock(text="*Travel Request*",
-                             accessory=ButtonElement(text="File new travel request",
-                                                     action_id="fileTravelRequest",
-                                                     value="go")
-                             ).to_dict(),
-                DividerBlock().to_dict()
-            ]
-        }
+        self.bot.validate_slack_signature(request)
 
-        self.bot.client.views_open(view=home, trigger_id=request.params.trigger_id)
+
+        self.bot.client.views_open(view=SECURITY_MENU_1, trigger_id=request.params.trigger_id)
         return ""
 
     def action_go_to_alerts(self, request: GladosRequest, **kwargs):
+        self.bot.validate_slack_signature(request)
+
         print("GO TO ALERTS")
         self.bot.send_message(message=Message(text="Going to alerts"), channel=request.params.user.get("id"))
         return ""
 
     def external_menu(self, request: GladosRequest, **kwargs):
+        self.bot.validate_slack_signature(request)
+
         return {"options": [Option(label="Option 1", value="option1").to_dict(),
                             Option(label="Option 2", value="option2").to_dict()]}

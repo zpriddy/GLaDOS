@@ -28,7 +28,7 @@ GLADOS_BOT_KEY = getenv("GLADOS_GLADOS_BOT_KEY")
 
 def extract_slack_info(r: request):
     try:
-        data = r.data.decode()
+        data = r.get_data(as_text=True)
         timestamp = r.headers.get("X-Slack-Request-Timestamp")
         signature = r.headers.get("X-Slack-Signature")
         return SlackVerification(data, timestamp, signature)
@@ -59,27 +59,29 @@ def event_subscriptions(bot):
 
 @app.route("/Slash/<route>", methods=["POST"])
 def slash_command(route):
+    slack_info = extract_slack_info(request)
     request_json = request.form.to_dict()
-    r = GladosRequest(RouteType.Slash, route, extract_slack_info(request), **request_json)
+    r = GladosRequest(RouteType.Slash, route,slack_info, **request_json)
     return glados.request(r)
 
 
 @app.route("/Interaction/<bot>", methods=["POST"])
 def interaction(bot):
+    slack_info = extract_slack_info(request)
     request_json = request.form.to_dict()
     request_json = json.loads(request_json.get("payload"))
     action_id = request_json.get("actions", [{}])[0].get("action_id")
-    r = GladosRequest(RouteType.Interaction, action_id, extract_slack_info(request),
-                      **request_json)
+    r = GladosRequest(RouteType.Interaction, action_id, slack_info, **request_json)
     return glados.request(r)
 
 
 @app.route("/Menu", methods=["POST"])
 def external_menu():
+    slack_info = extract_slack_info(request)
     request_json = request.form.to_dict()
     request_json = json.loads(request_json.get("payload"))
     action_id = request_json.get("action_id")
-    r = GladosRequest(RouteType.Menu, action_id, extract_slack_info(request), **request_json)
+    r = GladosRequest(RouteType.Menu, action_id, slack_info, **request_json)
     return glados.request(r)
 
 
