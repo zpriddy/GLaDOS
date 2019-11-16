@@ -1,0 +1,2 @@
+glados
+slackclient==2.3.1

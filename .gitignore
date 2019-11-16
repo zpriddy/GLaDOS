@@ -9,7 +9,9 @@ venv**
 *.so
 _docs**
 .terraform**
-
+*.tfstate*
+*.tfvars
+package.zip
 # Distribution / packaging
 .Python
 build/
