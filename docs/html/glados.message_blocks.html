@@ -1,0 +1,530 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>glados.message_blocks module &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="glados.route_type module" href="glados.route_type.html" />
+    <link rel="prev" title="glados.glados_router module" href="glados.glados_router.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GLaDOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">glados</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="glados.html">glados package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="glados.glados_bot.html">glados.glados_bot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.glados_core.html">glados.glados_core module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.glados_errors.html">glados.glados_errors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.glados_plugin.html">glados.glados_plugin module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.glados_request.html">glados.glados_request module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.glados_router.html">glados.glados_router module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">glados.message_blocks module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GLaDOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">glados</a> &raquo;</li>
+        
+          <li><a href="glados.html">glados package</a> &raquo;</li>
+        
+      <li>glados.message_blocks module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/glados.message_blocks.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-glados.message_blocks">
+<span id="glados-message-blocks-module"></span><h1>glados.message_blocks module<a class="headerlink" href="#module-glados.message_blocks" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="glados.message_blocks.ModalBuilder">
+<em class="property">class </em><code class="sig-prename descclassname">glados.message_blocks.</code><code class="sig-name descname">ModalBuilder</code><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">slack.web.classes.JsonObject</span></code></p>
+<p>The ModalBuilder enables you to more easily construct the JSON required
+to create a modal in Slack.</p>
+<p>Modals are a focused surface to collect data from users
+or display dynamic and interactive information.</p>
+<p>To learn how modals are invoked, how to compose their contents,
+and how to enable and handle complex interactivity read this guide:</p>
+<p><a class="reference external" href="https://api.slack.com/block-kit/surfaces/modals">https://api.slack.com/block-kit/surfaces/modals</a></p>
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.actions">
+<code class="sig-name descname">actions</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">elements</em>, <em class="sig-param">block_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.actions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>A block that is used to hold interactive elements.</p>
+<p><a class="reference external" href="https://api.slack.com/reference/block-kit/blocks#actions">https://api.slack.com/reference/block-kit/blocks#actions</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elements</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">InteractiveElement</span></code>]) – Up to 5 InteractiveElement objects - buttons, date pickers, etc</p></li>
+<li><p><strong>block_id</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – ID to be used for this block - autogenerated if left blank.
+Cannot exceed 255 characters.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="glados.message_blocks.ModalBuilder.attributes">
+<code class="sig-name descname">attributes</code><em class="property"> = {'_blocks', '_callback_id', '_clear_on_close', '_close', '_external_id', '_notify_on_close', '_private_metadata', '_submit', '_title'}</em><a class="headerlink" href="#glados.message_blocks.ModalBuilder.attributes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.blocks_length">
+<code class="sig-name descname">blocks_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.blocks_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.blocks_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="glados.message_blocks.ModalBuilder.blocks_max_length">
+<code class="sig-name descname">blocks_max_length</code><em class="property"> = 100</em><a class="headerlink" href="#glados.message_blocks.ModalBuilder.blocks_max_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.callback_id">
+<code class="sig-name descname">callback_id</code><span class="sig-paren">(</span><em class="sig-param">callback_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.callback_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.callback_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>An identifier to recognize interactions and submissions of this particular modal.
+Don’t use this to store sensitive information (use private_metadata instead).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>callback_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – must not exceed 255 characters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.callback_id_max_length">
+<code class="sig-name descname">callback_id_max_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.callback_id_max_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.callback_id_max_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.clear_on_close">
+<code class="sig-name descname">clear_on_close</code><span class="sig-paren">(</span><em class="sig-param">clear_on_close</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.clear_on_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.clear_on_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>When set to true, clicking on the close button will clear
+all views in a modal and close it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>clear_on_close</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Default is false.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">close</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the text displayed in the close button at the bottom-right of the view.</p>
+<p>Max length of 24 characters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>close</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – must not exceed 24 characters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.close_length">
+<code class="sig-name descname">close_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.close_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.close_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="glados.message_blocks.ModalBuilder.close_max_length">
+<code class="sig-name descname">close_max_length</code><em class="property"> = 24</em><a class="headerlink" href="#glados.message_blocks.ModalBuilder.close_max_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.context">
+<code class="sig-name descname">context</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">elements</em>, <em class="sig-param">block_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays message context, which can include both images and text.</p>
+<p><a class="reference external" href="https://api.slack.com/reference/block-kit/blocks#context">https://api.slack.com/reference/block-kit/blocks#context</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elements</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">InteractiveElement</span></code>]) – Up to 10 ImageElements and TextObjects</p></li>
+<li><p><strong>block_id</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – ID to be used for this block - autogenerated if left blank.
+Cannot exceed 255 characters.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.divider">
+<code class="sig-name descname">divider</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">block_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.divider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.divider" title="Permalink to this definition">¶</a></dt>
+<dd><p>A content divider, like an &lt;hr&gt;, to split up different blocks inside of a message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>block_id</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A string acting as a unique identifier for a block.
+You can use this block_id when you receive an interaction
+payload to identify the docs-src of the action. If not
+specified, one will be generated. Maximum length for this
+field is 255 characters. block_id should be unique for each
+message and each iteration of a message.
+If a message is updated, use a new block_id.</p>
+</dd>
+</dl>
+<p><a class="reference external" href="https://api.slack.com/reference/block-kit/blocks#divider">https://api.slack.com/reference/block-kit/blocks#divider</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.external_id">
+<code class="sig-name descname">external_id</code><span class="sig-paren">(</span><em class="sig-param">external_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.external_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.external_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A custom identifier that must be unique for all views on a per-team basis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>external_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A unique identifier.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.image">
+<code class="sig-name descname">image</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">image_url</em>, <em class="sig-param">alt_text</em>, <em class="sig-param">title=None</em>, <em class="sig-param">block_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple image block, designed to make those cat photos really pop.</p>
+<p><a class="reference external" href="https://api.slack.com/reference/block-kit/blocks#image">https://api.slack.com/reference/block-kit/blocks#image</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_url</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Publicly hosted URL to be displayed. Cannot exceed 3000
+characters.</p></li>
+<li><p><strong>alt_text</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Plain text summary of image. Cannot exceed 2000 characters.</p></li>
+<li><p><strong>title</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A title to be displayed above the image. Cannot exceed 2000
+characters.</p></li>
+<li><p><strong>block_id</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – ID to be used for this block - autogenerated if left blank.
+Cannot exceed 255 characters.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.notify_on_close">
+<code class="sig-name descname">notify_on_close</code><span class="sig-paren">(</span><em class="sig-param">notify_on_close</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.notify_on_close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.notify_on_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates whether Slack will send your request URL a view_closed
+event when a user clicks the close button.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>notify_on_close</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Default is false.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.private_metadata">
+<code class="sig-name descname">private_metadata</code><span class="sig-paren">(</span><em class="sig-param">private_metadata</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.private_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.private_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>An optional string that will be sent to your app in view_submission
+and block_actions events.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>private_metadata</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – must not exceed 3000 characters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.private_metadata_max_length">
+<code class="sig-name descname">private_metadata_max_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.private_metadata_max_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.private_metadata_max_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.section">
+<code class="sig-name descname">section</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">text=None</em>, <em class="sig-param">block_id=None</em>, <em class="sig-param">fields=None</em>, <em class="sig-param">accessory=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.section" title="Permalink to this definition">¶</a></dt>
+<dd><p>A section is one of the most flexible blocks available.
+It can be used as a simple text block, in combination with
+text fields, or side-by-side with any of the available block elements.</p>
+<p><a class="reference external" href="https://api.slack.com/reference/block-kit/blocks#section">https://api.slack.com/reference/block-kit/blocks#section</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TextObject</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – The text for the block, in the form of string or a text object.
+Maximum length for the text in this field is 3000 characters.</p></li>
+<li><p><strong>block_id</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – A string acting as a unique identifier for a block.
+You can use this block_id when you receive an interaction
+payload to identify the docs-src of the action. If not
+specified, one will be generated. Maximum length for this
+field is 255 characters. block_id should be unique for each
+message and each iteration of a message.
+If a message is updated, use a new block_id.</p></li>
+<li><p><strong>fields</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – optional: a sequence of strings that will be rendered using
+MarkdownTextObjects. Any strings included with fields will be rendered
+in a compact format that allows for 2 columns of side-by-side text.
+Maximum number of items is 10.
+Maximum length for the text in each item is 2000 characters.</p></li>
+<li><p><strong>accessory</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">BlockElement</span></code>]) – an optional BlockElement to attach to this SectionBlock as
+secondary content</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.submit">
+<code class="sig-name descname">submit</code><span class="sig-paren">(</span><em class="sig-param">submit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.submit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.submit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the text displayed in the submit button at the bottom-right of the view.</p>
+<p>Important Note: submit is required when an input block is within the blocks array.</p>
+<p>Max length of 24 characters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>submit</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – must not exceed 24 characters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.submit_length">
+<code class="sig-name descname">submit_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.submit_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.submit_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="glados.message_blocks.ModalBuilder.submit_max_length">
+<code class="sig-name descname">submit_max_length</code><em class="property"> = 24</em><a class="headerlink" href="#glados.message_blocks.ModalBuilder.submit_max_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.title">
+<code class="sig-name descname">title</code><span class="sig-paren">(</span><em class="sig-param">title</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify a title for this modal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>title</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – must not exceed 24 characters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#glados.message_blocks.ModalBuilder" title="glados.message_blocks.ModalBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModalBuilder</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.title_length">
+<code class="sig-name descname">title_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.title_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.title_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="glados.message_blocks.ModalBuilder.title_max_length">
+<code class="sig-name descname">title_max_length</code><em class="property"> = 24</em><a class="headerlink" href="#glados.message_blocks.ModalBuilder.title_max_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="glados.message_blocks.ModalBuilder.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/message_blocks.html#ModalBuilder.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.message_blocks.ModalBuilder.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract this object as a JSON-compatible, Slack-API-valid dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*args</strong> – Any specific formatting args (rare; generally not required)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>SlackObjectFormationError if the object was not valid</strong> – </p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="glados.route_type.html" class="btn btn-neutral float-right" title="glados.route_type module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="glados.glados_router.html" class="btn btn-neutral float-left" title="glados.glados_router module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zachary Priddy
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

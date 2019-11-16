@@ -10,6 +10,7 @@ from glados import GladosBot, GladosPlugin, GladosRequest, RouteType, EventRoute
 from glados.message_blocks import ModalBuilder
 
 from .test_plugin_views import HOME_VIEW, SECURITY_MENU_1
+from .countries import COUNTRY_OPTIONS
 
 class TestPlugin(GladosPlugin):
     def __init__(self, name, bot: GladosBot, **kwargs):
@@ -63,5 +64,4 @@ class TestPlugin(GladosPlugin):
     def external_menu(self, request: GladosRequest, **kwargs):
         self.bot.validate_slack_signature(request)
 
-        return {"options": [Option(label="Option 1", value="option1").to_dict(),
-                            Option(label="Option 2", value="option2").to_dict()]}
+        return {"options": COUNTRY_OPTIONS}
