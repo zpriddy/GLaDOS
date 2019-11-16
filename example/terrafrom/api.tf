@@ -7,19 +7,19 @@ resource "aws_api_gateway_rest_api" "glados_example_api" {
 # Shared Paths
 ###################################################################################################
 
-resource "aws_api_gateway_resource" "events" {
+resource "aws_api_gateway_resource" "events_root" {
   parent_id   = aws_api_gateway_rest_api.glados_example_api.root_resource_id
   path_part   = "Events"
   rest_api_id = aws_api_gateway_rest_api.glados_example_api.id
 }
 
-resource "aws_api_gateway_resource" "slash" {
+resource "aws_api_gateway_resource" "slash_root" {
   parent_id   = aws_api_gateway_rest_api.glados_example_api.root_resource_id
   path_part   = "Slash"
   rest_api_id = aws_api_gateway_rest_api.glados_example_api.id
 }
 
-resource "aws_api_gateway_resource" "interaction" {
+resource "aws_api_gateway_resource" "interaction_root" {
   parent_id   = aws_api_gateway_rest_api.glados_example_api.root_resource_id
   path_part   = "Interaction"
   rest_api_id = aws_api_gateway_rest_api.glados_example_api.id
@@ -91,10 +91,51 @@ resource "aws_api_gateway_integration" "send_message" {
   }
 }
 
+###################################################################################################
+# Events
+###################################################################################################
+
+resource "aws_api_gateway_resource" "events" {
+  parent_id   = aws_api_gateway_resource.events_root.id
+  path_part   = "{bot+}"
+  rest_api_id = aws_api_gateway_rest_api.glados_example_api.id
+}
+
+resource "aws_api_gateway_method" "events" {
+  rest_api_id   = aws_api_gateway_rest_api.glados_example_api.id
+  resource_id   = aws_api_gateway_resource.events.id
+  http_method   = "POST"
+  authorization = "NONE"
+
+  request_parameters = {
+    "method.request.path.bot" = true
+  }
+}
+
+resource "aws_api_gateway_integration" "events" {
+  integration_http_method = "POST"
+  resource_id             = aws_api_gateway_resource.events.id
+  rest_api_id             = aws_api_gateway_rest_api.glados_example_api.id
+  http_method             = aws_api_gateway_method.events.http_method
+  type                    = "AWS_PROXY"
+  uri                     = module.lambda_function.invoke_arn
+
+  request_parameters = {
+    "integration.request.path.bot" = "method.request.path.bot"
+  }
+}
+
+###################################################################################################
+# Deployment
+###################################################################################################
+
 resource "aws_api_gateway_deployment" "deployment" {
   depends_on = [
+    "null_resource.pip",
     "aws_api_gateway_integration.menu",
     "aws_api_gateway_integration.send_message",
+    "aws_api_gateway_integration.events",
+    "aws_api_gateway_method.events"
   ]
   rest_api_id = aws_api_gateway_rest_api.glados_example_api.id
   stage_name  = "prod"
