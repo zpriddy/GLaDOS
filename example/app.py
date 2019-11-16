@@ -47,7 +47,9 @@ def extract_slack_info(r: request):
 
 @app.route("/SendMessage/<route>", methods=["POST"])
 def send_message_route(route):
-    glados_request = GladosRequest(RouteType.SendMessage, route, json=request.get_json())
+    glados_request = GladosRequest(
+        RouteType.SendMessage, route, json=request.get_json()
+    )
     return glados.request(glados_request)
 
 
@@ -59,13 +61,11 @@ def event_subscriptions(bot):
         return body.get("challenge")
 
     # Build GladosRequest
-    event_object_type = body.get("event", {}).get("type")
     r = GladosRequest(
         RouteType.Events,
-        event_object_type,
-        extract_slack_info(request),
-        bot,
-        json=request.get_json()
+        slack_verify=extract_slack_info(request),
+        bot_name=bot,
+        json=request.get_json(),
     )
     try:
         return glados.request(r)
@@ -86,8 +86,9 @@ def interaction(bot):
     slack_info = extract_slack_info(request)
     request_json = request.form.to_dict()
     request_json = json.loads(request_json.get("payload"))
-    action_id = request_json.get("actions", [{}])[0].get("action_id")
-    r = GladosRequest(RouteType.Interaction, action_id, slack_info, bot, json=request_json)
+    r = GladosRequest(
+        RouteType.Interaction,slack_verify=slack_info, bot_name=bot, json=request_json
+    )
     try:
         return glados.request(r)
     except GladosRouteNotFoundError as e:
@@ -100,13 +101,12 @@ def external_menu():
     slack_info = extract_slack_info(request)
     request_json = request.form.to_dict()
     request_json = json.loads(request_json.get("payload"))
-    action_id = request_json.get("action_id")
-    r = GladosRequest(RouteType.Menu, action_id, slack_info, json=request_json)
+    r = GladosRequest(RouteType.Menu, slack_verify=slack_info, json=request_json)
     return glados.request(r)
 
 
 if __name__ == "__main__":
-    print("Starting App")
+    logging.info("Starting App")
     app.secret_key = "ThisIsNotSecure"
     app.debug = True
 
@@ -114,8 +114,6 @@ if __name__ == "__main__":
         GladosBot(GLADOS_BOT_KEY, "glados", getenv("GLADOS_GLADOS_SIGNING_SECRET"))
     )
     glados.add_plugin(TestPlugin(glados.bots["glados"]))
-
-    print(glados.router.routes)
 
     if USE_NGROK:
         print("Launching ngrok")

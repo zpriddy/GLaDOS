@@ -61,7 +61,7 @@ class GladosRequest:
     def __init__(
         self,
         route_type: RouteType,
-        route: str,
+        route: str = None,
         slack_verify: SlackVerification = None,
         bot_name: str = None,
         json: Union[str, dict] = None,
@@ -70,12 +70,19 @@ class GladosRequest:
 
         if not json:
             json = dict()
+
+        self.json = PyJSON(json)
         self.route_type = route_type
         self.bot_name = bot_name
         self._route = route
-        self.bot_route = f"{bot_name}_{route}"
         self.slack_verify = slack_verify
-        self.json = PyJSON(json)
+
+        if route_type is RouteType.Menu:
+            self._route = self.json.action_id
+        if route_type is RouteType.Interaction:
+            self._route = self.json.actions[0].action_id
+        if route_type is RouteType.Events:
+            self._route = self.json.event.type
 
     @property
     def route(self) -> str:
@@ -83,7 +90,11 @@ class GladosRequest:
 
         If the route automatically prefixed the route with the bot name, it will return the route with the prefix
         """
-        return self.bot_route if self.route_type in BOT_ROUTES else self._route
+        return (
+            f"{self.bot_name}_{self._route}"
+            if self.route_type in BOT_ROUTES
+            else self._route
+        )
 
     @route.setter
     def route(self, value):
