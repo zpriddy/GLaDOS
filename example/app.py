@@ -5,7 +5,6 @@ from flask import Flask, request
 from glados import Glados, GladosBot, GladosRequest, RouteType, SlackVerification
 from test_plugin.test_plugin import TestPlugin
 from example import FLASK_HOST, FLASK_PORT
-from pyngrok import ngrok
 import json
 
 USE_NGROK = True
@@ -18,7 +17,6 @@ def setup_ngrok():
     print("Delaying the start of ngrok")
     ngrok_options = getenv("GLADOS_NGROK_OPTIONS", "{}")
     start_ngrok(options=literal_eval(ngrok_options))
-    # ngrok.connect(port=FLASK_PORT, ngrok_path="/usr/local/bin/ngrok")
 
 
 app = Flask(__name__)

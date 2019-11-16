@@ -6,15 +6,23 @@ glados package
    :undoc-members:
    :show-inheritance:
 
+Subpackages
+-----------
+
+.. toctree::
+
+   glados.slack_classes
+
 Submodules
 ----------
 
 .. toctree::
-   glados.glados_bot
-   glados.glados_core
-   glados.glados_errors
-   glados.glados_plugin
-   glados.glados_request
-   glados.glados_router
+
+   glados.bot
+   glados.core
+   glados.errors
    glados.message_blocks
+   glados.plugin
+   glados.request
    glados.route_type
+   glados.router

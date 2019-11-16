@@ -34,9 +34,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="glados.glados_core module" href="glados.glados_core.html" />
-    <link rel="prev" title="glados package" href="glados.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,7 +78,7 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
@@ -94,17 +92,21 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">glados</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="glados.html">glados package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">glados.glados_bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.glados_core.html">glados.glados_core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.glados_errors.html">glados.glados_errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.glados_plugin.html">glados.glados_plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.glados_request.html">glados.glados_request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.glados_router.html">glados.glados_router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">glados</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.request.html">glados.request module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
 </ul>
 </li>
 </ul>
@@ -156,10 +158,6 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="modules.html">glados</a> &raquo;</li>
-        
-          <li><a href="glados.html">glados package</a> &raquo;</li>
-        
       <li>glados.glados_bot module</li>
     
     
@@ -179,112 +177,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-glados.glados_bot">
-<span id="glados-glados-bot-module"></span><h1>glados.glados_bot module<a class="headerlink" href="#module-glados.glados_bot" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="glados.glados_bot.GladosBot">
-<em class="property">class </em><code class="sig-prename descclassname">glados.glados_bot.</code><code class="sig-name descname">GladosBot</code><span class="sig-paren">(</span><em class="sig-param">token</em>, <em class="sig-param">name</em>, <em class="sig-param">signing_secret=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_bot.html#GladosBot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_bot.GladosBot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>GLaDOS Bot represents all the required data and functions for a Slack bot.</p>
-<p class="rubric">Notes</p>
-<p>All Slack Web API functions can be called from MyBot.client.*</p>
-<dl class="attribute">
-<dt id="glados.glados_bot.GladosBot.name">
-<code class="sig-name descname">name</code><a class="headerlink" href="#glados.glados_bot.GladosBot.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The name of the bot (URL Safe)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="glados.glados_bot.GladosBot.token">
-<code class="sig-name descname">token</code><a class="headerlink" href="#glados.glados_bot.GladosBot.token" title="Permalink to this definition">¶</a></dt>
-<dd><p>The bot token</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="glados.glados_bot.GladosBot.client">
-<code class="sig-name descname">client</code><a class="headerlink" href="#glados.glados_bot.GladosBot.client" title="Permalink to this definition">¶</a></dt>
-<dd><p>A Slack client generated for that bot</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>WebClient</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="glados.glados_bot.GladosBot.delete_message">
-<code class="sig-name descname">delete_message</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">ts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_bot.html#GladosBot.delete_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_bot.GladosBot.delete_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deletes a message that was sent by a bot</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>channel</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
-<li><p><strong>ts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SlackResponse</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="glados.glados_bot.GladosBot.send_message">
-<code class="sig-name descname">send_message</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_bot.html#GladosBot.send_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_bot.GladosBot.send_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Send a message as the bot</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>channel</strong> (<em>str</em>) – channel to send the message to</p></li>
-<li><p><strong>message</strong> (<em>Message</em>) – message object to send</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SlackResponse</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="glados.glados_bot.GladosBot.update_message">
-<code class="sig-name descname">update_message</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">ts</em>, <em class="sig-param">message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_bot.html#GladosBot.update_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_bot.GladosBot.update_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates a message that was sent by the bot</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>channel</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
-<li><p><strong>ts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
-<li><p><strong>message</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Message</span></code>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SlackResponse</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="glados.glados_bot.GladosBot.validate_slack_signature">
-<code class="sig-name descname">validate_slack_signature</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_bot.html#GladosBot.validate_slack_signature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_bot.GladosBot.validate_slack_signature" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>request</strong> (<a class="reference internal" href="glados.glados_request.html#glados.glados_request.GladosRequest" title="glados.glados_request.GladosRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">GladosRequest</span></code></a>) – </p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+  <div class="section" id="glados-glados-bot-module">
+<h1>glados.glados_bot module<a class="headerlink" href="#glados-glados-bot-module" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -292,15 +186,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="glados.glados_core.html" class="btn btn-neutral float-right" title="glados.glados_core module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="glados.html" class="btn btn-neutral float-left" title="glados package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

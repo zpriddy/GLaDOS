@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.glados_request &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.request &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
   
 
   
@@ -160,7 +160,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>glados.glados_request</li>
+      <li>glados.request</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,16 +175,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for glados.glados_request</h1><div class="highlight"><pre>
+  <h1>Source code for glados.request</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">BOT_ROUTES</span>
 
 
-<div class="viewcode-block" id="GladosParams"><a class="viewcode-back" href="../../glados.glados_request.html#glados.GladosParams">[docs]</a><span class="k">class</span> <span class="nc">GladosParams</span><span class="p">:</span>
+<div class="viewcode-block" id="GladosParams"><a class="viewcode-back" href="../../glados.request.html#glados.GladosParams">[docs]</a><span class="k">class</span> <span class="nc">GladosParams</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_param</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-<div class="viewcode-block" id="GladosParams.add_param"><a class="viewcode-back" href="../../glados.glados_request.html#glados.GladosParams.add_param">[docs]</a>    <span class="k">def</span> <span class="nf">add_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosParams.add_param"><a class="viewcode-back" href="../../glados.request.html#glados.GladosParams.add_param">[docs]</a>    <span class="k">def</span> <span class="nf">add_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
@@ -194,7 +194,7 @@
             <span class="k">return</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="SlackVerification"><a class="viewcode-back" href="../../glados.glados_request.html#glados.SlackVerification">[docs]</a><span class="k">class</span> <span class="nc">SlackVerification</span><span class="p">:</span>
+<div class="viewcode-block" id="SlackVerification"><a class="viewcode-back" href="../../glados.request.html#glados.SlackVerification">[docs]</a><span class="k">class</span> <span class="nc">SlackVerification</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">signature</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
@@ -214,15 +214,21 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;data&quot;</span><span class="p">:</span>      <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
             <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
-            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span>
+            <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">,</span>
         <span class="p">}</span></div>
 
 
-<div class="viewcode-block" id="GladosRequest"><a class="viewcode-back" href="../../glados.glados_request.html#glados.GladosRequest">[docs]</a><span class="k">class</span> <span class="nc">GladosRequest</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">slack_verify</span><span class="p">:</span> <span class="n">SlackVerification</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">bot_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosRequest"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest">[docs]</a><span class="k">class</span> <span class="nc">GladosRequest</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span>
+        <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">slack_verify</span><span class="p">:</span> <span class="n">SlackVerification</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">bot_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Parameters</span>

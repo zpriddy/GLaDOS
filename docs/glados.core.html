@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.glados_plugin module &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.core module &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="glados.errors module" href="glados.errors.html" />
+    <link rel="prev" title="glados.bot module" href="glados.bot.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,7 +80,7 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
@@ -92,15 +94,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">glados</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">glados</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="glados.html">glados package</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul>
+<li class="toctree-l3 current"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">glados.core module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
@@ -158,13 +160,17 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>glados.glados_plugin module</li>
+          <li><a href="modules.html">glados</a> &raquo;</li>
+        
+          <li><a href="glados.html">glados package</a> &raquo;</li>
+        
+      <li>glados.core module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/glados.glados_plugin.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/glados.core.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -177,8 +183,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="glados-glados-plugin-module">
-<h1>glados.glados_plugin module<a class="headerlink" href="#glados-glados-plugin-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-glados.core">
+<span id="glados-core-module"></span><h1>glados.core module<a class="headerlink" href="#module-glados.core" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="glados.core.Glados">
+<em class="property">class </em><code class="sig-prename descclassname">glados.core.</code><code class="sig-name descname">Glados</code><a class="reference internal" href="_modules/glados/core.html#Glados"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Glados is the core of the GLaDOS package.</p>
+<dl class="method">
+<dt id="glados.core.Glados.add_bot">
+<code class="sig-name descname">add_bot</code><span class="sig-paren">(</span><em class="sig-param">bot</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.add_bot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.add_bot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new bot to GLaDOS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bot</strong> (<a class="reference internal" href="glados.html#glados.GladosBot" title="glados.GladosBot"><em>GladosBot</em></a>) – the bot to be added to GLaDOS</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.core.Glados.add_plugin">
+<code class="sig-name descname">add_plugin</code><span class="sig-paren">(</span><em class="sig-param">plugin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.add_plugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.add_plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a plugin to GLaDOS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>plugin</strong> (<a class="reference internal" href="glados.html#glados.GladosPlugin" title="glados.GladosPlugin"><em>GladosPlugin</em></a>) – the plugin to be added to GLaDOS</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.core.Glados.request">
+<code class="sig-name descname">request</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a request to GLaDOS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> (<a class="reference internal" href="glados.html#glados.GladosRequest" title="glados.GladosRequest"><em>GladosRequest</em></a>) – the request to be sent to GLaDOS</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -186,6 +232,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="glados.errors.html" class="btn btn-neutral float-right" title="glados.errors module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="glados.bot.html" class="btn btn-neutral float-left" title="glados.bot module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

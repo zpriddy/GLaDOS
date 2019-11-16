@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.glados_router &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.router &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
   
 
   
@@ -160,7 +160,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>glados.glados_router</li>
+      <li>glados.router</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,13 +175,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for glados.glados_router</h1><div class="highlight"><pre>
+  <h1>Source code for glados.router</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NoReturn</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">GladosRouteNotFoundError</span>
 
 
-<div class="viewcode-block" id="GladosRoute"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRoute">[docs]</a><span class="k">class</span> <span class="nc">GladosRoute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosRoute"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRoute">[docs]</a><span class="k">class</span> <span class="nc">GladosRoute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents a single route&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
@@ -190,14 +190,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span></div>
 
 
-<div class="viewcode-block" id="GladosRouter"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter">[docs]</a><span class="k">class</span> <span class="nc">GladosRouter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosRouter"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter">[docs]</a><span class="k">class</span> <span class="nc">GladosRouter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># routes are stored as: {RouteType.SendMessage: {&quot;ask_user&quot;,ask_user, &quot;confirm&quot;:confirm}}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">routes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[RouteType, Dict[str, GladosRoute]]</span>
         <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="n">RouteType</span><span class="o">.</span><span class="n">_member_names_</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">RouteType</span><span class="p">[</span><span class="n">route</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, GladosRoute]</span>
 
-<div class="viewcode-block" id="GladosRouter.add_route"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.add_route">[docs]</a>    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="n">GladosRoute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<div class="viewcode-block" id="GladosRouter.add_route"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.add_route">[docs]</a>    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="n">GladosRoute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Add a route to the router</span>
 
 <span class="sd">        Parameters</span>
@@ -215,10 +215,11 @@
         <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">route</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">]:</span>
             <span class="c1"># TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-                    <span class="n">f</span><span class="s2">&quot;a route with the name of </span><span class="si">{route.route}</span><span class="s2"> already exists in the route type: </span><span class="si">{route.route_type.name}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">f</span><span class="s2">&quot;a route with the name of </span><span class="si">{route.route}</span><span class="s2"> already exists in the route type: </span><span class="si">{route.route_type.name}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">route</span><span class="o">.</span><span class="n">route</span><span class="p">]</span> <span class="o">=</span> <span class="n">route</span></div>
 
-<div class="viewcode-block" id="GladosRouter.add_routes"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.add_routes">[docs]</a>    <span class="k">def</span> <span class="nf">add_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">routes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GladosRoute</span><span class="p">]):</span>
+<div class="viewcode-block" id="GladosRouter.add_routes"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.add_routes">[docs]</a>    <span class="k">def</span> <span class="nf">add_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">routes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GladosRoute</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;Add multiple routes to the router.</span>
 
 <span class="sd">        Parameters</span>
@@ -233,7 +234,7 @@
         <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="n">routes</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="n">route</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GladosRouter.get_route"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.get_route">[docs]</a>    <span class="k">def</span> <span class="nf">get_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GladosRoute</span><span class="p">]:</span>
+<div class="viewcode-block" id="GladosRouter.get_route"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.get_route">[docs]</a>    <span class="k">def</span> <span class="nf">get_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GladosRoute</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Get a GladosRoute object for the requested route.</span>
 
 <span class="sd">        Parameters</span>
@@ -255,10 +256,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">route</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">GladosRouteNotFoundError</span><span class="p">(</span>
-                    <span class="n">f</span><span class="s2">&quot;no route with the name of </span><span class="si">{route}</span><span class="s2"> exists in route type: </span><span class="si">{route_type.name}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">f</span><span class="s2">&quot;no route with the name of </span><span class="si">{route}</span><span class="s2"> exists in route type: </span><span class="si">{route_type.name}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">route</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="GladosRouter.route_function"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.route_function">[docs]</a>    <span class="k">def</span> <span class="nf">route_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<div class="viewcode-block" id="GladosRouter.route_function"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.route_function">[docs]</a>    <span class="k">def</span> <span class="nf">route_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Return only the callable function for the requested GladosRoute.</span>
 
 <span class="sd">        Parameters</span>
@@ -276,7 +278,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_route</span><span class="p">(</span><span class="n">route_type</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span><span class="o">.</span><span class="n">function</span></div>
 
-<div class="viewcode-block" id="GladosRouter.exec_route"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.exec_route">[docs]</a>    <span class="k">def</span> <span class="nf">exec_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosRouter.exec_route"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.exec_route">[docs]</a>    <span class="k">def</span> <span class="nf">exec_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute a route function directly</span>
 
 <span class="sd">        Parameters</span>

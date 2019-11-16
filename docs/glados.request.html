@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>glados.request module &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="glados.route_type module" href="glados.route_type.html" />
+    <link rel="prev" title="glados.plugin module" href="glados.plugin.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GLaDOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#bot">Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#plugin">Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#routing">Routing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados_structure.html#route-types">Route Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="glados_structure.html#route">Route</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">glados</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="glados.html">glados package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">glados.request module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GLaDOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">glados</a> &raquo;</li>
+        
+          <li><a href="glados.html">glados package</a> &raquo;</li>
+        
+      <li>glados.request module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/glados.request.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-glados.request">
+<span id="glados-request-module"></span><h1>glados.request module<a class="headerlink" href="#module-glados.request" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="glados.request.GladosParams">
+<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">GladosParams</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosParams"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="glados.request.GladosParams.add_param">
+<code class="sig-name descname">add_param</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosParams.add_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosParams.add_param" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="glados.request.GladosRequest">
+<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">GladosRequest</code><span class="sig-paren">(</span><em class="sig-param">route_type</em>, <em class="sig-param">route</em>, <em class="sig-param">slack_verify=None</em>, <em class="sig-param">bot_name=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><em>RouteType</em></a>) – what type of route is this</p></li>
+<li><p><strong>route</strong> (<em>str</em>) – what is the route to be called</p></li>
+<li><p><strong>slack_verify</strong> (<a class="reference internal" href="#glados.request.SlackVerification" title="glados.request.SlackVerification"><em>SlackVerification</em></a>) – slack data used for verifying the request came from Slack</p></li>
+<li><p><strong>bot_name</strong> (<em>str</em>) – The name of the bot to send the request to. This is used for select RouteTypes</p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">request</span> <span class="o">=</span> <span class="n">GladosRequest</span><span class="p">(</span><span class="n">RouteType</span><span class="o">.</span><span class="n">SendMessage</span><span class="p">,</span> <span class="s2">&quot;send_mock&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;my message&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="go">my message</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">other_param</span><span class="p">)</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="glados.request.GladosRequest.route">
+<em class="property">property </em><code class="sig-name descname">route</code><a class="headerlink" href="#glados.request.GladosRequest.route" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="glados.request.SlackVerification">
+<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">SlackVerification</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">timestamp=None</em>, <em class="sig-param">signature=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#SlackVerification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.SlackVerification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>str</em>) – raw request body. This is used to verify the message is from slack.</p></li>
+<li><p><strong>timestamp</strong> (<em>str</em>) – The X-Slack-Request-Timestamp from the headers of the request. This is used to verify the message is from slack.</p></li>
+<li><p><strong>signature</strong> (<em>str</em>) – The X-Slack-Signature from the headers of the request. This is used to verify the message is from slack.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="glados.request.SlackVerification.json">
+<em class="property">property </em><code class="sig-name descname">json</code><a class="headerlink" href="#glados.request.SlackVerification.json" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="glados.route_type.html" class="btn btn-neutral float-right" title="glados.route_type module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="glados.plugin.html" class="btn btn-neutral float-left" title="glados.plugin module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zachary Priddy
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

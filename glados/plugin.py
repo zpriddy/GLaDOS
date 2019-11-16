@@ -74,8 +74,8 @@ class GladosPlugin:
 
         Examples
         --------
-        >>> from glados_plugin import GladosPlugin
-        >>> from glados_router import RouteType, GladosRoute
+        >>> from plugin import GladosPlugin
+        >>> from router import RouteType, GladosRoute
         >>> plugin = GladosPlugin("mockPlugin", None)
         >>> plugin.routes
         []
