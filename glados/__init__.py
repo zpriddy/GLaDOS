@@ -7,3 +7,5 @@ from .glados_plugin import GladosPlugin
 
 
 from .glados_core import Glados
+
+__all__ = ["Glados", "GladosBot", "GladosRequest"]
