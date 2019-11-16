@@ -43,6 +43,7 @@ class TestPlugin(GladosPlugin):
         if request.json.event.tab == "messages":
             pass
 
+
     def send_message(self, request: GladosRequest, **kwargs):
         message = Message(
             text=request.json.message,
