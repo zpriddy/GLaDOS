@@ -35,8 +35,7 @@ The same URL can be used for all the Slack bots / Applications that GLaDOS is ha
 
 ## Installation
 
-## Documentation 
-
+## [Documentation](https://zpriddy.github.io/GLaDOS/index.html) 
 
 
 Because of this I would recommend prefixing the routes with the plugin name to make it clear of the routing of that call. GLaDOS
