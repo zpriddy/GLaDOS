@@ -131,10 +131,5 @@ class GladosRouter(object):
         bool:
             Did the function execute successfully
         """
-        try:
-            return self.route_function(request.route_type, request.route)(request)
-        except KeyError as e:
-            # TODO(zpriddy): Replace this with logging.
-            # print("Error calling route function")
-            # print(str(e))
-            return False
+        return self.route_function(request.route_type, request.route)(request)
+

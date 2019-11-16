@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>glados.glados_router &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GLaDOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">glados</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html">glados package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../glados.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_bot.html">glados.glados_bot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_core.html">glados.glados_core module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_errors.html">glados.glados_errors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_plugin.html">glados.glados_plugin module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_request.html">glados.glados_request module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_router.html">glados.glados_router module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.message_blocks.html">glados.message_blocks module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.route_type.html">glados.route_type module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GLaDOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>glados.glados_router</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for glados.glados_router</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NoReturn</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="n">RouteType</span>
+
+
+<div class="viewcode-block" id="GladosRoute"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRoute">[docs]</a><span class="k">class</span> <span class="nc">GladosRoute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">route_type</span> <span class="o">=</span> <span class="n">route_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">route</span> <span class="o">=</span> <span class="n">route</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span></div>
+
+
+<div class="viewcode-block" id="GladosRouter"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter">[docs]</a><span class="k">class</span> <span class="nc">GladosRouter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># routes are stored as: {RouteType.SendMessage: {&quot;ask_user&quot;,ask_user, &quot;confirm&quot;:confirm}}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">routes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[RouteType, Dict[str, GladosRoute]]</span>
+        <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="n">RouteType</span><span class="o">.</span><span class="n">_member_names_</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">RouteType</span><span class="p">[</span><span class="n">route</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, GladosRoute]</span>
+
+<div class="viewcode-block" id="GladosRouter.add_route"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.add_route">[docs]</a>    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="n">GladosRoute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Add a route to the router</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        route: GladosRoute</span>
+<span class="sd">            the route to be added</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            a route with the same type and same name already exists</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># print(f&quot;Adding route: {route.__dict__}&quot;)</span>
+        <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">route</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">]:</span>
+            <span class="c1"># TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="n">f</span><span class="s2">&quot;a route with the name of </span><span class="si">{route.route}</span><span class="s2"> already exists in the route type: </span><span class="si">{route.route_type.name}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">route</span><span class="o">.</span><span class="n">route</span><span class="p">]</span> <span class="o">=</span> <span class="n">route</span></div>
+
+<div class="viewcode-block" id="GladosRouter.add_routes"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.add_routes">[docs]</a>    <span class="k">def</span> <span class="nf">add_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">routes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GladosRoute</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="n">routes</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="n">route</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GladosRouter.get_route"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.get_route">[docs]</a>    <span class="k">def</span> <span class="nf">get_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GladosRoute</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get a GladosRoute object for the requested route.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        route_type: RouteType</span>
+<span class="sd">            the type of route to get</span>
+<span class="sd">        route: str</span>
+<span class="sd">            the route to get</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GladosRoute</span>
+<span class="sd">            return the request route</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            the requested route is not found</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">route</span><span class="p">):</span>
+            <span class="c1"># TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteError</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+                    <span class="n">f</span><span class="s2">&quot;no route with the name of </span><span class="si">{route}</span><span class="s2"> exists in route type: </span><span class="si">{route_type.name}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">route</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="GladosRouter.route_function"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.route_function">[docs]</a>    <span class="k">def</span> <span class="nf">route_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return only the callable function for the requested GladosRoute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        route_type: RouteType</span>
+<span class="sd">            the type of route to get</span>
+<span class="sd">        route: str</span>
+<span class="sd">            the route to get</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Callable</span>
+<span class="sd">            return the requested routes callable function</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_route</span><span class="p">(</span><span class="n">route_type</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span><span class="o">.</span><span class="n">function</span></div>
+
+<div class="viewcode-block" id="GladosRouter.exec_route"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.exec_route">[docs]</a>    <span class="k">def</span> <span class="nf">exec_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Execute a route function directly</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ----------</span>
+<span class="sd">        &gt;&gt;&gt; def mock_function(request: GladosRequest):</span>
+<span class="sd">        ...     print(f&quot;Mock Function: {request.params.message}&quot;)</span>
+<span class="sd">        ...     return True</span>
+<span class="sd">        &gt;&gt;&gt; router = GladosRouter()</span>
+<span class="sd">        &gt;&gt;&gt; route = GladosRoute(RouteType.SendMessage, &quot;send_mock&quot;, mock_function)</span>
+<span class="sd">        &gt;&gt;&gt; router.add_route(route)</span>
+<span class="sd">        &gt;&gt;&gt; request = GladosRequest(RouteType.SendMessage, &quot;send_mock&quot;, message=&quot;Hello World!&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; successful = router.exec_route(request)</span>
+<span class="sd">        Mock Function: Hello World!</span>
+<span class="sd">        &gt;&gt;&gt; print(successful)</span>
+<span class="sd">        True</span>
+
+<span class="sd">        &gt;&gt;&gt; def mock_function(request: GladosRequest):</span>
+<span class="sd">        ...     print(f&quot;Mock Function: {request.params.message}&quot;)</span>
+<span class="sd">        ...     return True</span>
+<span class="sd">        &gt;&gt;&gt; router = GladosRouter()</span>
+<span class="sd">        &gt;&gt;&gt; route = GladosRoute(RouteType.SendMessage, &quot;send_mock&quot;, mock_function)</span>
+<span class="sd">        &gt;&gt;&gt; router.add_route(route)</span>
+<span class="sd">        &gt;&gt;&gt; request = GladosRequest(RouteType.SendMessage, &quot;send_mock_fail&quot;, message=&quot;Hello World!&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; successful = router.exec_route(request)</span>
+<span class="sd">        &gt;&gt;&gt; print(successful)</span>
+<span class="sd">        False</span>
+
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        route_type: RouteType</span>
+<span class="sd">            what type of route to execute</span>
+<span class="sd">        route: str</span>
+<span class="sd">            what is the route/path to execute</span>
+<span class="sd">        kwargs:</span>
+<span class="sd">            the arguments to pass into the plugin function</span>
+<span class="sd">            # TODO(zpriddy): Replace this with a request object?</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool:</span>
+<span class="sd">            Did the function execute successfully</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_function</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">route_type</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">route</span><span class="p">)(</span><span class="n">request</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zachary Priddy
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

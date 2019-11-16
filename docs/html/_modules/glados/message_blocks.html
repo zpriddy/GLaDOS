@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>glados.message_blocks &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GLaDOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">glados</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html">glados package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../glados.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_bot.html">glados.glados_bot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_core.html">glados.glados_core module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_errors.html">glados.glados_errors module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_plugin.html">glados.glados_plugin module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_request.html">glados.glados_request module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.glados_router.html">glados.glados_router module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.message_blocks.html">glados.message_blocks module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.route_type.html">glados.route_type module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GLaDOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>glados.message_blocks</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for glados.message_blocks</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">slack.web.classes</span> <span class="k">import</span> <span class="n">JsonObject</span><span class="p">,</span> <span class="n">JsonValidator</span><span class="p">,</span> <span class="n">extract_json</span>
+<span class="kn">from</span> <span class="nn">slack.web.classes.elements</span> <span class="k">import</span> <span class="n">PlainTextObject</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">slack.web.classes.blocks</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">Block</span><span class="p">,</span>
+    <span class="n">BlockElement</span><span class="p">,</span>
+    <span class="n">SectionBlock</span><span class="p">,</span>
+    <span class="n">DividerBlock</span><span class="p">,</span>
+    <span class="n">ImageBlock</span><span class="p">,</span>
+    <span class="n">ActionsBlock</span><span class="p">,</span>
+    <span class="n">InteractiveElement</span><span class="p">,</span>
+    <span class="n">ContextBlock</span><span class="p">,</span>
+    <span class="c1">#InputBlock,</span>
+    <span class="c1">#AbstractSelector,</span>
+    <span class="c1">#FileBlock,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">slack.web.classes.objects</span> <span class="k">import</span> <span class="n">TextObject</span>
+
+
+<div class="viewcode-block" id="ModalBuilder"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder">[docs]</a><span class="k">class</span> <span class="nc">ModalBuilder</span><span class="p">(</span><span class="n">JsonObject</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The ModalBuilder enables you to more easily construct the JSON required</span>
+<span class="sd">    to create a modal in Slack.</span>
+
+<span class="sd">    Modals are a focused surface to collect data from users</span>
+<span class="sd">    or display dynamic and interactive information.</span>
+
+<span class="sd">    To learn how modals are invoked, how to compose their contents,</span>
+<span class="sd">    and how to enable and handle complex interactivity read this guide:</span>
+
+<span class="sd">    https://api.slack.com/block-kit/surfaces/modals</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_title</span><span class="p">:</span> <span class="n">PlainTextObject</span>
+    <span class="n">_blocks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Block</span><span class="p">]</span>
+    <span class="n">_close</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PlainTextObject</span><span class="p">]</span>
+    <span class="n">_submit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PlainTextObject</span><span class="p">]</span>
+    <span class="n">_private_metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">_callback_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">_clear_on_close</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
+    <span class="n">_notify_on_close</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
+    <span class="n">_external_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+
+    <span class="n">title_max_length</span> <span class="o">=</span> <span class="mi">24</span>
+    <span class="n">blocks_max_length</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">close_max_length</span> <span class="o">=</span> <span class="mi">24</span>
+    <span class="n">submit_max_length</span> <span class="o">=</span> <span class="mi">24</span>
+    <span class="n">private_metadata_max_length</span> <span class="o">=</span> <span class="mi">3000</span>
+    <span class="n">callback_id_max_length</span> <span class="o">=</span> <span class="mi">255</span>
+
+    <span class="n">attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;_title&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_blocks&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_close&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_submit&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_private_metadata&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_callback_id&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_clear_on_close&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_notify_on_close&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_external_id&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_type</span> <span class="o">=</span> <span class="s2">&quot;modal&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_blocks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_close</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_submit</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_private_metadata</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_callback_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clear_on_close</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_notify_on_close</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_external_id</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="ModalBuilder.title"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.title">[docs]</a>    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Specify a title for this modal</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          title: must not exceed 24 characters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="n">PlainTextObject</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.close"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">close</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Specify the text displayed in the close button at the bottom-right of the view.</span>
+
+<span class="sd">        Max length of 24 characters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          close: must not exceed 24 characters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_close</span> <span class="o">=</span> <span class="n">PlainTextObject</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">close</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.submit"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.submit">[docs]</a>    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">submit</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Specify the text displayed in the submit button at the bottom-right of the view.</span>
+
+<span class="sd">        Important Note: submit is required when an input block is within the blocks array.</span>
+
+<span class="sd">        Max length of 24 characters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          submit: must not exceed 24 characters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_submit</span> <span class="o">=</span> <span class="n">PlainTextObject</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">submit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.private_metadata"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.private_metadata">[docs]</a>    <span class="k">def</span> <span class="nf">private_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">private_metadata</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;An optional string that will be sent to your app in view_submission</span>
+<span class="sd">        and block_actions events.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          private_metadata: must not exceed 3000 characters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_private_metadata</span> <span class="o">=</span> <span class="n">private_metadata</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.callback_id"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.callback_id">[docs]</a>    <span class="k">def</span> <span class="nf">callback_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;An identifier to recognize interactions and submissions of this particular modal.</span>
+<span class="sd">        Don&#39;t use this to store sensitive information (use private_metadata instead).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          callback_id: must not exceed 255 characters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_callback_id</span> <span class="o">=</span> <span class="n">callback_id</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.clear_on_close"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.clear_on_close">[docs]</a>    <span class="k">def</span> <span class="nf">clear_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clear_on_close</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;When set to true, clicking on the close button will clear</span>
+<span class="sd">        all views in a modal and close it.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          clear_on_close: Default is false.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clear_on_close</span> <span class="o">=</span> <span class="n">clear_on_close</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.notify_on_close"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.notify_on_close">[docs]</a>    <span class="k">def</span> <span class="nf">notify_on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notify_on_close</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;	Indicates whether Slack will send your request URL a view_closed</span>
+<span class="sd">        event when a user clicks the close button.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          notify_on_close: Default is false.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_notify_on_close</span> <span class="o">=</span> <span class="n">notify_on_close</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.external_id"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.external_id">[docs]</a>    <span class="k">def</span> <span class="nf">external_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">external_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;A custom identifier that must be unique for all views on a per-team basis.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          external_id: A unique identifier.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_external_id</span> <span class="o">=</span> <span class="n">external_id</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.section"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.section">[docs]</a>    <span class="k">def</span> <span class="nf">section</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TextObject</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">block_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">fields</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">accessory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">BlockElement</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ModalBuilder&quot;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;A section is one of the most flexible blocks available.</span>
+<span class="sd">        It can be used as a simple text block, in combination with</span>
+<span class="sd">        text fields, or side-by-side with any of the available block elements.</span>
+
+<span class="sd">        https://api.slack.com/reference/block-kit/blocks#section</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text: The text for the block, in the form of string or a text object.</span>
+<span class="sd">                Maximum length for the text in this field is 3000 characters.</span>
+<span class="sd">            block_id: A string acting as a unique identifier for a block.</span>
+<span class="sd">                You can use this block_id when you receive an interaction</span>
+<span class="sd">                payload to identify the docs-src of the action. If not</span>
+<span class="sd">                specified, one will be generated. Maximum length for this</span>
+<span class="sd">                field is 255 characters. block_id should be unique for each</span>
+<span class="sd">                message and each iteration of a message.</span>
+<span class="sd">                If a message is updated, use a new block_id.</span>
+<span class="sd">            fields: optional: a sequence of strings that will be rendered using</span>
+<span class="sd">                MarkdownTextObjects. Any strings included with fields will be rendered</span>
+<span class="sd">                in a compact format that allows for 2 columns of side-by-side text.</span>
+<span class="sd">                Maximum number of items is 10.</span>
+<span class="sd">                Maximum length for the text in each item is 2000 characters.</span>
+<span class="sd">            accessory: an optional BlockElement to attach to this SectionBlock as</span>
+<span class="sd">                secondary content</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">SectionBlock</span><span class="p">(</span>
+                <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">block_id</span><span class="o">=</span><span class="n">block_id</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span> <span class="n">accessory</span><span class="o">=</span><span class="n">accessory</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.divider"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.divider">[docs]</a>    <span class="k">def</span> <span class="nf">divider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">block_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A content divider, like an &lt;hr&gt;, to split up different blocks inside of a message.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            block_id: A string acting as a unique identifier for a block.</span>
+<span class="sd">                You can use this block_id when you receive an interaction</span>
+<span class="sd">                payload to identify the docs-src of the action. If not</span>
+<span class="sd">                specified, one will be generated. Maximum length for this</span>
+<span class="sd">                field is 255 characters. block_id should be unique for each</span>
+<span class="sd">                message and each iteration of a message.</span>
+<span class="sd">                If a message is updated, use a new block_id.</span>
+
+<span class="sd">        https://api.slack.com/reference/block-kit/blocks#divider</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DividerBlock</span><span class="p">(</span><span class="n">block_id</span><span class="o">=</span><span class="n">block_id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.image"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.image">[docs]</a>    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">image_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">alt_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">block_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A simple image block, designed to make those cat photos really pop.</span>
+
+<span class="sd">        https://api.slack.com/reference/block-kit/blocks#image</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image_url: Publicly hosted URL to be displayed. Cannot exceed 3000</span>
+<span class="sd">                characters.</span>
+<span class="sd">            alt_text: Plain text summary of image. Cannot exceed 2000 characters.</span>
+<span class="sd">            title: A title to be displayed above the image. Cannot exceed 2000</span>
+<span class="sd">                characters.</span>
+<span class="sd">            block_id: ID to be used for this block - autogenerated if left blank.</span>
+<span class="sd">                Cannot exceed 255 characters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">ImageBlock</span><span class="p">(</span>
+                <span class="n">image_url</span><span class="o">=</span><span class="n">image_url</span><span class="p">,</span> <span class="n">alt_text</span><span class="o">=</span><span class="n">alt_text</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">block_id</span><span class="o">=</span><span class="n">block_id</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.actions"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.actions">[docs]</a>    <span class="k">def</span> <span class="nf">actions</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">InteractiveElement</span><span class="p">],</span> <span class="n">block_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A block that is used to hold interactive elements.</span>
+
+<span class="sd">        https://api.slack.com/reference/block-kit/blocks#actions</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            elements: Up to 5 InteractiveElement objects - buttons, date pickers, etc</span>
+<span class="sd">            block_id: ID to be used for this block - autogenerated if left blank.</span>
+<span class="sd">                Cannot exceed 255 characters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ActionsBlock</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="n">elements</span><span class="p">,</span> <span class="n">block_id</span><span class="o">=</span><span class="n">block_id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.context"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.context">[docs]</a>    <span class="k">def</span> <span class="nf">context</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">InteractiveElement</span><span class="p">],</span> <span class="n">block_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Displays message context, which can include both images and text.</span>
+
+<span class="sd">        https://api.slack.com/reference/block-kit/blocks#context</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            elements: Up to 10 ImageElements and TextObjects</span>
+<span class="sd">            block_id: ID to be used for this block - autogenerated if left blank.</span>
+<span class="sd">                Cannot exceed 255 characters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ContextBlock</span><span class="p">(</span><span class="n">elements</span><span class="o">=</span><span class="n">elements</span><span class="p">,</span> <span class="n">block_id</span><span class="o">=</span><span class="n">block_id</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="c1"># def input(</span>
+    <span class="c1">#     self,</span>
+    <span class="c1">#     *,</span>
+    <span class="c1">#     label: str,</span>
+    <span class="c1">#     element: Union[str, AbstractSelector],</span>
+    <span class="c1">#     hint: Optional[str] = None,</span>
+    <span class="c1">#     optional: Optional[bool] = False,</span>
+    <span class="c1"># ):</span>
+    <span class="c1">#     &quot;&quot;&quot;A block that collects information from users - it can hold a</span>
+    <span class="c1">#     plain-text input element, a select menu element, a multi-select menu element,</span>
+    <span class="c1">#     or a datepicker.</span>
+    <span class="c1">#</span>
+    <span class="c1">#     Important Note: Input blocks are only available in modals.</span>
+    <span class="c1">#</span>
+    <span class="c1">#     https://api.slack.com/reference/block-kit/blocks#input</span>
+    <span class="c1">#</span>
+    <span class="c1">#     Args:</span>
+    <span class="c1">#         label: A label that appears above an input element in the</span>
+    <span class="c1">#             form of a text object that must have type of plain_text.</span>
+    <span class="c1">#             Maximum length for the text in this field is 2000 characters.</span>
+    <span class="c1">#         element: An plain-text input element, a select menu element,</span>
+    <span class="c1">#             a multi-select menu element, or a datepicker.</span>
+    <span class="c1">#         hint: An optional hint that appears below an input element in a lighter grey.</span>
+    <span class="c1">#             Maximum length for the text in this field is 2000 characters.</span>
+    <span class="c1">#         optional: A boolean that indicates whether the input element</span>
+    <span class="c1">#             may be empty when a user submits the modal. Defaults to false.</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     self._blocks.append(</span>
+    <span class="c1">#         InputBlock(label=label, element=element, hint=hint, optional=optional)</span>
+    <span class="c1">#     )</span>
+    <span class="c1">#     return self</span>
+    <span class="c1">#</span>
+    <span class="c1"># def file(</span>
+    <span class="c1">#     self,</span>
+    <span class="c1">#     *,</span>
+    <span class="c1">#     external_id: str,</span>
+    <span class="c1">#     docs-src: str = &quot;remote&quot;,</span>
+    <span class="c1">#     block_id: Optional[str] = None,</span>
+    <span class="c1"># ):</span>
+    <span class="c1">#     &quot;&quot;&quot;Displays a remote file.</span>
+    <span class="c1">#</span>
+    <span class="c1">#     https://api.slack.com/reference/block-kit/blocks#file</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
+    <span class="c1">#     self._blocks.append(</span>
+    <span class="c1">#         FileBlock(external_id=external_id, docs-src=docs-src, block_id=block_id)</span>
+    <span class="c1">#     )</span>
+    <span class="c1">#     return self</span>
+
+<div class="viewcode-block" id="ModalBuilder.title_length"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.title_length">[docs]</a>    <span class="nd">@JsonValidator</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;title must be between 1 and </span><span class="si">{title_max_length}</span><span class="s2"> characters&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">title_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">title_max_length</span>
+
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.blocks_length"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.blocks_length">[docs]</a>    <span class="nd">@JsonValidator</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;modals must contain between 1 and </span><span class="si">{blocks_max_length}</span><span class="s2"> blocks&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">blocks_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_blocks</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks_max_length</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.close_length"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.close_length">[docs]</a>    <span class="nd">@JsonValidator</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;close cannot exceed </span><span class="si">{close_max_length}</span><span class="s2"> characters&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">close_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_close</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_close</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">close_max_length</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.submit_length"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.submit_length">[docs]</a>    <span class="nd">@JsonValidator</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;submit cannot exceed </span><span class="si">{submit_max_length}</span><span class="s2"> characters&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">submit_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_submit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_submit</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">submit_max_length</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+    <span class="c1"># @JsonValidator(</span>
+    <span class="c1">#     f&quot;submit is required when an &#39;input&#39; block is within the blocks array&quot;</span>
+    <span class="c1"># )</span>
+    <span class="c1"># def submit_required_when_input_block_used(self):</span>
+    <span class="c1">#     if self._submit is None:</span>
+    <span class="c1">#         return InputBlock not in [b.__class__ for b in self._blocks]</span>
+    <span class="c1">#</span>
+    <span class="c1">#     return True</span>
+
+<div class="viewcode-block" id="ModalBuilder.private_metadata_max_length"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.private_metadata_max_length">[docs]</a>    <span class="nd">@JsonValidator</span><span class="p">(</span>
+        <span class="n">f</span><span class="s2">&quot;private_metadata cannot exceed </span><span class="si">{private_metadata_max_length}</span><span class="s2"> characters&quot;</span>
+    <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">private_metadata_max_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_private_metadata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_private_metadata</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">private_metadata_max_length</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.callback_id_max_length"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.callback_id_max_length">[docs]</a>    <span class="nd">@JsonValidator</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;callback_id cannot exceed </span><span class="si">{callback_id_max_length}</span><span class="s2"> characters&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">callback_id_max_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callback_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_callback_id</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_id_max_length</span></div>
+
+<div class="viewcode-block" id="ModalBuilder.to_dict"><a class="viewcode-back" href="../../glados.message_blocks.html#glados.message_blocks.ModalBuilder.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_json</span><span class="p">()</span>
+
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="p">,</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">extract_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">),</span>
+            <span class="s2">&quot;blocks&quot;</span><span class="p">:</span> <span class="n">extract_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_blocks</span><span class="p">),</span>
+            <span class="s2">&quot;close&quot;</span><span class="p">:</span> <span class="n">extract_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_close</span><span class="p">),</span>
+            <span class="s2">&quot;submit&quot;</span><span class="p">:</span> <span class="n">extract_json</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_submit</span><span class="p">),</span>
+            <span class="s2">&quot;private_metadata&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_private_metadata</span><span class="p">,</span>
+            <span class="s2">&quot;callback_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callback_id</span><span class="p">,</span>
+            <span class="s2">&quot;clear_on_close&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clear_on_close</span><span class="p">,</span>
+            <span class="s2">&quot;notify_on_close&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_notify_on_close</span><span class="p">,</span>
+            <span class="s2">&quot;external_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_external_id</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fields</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zachary Priddy
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -7,6 +7,9 @@ from glados import GladosRequest
 
 
 class GladosBot(object):
+    """ GLaDOS Bot
+
+    """
     def __init__(self, token, name, signing_secret=None, **kwargs):
         self.name = name
         self.token = token
@@ -21,6 +24,19 @@ class GladosBot(object):
 
 
     def send_message(self, channel: str, message: Message) -> SlackResponse:
+        """Send a message as the bot
+
+        Parameters
+        ----------
+        channel : str
+            channel to send the message to
+        message : Message
+            message object to send
+
+        Returns
+        -------
+
+        """
         return self.client.chat_postMessage(channel=channel, as_user=True, **message.to_dict()).data
 
     def update_message(self, channel: str, ts: str, message: Message) -> SlackResponse:

@@ -1,0 +1,1 @@
+sphinx-apidoc --ext-viewcode  --ext-githubpages --ext-todo  -M -f -o . ../glados

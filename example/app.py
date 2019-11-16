@@ -54,14 +54,17 @@ def event_subscriptions(bot):
     event_object_type = body.get("event", {}).get("type")
     r = GladosRequest(RouteType.Events, event_object_type, extract_slack_info(request), bot,
                       **request.get_json())
-    return glados.request(r)
+    try:
+        return glados.request(r)
+    except KeyError:
+        return ""
 
 
 @app.route("/Slash/<route>", methods=["POST"])
 def slash_command(route):
     slack_info = extract_slack_info(request)
     request_json = request.form.to_dict()
-    r = GladosRequest(RouteType.Slash, route,slack_info, **request_json)
+    r = GladosRequest(RouteType.Slash, route, slack_info, **request_json)
     return glados.request(r)
 
 
@@ -72,7 +75,10 @@ def interaction(bot):
     request_json = json.loads(request_json.get("payload"))
     action_id = request_json.get("actions", [{}])[0].get("action_id")
     r = GladosRequest(RouteType.Interaction, action_id, slack_info, **request_json)
-    return glados.request(r)
+    try:
+        return glados.request(r)
+    except KeyError:
+        return ""
 
 
 @app.route("/Menu", methods=["POST"])
