@@ -61,7 +61,7 @@ html_theme_options = {
     'collapse_navigation': False
 }
 
-github_url="https://github.com/zpriddy/GLaDOS/html"
+github_url="https://github.com/zpriddy/GLaDOS"
 
 apidoc_module_dir = "../glados"
 apidoc_separate_modules = True
