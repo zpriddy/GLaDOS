@@ -1,5 +1,5 @@
 from glados import RouteType, BOT_ROUTES, PyJSON
-from typing import Any
+from typing import Union
 
 
 class SlackVerification:
@@ -42,6 +42,8 @@ class GladosRequest:
         slack data used for verifying the request came from Slack
     bot_name: str
         The name of the bot to send the request to. This is used for select RouteTypes
+    json:
+        the json paylod of the request
     kwargs
 
     Examples
@@ -49,8 +51,11 @@ class GladosRequest:
     >>> request = GladosRequest(RouteType.SendMessage, "send_mock", json={"message":"my message"})
     >>> print(request.json.message)
     my message
-    >>> print(request.json.other_param)
-    None
+    >>> try:
+    ...    print(request.json.other_param)
+    ... except AttributeError:
+    ...     print("ERROR")
+    ERROR
     """
 
     def __init__(
@@ -59,7 +64,7 @@ class GladosRequest:
         route: str,
         slack_verify: SlackVerification = None,
         bot_name: str = None,
-        json: dict = None,
+        json: Union[str, dict] = None,
         **kwargs,
     ):
 
