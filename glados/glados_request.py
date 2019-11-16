@@ -36,15 +36,21 @@ class SlackVerification:
     @property
     def json(self) -> dict:
         return {
-            "data":      self.data,
+            "data": self.data,
             "timestamp": self.timestamp,
-            "signature": self.signature
+            "signature": self.signature,
         }
 
 
 class GladosRequest:
-    def __init__(self, route_type: RouteType, route: str, slack_verify: SlackVerification = None,
-                 bot_name: str = None, **kwargs):
+    def __init__(
+        self,
+        route_type: RouteType,
+        route: str,
+        slack_verify: SlackVerification = None,
+        bot_name: str = None,
+        **kwargs,
+    ):
         """
 
         Parameters

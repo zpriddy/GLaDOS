@@ -37,7 +37,8 @@ class GladosRouter(object):
         if route.route in self.routes[route.route_type.value]:
             # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError
             raise KeyError(
-                    f"a route with the name of {route.route} already exists in the route type: {route.route_type.name}")
+                f"a route with the name of {route.route} already exists in the route type: {route.route_type.name}"
+            )
         self.routes[route.route_type.value][route.route] = route
 
     def add_routes(self, routes: List[GladosRoute]):
@@ -77,7 +78,8 @@ class GladosRouter(object):
         """
         if not self.routes[route_type.value].get(route):
             raise GladosRouteNotFoundError(
-                    f"no route with the name of {route} exists in route type: {route_type.name}")
+                f"no route with the name of {route} exists in route type: {route_type.name}"
+            )
         return self.routes[route_type.value][route]
 
     def route_function(self, route_type: RouteType, route: str) -> Callable:

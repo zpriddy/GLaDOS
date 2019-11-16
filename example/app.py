@@ -14,6 +14,7 @@ USE_NGROK = True
 def setup_ngrok():
     from example_ngrok import start_ngrok
     from ast import literal_eval
+
     print("Delaying the start of ngrok")
     ngrok_options = getenv("GLADOS_NGROK_OPTIONS", "{}")
     start_ngrok(options=literal_eval(ngrok_options))
@@ -52,8 +53,13 @@ def event_subscriptions(bot):
 
     # Build GladosRequest
     event_object_type = body.get("event", {}).get("type")
-    r = GladosRequest(RouteType.Events, event_object_type, extract_slack_info(request), bot,
-                      **request.get_json())
+    r = GladosRequest(
+        RouteType.Events,
+        event_object_type,
+        extract_slack_info(request),
+        bot,
+        **request.get_json()
+    )
     try:
         return glados.request(r)
     except KeyError:
@@ -91,12 +97,14 @@ def external_menu():
     return glados.request(r)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("Starting App")
     app.secret_key = "ThisIsNotSecure"
     app.debug = True
 
-    glados.add_bot(GladosBot(GLADOS_BOT_KEY, "glados", getenv("GLADOS_GLADOS_SIGNING_SECRET")))
+    glados.add_bot(
+        GladosBot(GLADOS_BOT_KEY, "glados", getenv("GLADOS_GLADOS_SIGNING_SECRET"))
+    )
     glados.add_plugin(TestPlugin(glados.bots["glados"]))
 
     if USE_NGROK:

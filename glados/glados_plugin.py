@@ -3,7 +3,7 @@ from typing import Callable, Dict
 from glados import GladosBot, RouteType, GladosRoute, BOT_ROUTES, GladosPathExistsError
 
 
-class GladosPlugin():
+class GladosPlugin:
     """Parent class for a GLaDOS Plugin"""
 
     def __init__(self, name: str, bot: GladosBot, **kwargs):
@@ -39,7 +39,9 @@ class GladosPlugin():
         self._routes = dict()  # type: Dict[int, Dict[str, GladosRoute]]
 
         for route in RouteType._member_names_:
-            self._routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]
+            self._routes[
+                RouteType[route].value
+            ] = dict()  # type: Dict[str, GladosRoute]
 
     def add_route(self, route_type: RouteType, route: str, function: Callable):
         """Add a new route to the plugin
@@ -62,7 +64,8 @@ class GladosPlugin():
             new_route.route = f"{self.bot.name}_{route}"
         if new_route.route in self._routes[new_route.route_type.value]:
             raise GladosPathExistsError(
-                    f"a route with the name of {new_route.route} already exists in the route type: {new_route.route_type.name}")
+                f"a route with the name of {new_route.route} already exists in the route type: {new_route.route_type.name}"
+            )
         self._routes[new_route.route_type.value][new_route.route] = new_route
 
     @property
@@ -88,6 +91,11 @@ class GladosPlugin():
 
         """
         routes = list()
-        [routes.extend(route_object) for route_object in
-         [list(route.values()) for route in [route_type for route_type in self._routes.values()]]]
+        [
+            routes.extend(route_object)
+            for route_object in [
+                list(route.values())
+                for route in [route_type for route_type in self._routes.values()]
+            ]
+        ]
         return routes

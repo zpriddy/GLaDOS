@@ -3,10 +3,11 @@ from typing import List, Dict
 from glados import GladosPlugin, GladosRequest, GladosRouter, GladosBot
 
 
-class Glados():
+class Glados:
     """Glados is the core of the GLaDOS package.
 
     """
+
     def __init__(self):
         self.router = GladosRouter()
         self.plugins = list()  # type: List[GladosPlugin]

@@ -6,7 +6,7 @@ from slack.errors import SlackRequestError
 from glados import GladosRequest
 
 
-class GladosBot():
+class GladosBot:
     """ GLaDOS Bot represents all the required data and functions for a Slack bot.
 
     Notes
@@ -23,6 +23,7 @@ class GladosBot():
         A Slack client generated for that bot
 
     """
+
     def __init__(self, token, name, signing_secret=None, **kwargs):
         self.name = name
         self.token = token
@@ -30,11 +31,11 @@ class GladosBot():
         self.signing_secret = signing_secret
 
     def validate_slack_signature(self, request: GladosRequest):
-        valid = self.client.validate_slack_signature(signing_secret=self.signing_secret, **request.slack_verify.json)
+        valid = self.client.validate_slack_signature(
+            signing_secret=self.signing_secret, **request.slack_verify.json
+        )
         if not valid:
             raise SlackRequestError("Signature of request is not valid")
-
-
 
     def send_message(self, channel: str, message: Message) -> SlackResponse:
         """Send a message as the bot
@@ -50,7 +51,9 @@ class GladosBot():
         -------
 
         """
-        return self.client.chat_postMessage(channel=channel, as_user=True, **message.to_dict()).data
+        return self.client.chat_postMessage(
+            channel=channel, as_user=True, **message.to_dict()
+        ).data
 
     def update_message(self, channel: str, ts: str, message: Message) -> SlackResponse:
         """Updates a message that was sent by the bot
