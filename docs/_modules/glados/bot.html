@@ -181,6 +181,8 @@
 <span class="kn">from</span> <span class="nn">slack.web.slack_response</span> <span class="k">import</span> <span class="n">SlackResponse</span>
 <span class="kn">from</span> <span class="nn">slack.errors</span> <span class="k">import</span> <span class="n">SlackRequestError</span>
 
+<span class="kn">import</span> <span class="nn">logging</span>
+
 <span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosRequest</span>
 
 
@@ -190,6 +192,15 @@
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    All Slack Web API functions can be called from MyBot.client.*</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name: str</span>
+<span class="sd">        The name of the bot (URL Safe)</span>
+<span class="sd">    token: str</span>
+<span class="sd">        The bot token</span>
+<span class="sd">    client: WebClient</span>
+<span class="sd">        A Slack client generated for that bot</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -212,6 +223,7 @@
         <span class="n">valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">validate_slack_signature</span><span class="p">(</span>
             <span class="n">signing_secret</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signing_secret</span><span class="p">,</span> <span class="o">**</span><span class="n">request</span><span class="o">.</span><span class="n">slack_verify</span><span class="o">.</span><span class="n">json</span>
         <span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;valid payload signature from slack: </span><span class="si">{valid}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SlackRequestError</span><span class="p">(</span><span class="s2">&quot;Signature of request is not valid&quot;</span><span class="p">)</span></div>
 

@@ -1,6 +1,10 @@
-from typing import Callable, Dict, List, NoReturn, Optional
+import logging
+from typing import Callable, Dict, List, NoReturn, Optional, TYPE_CHECKING
 
-from glados import GladosRequest, RouteType, GladosRouteNotFoundError
+from glados import GladosRequest, GladosRouteNotFoundError, RouteType
+
+if TYPE_CHECKING:
+    from glados import GladosPlugin
 
 
 class GladosRoute(object):
@@ -11,6 +15,9 @@ class GladosRoute(object):
         self.route = route
         self.function = function
 
+    def __repr__(self):
+        return f"<GladosRoute| route: {self.route} | route type: {self.route_type.name} | function: {self.function.__name__} >"
+
 
 class GladosRouter(object):
     def __init__(self, **kwargs):
@@ -19,11 +26,13 @@ class GladosRouter(object):
         for route in RouteType._member_names_:
             self.routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]
 
-    def add_route(self, route: GladosRoute) -> NoReturn:
+    def add_route(self, plugin: 'GladosPlugin', route: GladosRoute) -> NoReturn:
         """Add a route to the router
 
         Parameters
         ----------
+        plugin: GladosPlugin
+            the plugin the route belongs to
         route: GladosRoute
             the route to be added
 
@@ -33,28 +42,27 @@ class GladosRouter(object):
             a route with the same type and same name already exists
 
         """
-        # print(f"Adding route: {route.__dict__}")
+        logging.debug(f"adding route: {route}")
         if route.route in self.routes[route.route_type.value]:
-            # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError
             raise KeyError(
                 f"a route with the name of {route.route} already exists in the route type: {route.route_type.name}"
             )
-        self.routes[route.route_type.value][route.route] = route
+        self.routes[route.route_type.value][route.route] = plugin.send_request
 
-    def add_routes(self, routes: List[GladosRoute]):
+    def add_routes(self, plugin: 'GladosPlugin'):
         """Add multiple routes to the router.
 
         Parameters
         ----------
-        routes : List[GladosRoute]
-            a list with the routes to be added
+        routes : GladosPlugin
+            the plugin to add routes from
 
         Returns
         -------
 
         """
-        for route in routes:
-            self.add_route(route)
+        for route in plugin.routes:
+            self.add_route(plugin, route)
 
     def get_route(self, route_type: RouteType, route: str) -> Optional[GladosRoute]:
         """Get a GladosRoute object for the requested route.
@@ -98,7 +106,7 @@ class GladosRouter(object):
             return the requested routes callable function
 
         """
-        return self.get_route(route_type, route).function
+        return self.get_route(route_type, route)
 
     def exec_route(self, request: GladosRequest):
         """Execute a route function directly
@@ -137,4 +145,5 @@ class GladosRouter(object):
         >>> print(successful)
         False
         """
+        logging.debug(f"calling route function for {request.route}")
         return self.route_function(request.route_type, request.route)(request)

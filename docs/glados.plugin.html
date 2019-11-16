@@ -193,10 +193,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – </p></li>
-<li><p><strong>bot</strong> (<a class="reference internal" href="glados.html#glados.GladosBot" title="glados.GladosBot"><em>GladosBot</em></a>) – </p></li>
-<li><p><strong>name</strong> – the name of the plugin</p></li>
-<li><p><strong>bot</strong> – the GLaDOS bot that this plugin will use</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – the name of the plugin</p></li>
+<li><p><strong>bot</strong> (<a class="reference internal" href="glados.html#glados.GladosBot" title="glados.GladosBot"><em>GladosBot</em></a>) – the GLaDOS bot that this plugin will use</p></li>
 <li><p><strong>kwargs</strong> – </p></li>
 </ul>
 </dd>
@@ -223,8 +221,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><em>RouteType</em></a>) – what type of route this is this</p></li>
-<li><p><strong>route</strong> (<em>ste</em>) – what is the route to be added</p></li>
+<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.html#glados.RouteType" title="glados.RouteType"><em>RouteType</em></a>) – what type of route this is this</p></li>
+<li><p><strong>route</strong> (<em>Union</em><em>[</em><a class="reference internal" href="glados.html#glados.EventRoutes" title="glados.EventRoutes"><em>EventRoutes</em></a><em>, </em><em>str</em><em>]</em>) – what is the route to be added</p></li>
 <li><p><strong>function</strong> (<em>Callable</em>) – the function to be executed when this route runs</p></li>
 </ul>
 </dd>
@@ -249,6 +247,22 @@
 <span class="go">1</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.plugin.GladosPlugin.send_request">
+<code class="sig-name descname">send_request</code><span class="sig-paren">(</span><em class="sig-param">request</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin.send_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin.send_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the function to be called when sending a request to a plugin.</p>
+<p>This function is responsible for validating the slack signature if needed. It also returns
+and empty string if the function called returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<a class="reference internal" href="glados.html#glados.GladosRequest" title="glados.GladosRequest"><em>GladosRequest</em></a>) – the request object to be sent</p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

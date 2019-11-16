@@ -1,4 +1,5 @@
 from typing import List, Dict
+import logging
 
 from glados import GladosPlugin, GladosRequest, GladosRouter, GladosBot
 
@@ -23,8 +24,9 @@ class Glados:
         -------
 
         """
+        logging.debug(f"installing plugin: {plugin.name}")
         self.plugins.append(plugin)
-        self.router.add_routes(plugin.routes)
+        self.router.add_routes(plugin)
 
     def add_bot(self, bot: GladosBot):
         """Add a new bot to GLaDOS.

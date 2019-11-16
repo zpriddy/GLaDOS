@@ -3,6 +3,8 @@ from slack.web.classes.messages import Message
 from slack.web.slack_response import SlackResponse
 from slack.errors import SlackRequestError
 
+import logging
+
 from glados import GladosRequest
 
 
@@ -12,6 +14,15 @@ class GladosBot:
     Notes
     -----
     All Slack Web API functions can be called from MyBot.client.*
+
+    Parameters
+    ----------
+    name: str
+        The name of the bot (URL Safe)
+    token: str
+        The bot token
+    client: WebClient
+        A Slack client generated for that bot
 
     Attributes
     ----------
@@ -34,6 +45,7 @@ class GladosBot:
         valid = self.client.validate_slack_signature(
             signing_secret=self.signing_secret, **request.slack_verify.json
         )
+        logging.info(f"valid payload signature from slack: {valid}")
         if not valid:
             raise SlackRequestError("Signature of request is not valid")
 

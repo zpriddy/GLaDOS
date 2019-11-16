@@ -177,6 +177,7 @@
             
   <h1>Source code for glados.core</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosPlugin</span><span class="p">,</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="n">GladosRouter</span><span class="p">,</span> <span class="n">GladosBot</span>
 
@@ -201,8 +202,9 @@
 <span class="sd">        -------</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;installing plugin: </span><span class="si">{plugin.name}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_routes</span><span class="p">(</span><span class="n">plugin</span><span class="o">.</span><span class="n">routes</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_routes</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Glados.add_bot"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.add_bot">[docs]</a>    <span class="k">def</span> <span class="nf">add_bot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">GladosBot</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a new bot to GLaDOS.</span>

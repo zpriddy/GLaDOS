@@ -25,36 +25,34 @@ class TestPlugin(GladosPlugin):
         self.add_route(
             RouteType.SendMessage, "test_update_message", self.update_message
         )
-        self.add_route(
-            RouteType.Events, EventRoutes.app_home_opened.name, self.app_home
-        )
+        self.add_route(RouteType.Events, EventRoutes.app_home_opened, self.app_home)
         self.add_route(RouteType.Slash, "security", self.slash_security)
         self.add_route(
             RouteType.Interaction, "gotoSecurityAlerts", self.action_go_to_alerts
         )
         self.add_route(RouteType.Menu, "testMenu", self.external_menu)
+        self.add_route(RouteType.Events, EventRoutes.message, self.receive_message)
 
     def app_home(self, request: GladosRequest, **kwargs):
-        self.bot.validate_slack_signature(request)
+        # self.bot.validate_slack_signature(request)
 
-        if request.params.event.get("tab") == "home":
+        if request.json.event.tab == "home":
             self.bot.client.views_publish(
-                user_id=request.params.event.get("user"), view=HOME_VIEW.to_dict()
+                user_id=request.json.event.user, view=HOME_VIEW.to_dict()
             )
-        if request.params.event.get("tab") == "messages":
+        if request.json.event.tab == "messages":
             pass
-        return ""
 
     def send_message(self, request: GladosRequest, **kwargs):
         message = Message(
-            text=request.params.message,
-            blocks=[SectionBlock(text=MarkdownTextObject(text=request.params.message))],
+            text=request.json.message,
+            blocks=[SectionBlock(text=MarkdownTextObject(text=request.json.message))],
         )
-        return self.bot.send_message(channel=request.params.channel, message=message)
+        return self.bot.send_message(channel=request.json.channel, message=message)
 
     def update_message(self, request: GladosRequest, **kwargs):
         message = Message(
-            text=request.params.message,
+            text=request.json.message,
             blocks=[
                 ContextBlock(
                     elements=[
@@ -63,30 +61,31 @@ class TestPlugin(GladosPlugin):
                         )
                     ]
                 ),
-                SectionBlock(text=MarkdownTextObject(text=request.params.message)),
+                SectionBlock(text=MarkdownTextObject(text=request.json.message)),
             ],
         )
         return self.bot.update_message(
-            channel=request.params.channel, ts=request.params.ts, message=message
+            channel=request.json.channel, ts=request.json.ts, message=message
         )
 
     def slash_security(self, request: GladosRequest, **kwargs):
-        self.bot.validate_slack_signature(request)
+        # self.bot.validate_slack_signature(request)
 
         self.bot.client.views_open(
-            view=SECURITY_MENU_1, trigger_id=request.params.trigger_id
+            view=SECURITY_MENU_1, trigger_id=request.json.trigger_id
         )
-        return ""
 
     def action_go_to_alerts(self, request: GladosRequest, **kwargs):
-        self.bot.validate_slack_signature(request)
+        # self.bot.validate_slack_signature(request)
         self.bot.send_message(
             message=Message(text="Going to alerts"),
-            channel=request.params.user.get("id"),
+            channel=request.json.user.id,
         )
-        return ""
+
+    def receive_message(self, request: GladosRequest, **kwargs):
+        print(f"I got a message!! Message: {request.json.event.text}")
 
     def external_menu(self, request: GladosRequest, **kwargs):
-        self.bot.validate_slack_signature(request)
+        # self.bot.validate_slack_signature(request)
 
         return {"options": COUNTRY_OPTIONS}

@@ -179,7 +179,7 @@
 <span></span><span class="kn">from</span> <span class="nn">aenum</span> <span class="k">import</span> <span class="n">Enum</span>
 
 
-<div class="viewcode-block" id="RouteType"><a class="viewcode-back" href="../../glados.html#glados.RouteType">[docs]</a><span class="k">class</span> <span class="nc">RouteType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="RouteType"><a class="viewcode-back" href="../../glados.route_type.html#glados.RouteType">[docs]</a><span class="k">class</span> <span class="nc">RouteType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="n">SendMessage</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">Response</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">Callback</span> <span class="o">=</span> <span class="mi">3</span>
@@ -188,10 +188,17 @@
     <span class="n">Interaction</span> <span class="o">=</span> <span class="mi">6</span>
     <span class="n">Menu</span> <span class="o">=</span> <span class="mi">7</span></div>
 
+
 <span class="n">BOT_ROUTES</span> <span class="o">=</span> <span class="p">[</span><span class="n">RouteType</span><span class="o">.</span><span class="n">Events</span><span class="p">,</span> <span class="n">RouteType</span><span class="o">.</span><span class="n">Interaction</span><span class="p">]</span>
+<span class="n">VERIFY_ROUTES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">RouteType</span><span class="o">.</span><span class="n">Slash</span><span class="p">,</span>
+    <span class="n">RouteType</span><span class="o">.</span><span class="n">Events</span><span class="p">,</span>
+    <span class="n">RouteType</span><span class="o">.</span><span class="n">Interaction</span><span class="p">,</span>
+    <span class="n">RouteType</span><span class="o">.</span><span class="n">Menu</span><span class="p">,</span>
+<span class="p">]</span>
 
 
-<div class="viewcode-block" id="EventRoutes"><a class="viewcode-back" href="../../glados.html#glados.EventRoutes">[docs]</a><span class="k">class</span> <span class="nc">EventRoutes</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="EventRoutes"><a class="viewcode-back" href="../../glados.route_type.html#glados.EventRoutes">[docs]</a><span class="k">class</span> <span class="nc">EventRoutes</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="n">app_home_opened</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">message</span> <span class="o">=</span> <span class="mi">2</span></div>
 </pre></div>

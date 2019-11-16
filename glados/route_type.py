@@ -10,7 +10,14 @@ class RouteType(Enum):
     Interaction = 6
     Menu = 7
 
+
 BOT_ROUTES = [RouteType.Events, RouteType.Interaction]
+VERIFY_ROUTES = [
+    RouteType.Slash,
+    RouteType.Events,
+    RouteType.Interaction,
+    RouteType.Menu,
+]
 
 
 class EventRoutes(Enum):

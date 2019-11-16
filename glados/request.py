@@ -1,34 +1,21 @@
-from glados import RouteType, BOT_ROUTES
-
-
-class GladosParams:
-    def __init__(self, **kwargs):
-        for name, value in kwargs.items():
-            self.add_param(name, value)
-
-    def add_param(self, name, value):
-        self.__setattr__(name, value)
-
-    def __getattr__(self, item):
-        try:
-            return super().__getattribute__(item)
-        finally:
-            return None
+from glados import RouteType, BOT_ROUTES, PyJSON
+from typing import Any
 
 
 class SlackVerification:
-    def __init__(self, data: str, timestamp: str = None, signature: str = None):
-        """
+    """An object to hold slack verification data
 
-        Parameters
-        ----------
-        data: str
-            raw request body. This is used to verify the message is from slack.
-        timestamp: str
-            The X-Slack-Request-Timestamp from the headers of the request. This is used to verify the message is from slack.
-        signature: str
-            The X-Slack-Signature from the headers of the request. This is used to verify the message is from slack.
-        """
+    Parameters
+    ----------
+    data: str
+        raw request body. This is used to verify the message is from slack.
+    timestamp: str
+        The X-Slack-Request-Timestamp from the headers of the request. This is used to verify the message is from slack.
+    signature: str
+        The X-Slack-Signature from the headers of the request. This is used to verify the message is from slack.
+    """
+
+    def __init__(self, data: str, timestamp: str = None, signature: str = None):
         self.data = data
         self.timestamp = timestamp
         self.signature = signature
@@ -43,45 +30,54 @@ class SlackVerification:
 
 
 class GladosRequest:
+    """GLaDOS Request Object. This holds all the data required to process the request.
+
+    Parameters
+    ----------
+    route_type: RouteType
+        what type of route is this
+    route: str
+        what is the route to be called
+    slack_verify: SlackVerification
+        slack data used for verifying the request came from Slack
+    bot_name: str
+        The name of the bot to send the request to. This is used for select RouteTypes
+    kwargs
+
+    Examples
+    --------
+    >>> request = GladosRequest(RouteType.SendMessage, "send_mock", json={"message":"my message"})
+    >>> print(request.json.message)
+    my message
+    >>> print(request.json.other_param)
+    None
+    """
+
     def __init__(
         self,
         route_type: RouteType,
         route: str,
         slack_verify: SlackVerification = None,
         bot_name: str = None,
+        json: dict = None,
         **kwargs,
     ):
-        """
 
-        Parameters
-        ----------
-        route_type: RouteType
-            what type of route is this
-        route: str
-            what is the route to be called
-        slack_verify: SlackVerification
-            slack data used for verifying the request came from Slack
-        bot_name: str
-            The name of the bot to send the request to. This is used for select RouteTypes
-        kwargs
-
-        Examples
-        --------
-        >>> request = GladosRequest(RouteType.SendMessage, "send_mock", message="my message")
-        >>> print(request.params.message)
-        my message
-        >>> print(request.params.other_param)
-        None
-        """
+        if not json:
+            json = dict()
         self.route_type = route_type
         self.bot_name = bot_name
         self._route = route
         self.bot_route = f"{bot_name}_{route}"
-        self.params = GladosParams(**kwargs)
         self.slack_verify = slack_verify
+        self.json = PyJSON(json)
 
     @property
     def route(self) -> str:
+        """the actual route
+
+        If the route automatically prefixed the route with the bot name, it will return the route with the prefix
+        """
         return self.bot_route if self.route_type in BOT_ROUTES else self._route
 
     @route.setter
