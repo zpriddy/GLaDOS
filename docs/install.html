@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GLaDOS Structure &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>Installation &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="GLaDOS Plugin" href="glados_plugin.html" />
-    <link rel="prev" title="Installation" href="install.html" /> 
+    <link rel="next" title="GLaDOS Structure" href="glados_structure.html" />
+    <link rel="prev" title="Welcome to GLaDOS’s documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,14 +81,14 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">GLaDOS Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#glados">GLaDOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bot">Bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#plugin">Plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#routing">Routing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#route-types">Route Types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#route">Route</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#bot">Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#plugin">Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados_structure.html#routing">Routing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados_structure.html#route-types">Route Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="glados_structure.html#route">Route</a></li>
 </ul>
 </li>
 </ul>
@@ -156,13 +156,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>GLaDOS Structure</li>
+      <li>Installation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/glados_structure.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/install.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,51 +175,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="glados-structure">
-<h1>GLaDOS Structure<a class="headerlink" href="#glados-structure" title="Permalink to this headline">¶</a></h1>
-<p>There are a few major components of GLaDOS as shows below.</p>
-<div class="section" id="glados">
-<h2>GLaDOS<a class="headerlink" href="#glados" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="bot">
-<h2>Bot<a class="headerlink" href="#bot" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="plugin">
-<h2>Plugin<a class="headerlink" href="#plugin" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="routing">
-<h2>Routing<a class="headerlink" href="#routing" title="Permalink to this headline">¶</a></h2>
-<p>GLaDOS event routing is done in two different parts: <cite>Route Type</cite> and <cite>Route</cite>.
-These two parts and sometimes the bot name combined together control how events sent to GLaDOS are
-routed to the respective plugins</p>
-<div class="section" id="route-types">
-<h3>Route Types<a class="headerlink" href="#route-types" title="Permalink to this headline">¶</a></h3>
-<p>Route Types represent the type of action that is being requested. One way to look at Route Types
-is that they would be the first path in your API structure. For example you would configure Slack to
-send <em>Slash</em> commands to <code class="docutils literal notranslate"><span class="pre">https://slack.glados.wtf/Slash/myCommand</span></code></p>
-<ul class="simple">
-<li><p><strong>SendMessage</strong>: Sample action to send a message as the bot.</p></li>
-<li><p><strong>Slash</strong>: This is the route called when a slash command is called.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The Route Types below use the bot name as a prefix of the route (see blow).</p>
-</div>
-<ul class="simple">
-<li><p><strong>Event</strong>: This route type is used to receive messages from subscribed events in Slack.</p></li>
-<li><p><strong>Interaction</strong>: This route type is used to receive messages from user interactions.</p></li>
-</ul>
-</div>
-<div class="section" id="route">
-<h3>Route<a class="headerlink" href="#route" title="Permalink to this headline">¶</a></h3>
-<p>Routes represent the action that is being requested. Routes are not always included in the URL
-configured in Slack.</p>
-<p>Interactive component callbacks are an example of this. The <cite>Request URL</cite> of for interactive
-components should be set to something like <code class="docutils literal notranslate"><span class="pre">https://slack.glados.wtf/Interaction/myBot</span></code> and lets
-say that <cite>action_id</cite> is <cite>myBottonPress</cite> then the full route would be <code class="docutils literal notranslate"><span class="pre">myBot_myButtonPress</span></code></p>
-<p>Depending on the type of action sometimes the routes will be automatically
-prefixed with the bot name that is responsible for handling the request.</p>
-</div>
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>The easiest way to install GLaDOS is by using pip</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>$ pip3 install glados
+</pre></div>
 </div>
 </div>
 
@@ -231,10 +191,10 @@ prefixed with the bot name that is responsible for handling the request.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="glados_plugin.html" class="btn btn-neutral float-right" title="GLaDOS Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="glados_structure.html" class="btn btn-neutral float-right" title="GLaDOS Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to GLaDOS’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -67,3 +67,4 @@ apidoc_module_dir = "../glados"
 apidoc_separate_modules = True
 autoclass_content = "both"
 autosummary_generate = True
+pygments_style = 'sphinx'
