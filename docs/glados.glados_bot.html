@@ -172,11 +172,47 @@
 <dt id="glados.glados_bot.GladosBot">
 <em class="property">class </em><code class="sig-prename descclassname">glados.glados_bot.</code><code class="sig-name descname">GladosBot</code><span class="sig-paren">(</span><em class="sig-param">token</em>, <em class="sig-param">name</em>, <em class="sig-param">signing_secret=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_bot.html#GladosBot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_bot.GladosBot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>GLaDOS Bot</p>
+<p>GLaDOS Bot represents all the required data and functions for a Slack bot.</p>
+<p class="rubric">Notes</p>
+<p>All Slack Web API functions can be called from MyBot.client.*</p>
+<dl class="attribute">
+<dt id="glados.glados_bot.GladosBot.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#glados.glados_bot.GladosBot.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the bot (URL Safe)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="glados.glados_bot.GladosBot.token">
+<code class="sig-name descname">token</code><a class="headerlink" href="#glados.glados_bot.GladosBot.token" title="Permalink to this definition">¶</a></dt>
+<dd><p>The bot token</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="glados.glados_bot.GladosBot.client">
+<code class="sig-name descname">client</code><a class="headerlink" href="#glados.glados_bot.GladosBot.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Slack client generated for that bot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>WebClient</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="glados.glados_bot.GladosBot.delete_message">
 <code class="sig-name descname">delete_message</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">ts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_bot.html#GladosBot.delete_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_bot.GladosBot.delete_message" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Deletes a message that was sent by a bot</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>channel</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
@@ -209,7 +245,8 @@
 <dl class="method">
 <dt id="glados.glados_bot.GladosBot.update_message">
 <code class="sig-name descname">update_message</code><span class="sig-paren">(</span><em class="sig-param">channel</em>, <em class="sig-param">ts</em>, <em class="sig-param">message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_bot.html#GladosBot.update_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_bot.GladosBot.update_message" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Updates a message that was sent by the bot</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>channel</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>

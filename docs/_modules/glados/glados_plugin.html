@@ -161,19 +161,22 @@
   <h1>Source code for glados.glados_plugin</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span>
 
-<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosBot</span><span class="p">,</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">GladosRoute</span>
-<span class="c1">#from glados_router import GladosRoute</span>
+<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosBot</span><span class="p">,</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">GladosRoute</span><span class="p">,</span> <span class="n">BOT_ROUTES</span><span class="p">,</span> <span class="n">GladosPathExistsError</span>
 
 
-<div class="viewcode-block" id="GladosPlugin"><a class="viewcode-back" href="../../glados.glados_plugin.html#glados.glados_plugin.GladosPlugin">[docs]</a><span class="k">class</span> <span class="nc">GladosPlugin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">GladosBot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosPlugin"><a class="viewcode-back" href="../../glados.glados_plugin.html#glados.GladosPlugin">[docs]</a><span class="k">class</span> <span class="nc">GladosPlugin</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Parent class for a GLaDOS Plugin&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">GladosBot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        name</span>
-<span class="sd">        bot</span>
-<span class="sd">        kwargs</span>
+<span class="sd">        name : str</span>
+<span class="sd">            the name of the plugin</span>
+<span class="sd">        bot : GladosBot</span>
+<span class="sd">            the GLaDOS bot that this plugin will use</span>
+<span class="sd">        kwargs :</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -186,7 +189,7 @@
 <span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; try:</span>
 <span class="sd">        ...     plugin.add_route(RouteType.SendMessage, &quot;send_message&quot;, mock_function)</span>
-<span class="sd">        ... except KeyError:</span>
+<span class="sd">        ... except GladosPathExistsError:</span>
 <span class="sd">        ...     print(&quot;Got Error&quot;)</span>
 <span class="sd">        Got Error</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -199,19 +202,33 @@
         <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="n">RouteType</span><span class="o">.</span><span class="n">_member_names_</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_routes</span><span class="p">[</span><span class="n">RouteType</span><span class="p">[</span><span class="n">route</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, GladosRoute]</span>
 
-<div class="viewcode-block" id="GladosPlugin.add_route"><a class="viewcode-back" href="../../glados.glados_plugin.html#glados.glados_plugin.GladosPlugin.add_route">[docs]</a>    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosPlugin.add_route"><a class="viewcode-back" href="../../glados.glados_plugin.html#glados.GladosPlugin.add_route">[docs]</a>    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a new route to the plugin</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        route_type : RouteType</span>
+<span class="sd">            what type of route this is this</span>
+<span class="sd">        route : ste</span>
+<span class="sd">            what is the route to be added</span>
+<span class="sd">        function : Callable</span>
+<span class="sd">            the function to be executed when this route runs</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">new_route</span> <span class="o">=</span> <span class="n">GladosRoute</span><span class="p">(</span><span class="n">route_type</span><span class="p">,</span> <span class="n">route</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">route_type</span> <span class="ow">in</span> <span class="p">[</span><span class="n">RouteType</span><span class="o">.</span><span class="n">Events</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">route_type</span> <span class="ow">in</span> <span class="n">BOT_ROUTES</span><span class="p">:</span>
             <span class="n">new_route</span><span class="o">.</span><span class="n">route</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.bot.name}</span><span class="s2">_</span><span class="si">{route}</span><span class="s2">&quot;</span>
         <span class="k">if</span> <span class="n">new_route</span><span class="o">.</span><span class="n">route</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_routes</span><span class="p">[</span><span class="n">new_route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">]:</span>
-            <span class="c1"># TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+            <span class="k">raise</span> <span class="n">GladosPathExistsError</span><span class="p">(</span>
                     <span class="n">f</span><span class="s2">&quot;a route with the name of </span><span class="si">{new_route.route}</span><span class="s2"> already exists in the route type: </span><span class="si">{new_route.route_type.name}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_routes</span><span class="p">[</span><span class="n">new_route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">new_route</span><span class="o">.</span><span class="n">route</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_route</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">routes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;List all routes for the plugin.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>

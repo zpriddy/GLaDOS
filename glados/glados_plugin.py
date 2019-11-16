@@ -1,18 +1,21 @@
 from typing import Callable, Dict
 
-from glados import GladosBot, RouteType, GladosRoute
-#from glados_router import GladosRoute
+from glados import GladosBot, RouteType, GladosRoute, BOT_ROUTES, GladosPathExistsError
 
 
-class GladosPlugin(object):
-    def __init__(self, name, bot: GladosBot, **kwargs):
+class GladosPlugin():
+    """Parent class for a GLaDOS Plugin"""
+
+    def __init__(self, name: str, bot: GladosBot, **kwargs):
         """
 
         Parameters
         ----------
-        name
-        bot
-        kwargs
+        name : str
+            the name of the plugin
+        bot : GladosBot
+            the GLaDOS bot that this plugin will use
+        kwargs :
 
         Examples
         --------
@@ -25,7 +28,7 @@ class GladosPlugin(object):
         True
         >>> try:
         ...     plugin.add_route(RouteType.SendMessage, "send_message", mock_function)
-        ... except KeyError:
+        ... except GladosPathExistsError:
         ...     print("Got Error")
         Got Error
         """
@@ -39,18 +42,32 @@ class GladosPlugin(object):
             self._routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]
 
     def add_route(self, route_type: RouteType, route: str, function: Callable):
+        """Add a new route to the plugin
+
+        Parameters
+        ----------
+        route_type : RouteType
+            what type of route this is this
+        route : ste
+            what is the route to be added
+        function : Callable
+            the function to be executed when this route runs
+
+        Returns
+        -------
+
+        """
         new_route = GladosRoute(route_type, route, function)
-        if route_type in [RouteType.Events]:
+        if route_type in BOT_ROUTES:
             new_route.route = f"{self.bot.name}_{route}"
         if new_route.route in self._routes[new_route.route_type.value]:
-            # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteExistsError
-            raise KeyError(
+            raise GladosPathExistsError(
                     f"a route with the name of {new_route.route} already exists in the route type: {new_route.route_type.name}")
         self._routes[new_route.route_type.value][new_route.route] = new_route
 
     @property
     def routes(self):
-        """
+        """List all routes for the plugin.
 
         Examples
         --------

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.route_type &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.glados_errors &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
   
 
   
@@ -143,7 +143,7 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>glados.route_type</li>
+      <li>glados.glados_errors</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -158,24 +158,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for glados.route_type</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="k">import</span> <span class="n">Enum</span>
+  <h1>Source code for glados.glados_errors</h1><div class="highlight"><pre>
+<span></span><span class="c1"># TODO(zpriddy): Add these errors</span>
+<span class="c1"># RouteExistsError: route with name already exists</span>
+<span class="c1"># RouteError: no matching route for request</span>
 
 
-<div class="viewcode-block" id="RouteType"><a class="viewcode-back" href="../../glados.route_type.html#glados.RouteType">[docs]</a><span class="k">class</span> <span class="nc">RouteType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">SendMessage</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">Response</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">Callback</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="n">Slash</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="n">Events</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="n">Interaction</span> <span class="o">=</span> <span class="mi">6</span>
-    <span class="n">Menu</span> <span class="o">=</span> <span class="mi">7</span></div>
+<div class="viewcode-block" id="GladosError"><a class="viewcode-back" href="../../glados.glados_errors.html#glados.glados_errors.GladosError">[docs]</a><span class="k">class</span> <span class="nc">GladosError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for Client errors&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
 
-<span class="n">BOT_ROUTES</span> <span class="o">=</span> <span class="p">[</span><span class="n">RouteType</span><span class="o">.</span><span class="n">Events</span><span class="p">]</span>
+<div class="viewcode-block" id="GladosPathNotFoundError"><a class="viewcode-back" href="../../glados.glados_errors.html#glados.glados_errors.GladosPathNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">GladosPathNotFoundError</span><span class="p">(</span><span class="n">GladosError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Error raised when the requested path is not found&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
 
-
-<div class="viewcode-block" id="EventRoutes"><a class="viewcode-back" href="../../glados.route_type.html#glados.EventRoutes">[docs]</a><span class="k">class</span> <span class="nc">EventRoutes</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">app_home_opened</span> <span class="o">=</span> <span class="mi">1</span></div>
+<div class="viewcode-block" id="GladosPathExistsError"><a class="viewcode-back" href="../../glados.glados_errors.html#glados.glados_errors.GladosPathExistsError">[docs]</a><span class="k">class</span> <span class="nc">GladosPathExistsError</span><span class="p">(</span><span class="n">GladosError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Error raised when trying to add a path that already exists&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
 </pre></div>
 
            </div>

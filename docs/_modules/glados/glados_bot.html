@@ -167,8 +167,21 @@
 <span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosRequest</span>
 
 
-<div class="viewcode-block" id="GladosBot"><a class="viewcode-back" href="../../glados.glados_bot.html#glados.GladosBot">[docs]</a><span class="k">class</span> <span class="nc">GladosBot</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; GLaDOS Bot</span>
+<div class="viewcode-block" id="GladosBot"><a class="viewcode-back" href="../../glados.glados_bot.html#glados.GladosBot">[docs]</a><span class="k">class</span> <span class="nc">GladosBot</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; GLaDOS Bot represents all the required data and functions for a Slack bot.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    All Slack Web API functions can be called from MyBot.client.*</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name: str</span>
+<span class="sd">        The name of the bot (URL Safe)</span>
+<span class="sd">    token: str</span>
+<span class="sd">        The bot token</span>
+<span class="sd">    client: WebClient</span>
+<span class="sd">        A Slack client generated for that bot</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">signing_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -201,9 +214,32 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="n">as_user</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">message</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span><span class="o">.</span><span class="n">data</span></div>
 
 <div class="viewcode-block" id="GladosBot.update_message"><a class="viewcode-back" href="../../glados.glados_bot.html#glados.GladosBot.update_message">[docs]</a>    <span class="k">def</span> <span class="nf">update_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SlackResponse</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Updates a message that was sent by the bot</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        channel :</span>
+<span class="sd">        ts :</span>
+<span class="sd">        message :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">chat_update</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span> <span class="o">**</span><span class="n">message</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span><span class="o">.</span><span class="n">data</span></div>
 
 <div class="viewcode-block" id="GladosBot.delete_message"><a class="viewcode-back" href="../../glados.glados_bot.html#glados.GladosBot.delete_message">[docs]</a>    <span class="k">def</span> <span class="nf">delete_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SlackResponse</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Deletes a message that was sent by a bot</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        channel :</span>
+<span class="sd">        ts :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">chat_delete</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="n">ts</span><span class="o">=</span><span class="n">ts</span><span class="p">)</span><span class="o">.</span><span class="n">data</span></div></div>
 </pre></div>
 

@@ -165,19 +165,55 @@
 
 
 <div class="viewcode-block" id="Glados"><a class="viewcode-back" href="../../glados.glados_core.html#glados.Glados">[docs]</a><span class="k">class</span> <span class="nc">Glados</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Glados is the core of the GLaDOS package.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">router</span> <span class="o">=</span> <span class="n">GladosRouter</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>  <span class="c1"># type: List[GladosPlugin]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bots</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, GladosBot]</span>
 
 <div class="viewcode-block" id="Glados.add_plugin"><a class="viewcode-back" href="../../glados.glados_core.html#glados.Glados.add_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">add_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="n">GladosPlugin</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a plugin to GLaDOS</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        plugin : GladosPlugin</span>
+<span class="sd">            the plugin to be added to GLaDOS</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_routes</span><span class="p">(</span><span class="n">plugin</span><span class="o">.</span><span class="n">routes</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Glados.add_bot"><a class="viewcode-back" href="../../glados.glados_core.html#glados.Glados.add_bot">[docs]</a>    <span class="k">def</span> <span class="nf">add_bot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">GladosBot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a new bot to GLaDOS.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bot : GladosBot</span>
+<span class="sd">            the bot to be added to GLaDOS</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bots</span><span class="p">[</span><span class="n">bot</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">bot</span></div>
 
 <div class="viewcode-block" id="Glados.request"><a class="viewcode-back" href="../../glados.glados_core.html#glados.Glados.request">[docs]</a>    <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Send a request to GLaDOS.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        request : GladosRequest</span>
+<span class="sd">            the request to be sent to GLaDOS</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">exec_route</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
 </pre></div>
 

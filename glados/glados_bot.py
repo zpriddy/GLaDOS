@@ -6,8 +6,21 @@ from slack.errors import SlackRequestError
 from glados import GladosRequest
 
 
-class GladosBot(object):
-    """ GLaDOS Bot
+class GladosBot():
+    """ GLaDOS Bot represents all the required data and functions for a Slack bot.
+
+    Notes
+    -----
+    All Slack Web API functions can be called from MyBot.client.*
+
+    Attributes
+    ----------
+    name: str
+        The name of the bot (URL Safe)
+    token: str
+        The bot token
+    client: WebClient
+        A Slack client generated for that bot
 
     """
     def __init__(self, token, name, signing_secret=None, **kwargs):
@@ -40,7 +53,30 @@ class GladosBot(object):
         return self.client.chat_postMessage(channel=channel, as_user=True, **message.to_dict()).data
 
     def update_message(self, channel: str, ts: str, message: Message) -> SlackResponse:
+        """Updates a message that was sent by the bot
+
+        Parameters
+        ----------
+        channel :
+        ts :
+        message :
+
+        Returns
+        -------
+
+        """
         return self.client.chat_update(channel=channel, ts=ts, **message.to_dict()).data
 
     def delete_message(self, channel: str, ts: str) -> SlackResponse:
+        """Deletes a message that was sent by a bot
+
+        Parameters
+        ----------
+        channel :
+        ts :
+
+        Returns
+        -------
+
+        """
         return self.client.chat_delete(channel=channel, ts=ts).data
