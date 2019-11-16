@@ -74,7 +74,7 @@ def interaction(bot):
     request_json = request.form.to_dict()
     request_json = json.loads(request_json.get("payload"))
     action_id = request_json.get("actions", [{}])[0].get("action_id")
-    r = GladosRequest(RouteType.Interaction, action_id, slack_info, **request_json)
+    r = GladosRequest(RouteType.Interaction, action_id, slack_info, bot, **request_json)
     try:
         return glados.request(r)
     except KeyError:
@@ -97,7 +97,7 @@ if __name__ == '__main__':
     app.debug = True
 
     glados.add_bot(GladosBot(GLADOS_BOT_KEY, "glados", getenv("GLADOS_GLADOS_SIGNING_SECRET")))
-    glados.add_plugin(TestPlugin("test plugin", glados.bots["glados"]))
+    glados.add_plugin(TestPlugin(glados.bots["glados"]))
 
     if USE_NGROK:
         print("Launching ngrok")

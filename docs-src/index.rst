@@ -11,6 +11,8 @@ Welcome to GLaDOS's documentation!
 .. toctree::
    :maxdepth: 10
 
+   glados_structure
+   glados_plugin
    modules
 
 

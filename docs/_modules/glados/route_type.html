@@ -79,6 +79,18 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glados_structure.html">GLaDOS Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../glados_structure.html#glados">GLaDOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados_structure.html#bot">Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados_structure.html#plugin">Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados_structure.html#routing">Routing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../glados_structure.html#route-types">Route Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../glados_structure.html#route">Route</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glados_plugin.html">GLaDOS Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">glados</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../glados.html">glados package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../glados.html#submodules">Submodules</a><ul>
@@ -159,10 +171,10 @@
            <div itemprop="articleBody">
             
   <h1>Source code for glados.route_type</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="k">import</span> <span class="n">Enum</span>
+<span></span><span class="kn">from</span> <span class="nn">aenum</span> <span class="k">import</span> <span class="n">Enum</span>
 
 
-<div class="viewcode-block" id="RouteType"><a class="viewcode-back" href="../../glados.route_type.html#glados.RouteType">[docs]</a><span class="k">class</span> <span class="nc">RouteType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="RouteType"><a class="viewcode-back" href="../../glados.html#glados.RouteType">[docs]</a><span class="k">class</span> <span class="nc">RouteType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="n">SendMessage</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">Response</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">Callback</span> <span class="o">=</span> <span class="mi">3</span>
@@ -174,7 +186,7 @@
 <span class="n">BOT_ROUTES</span> <span class="o">=</span> <span class="p">[</span><span class="n">RouteType</span><span class="o">.</span><span class="n">Events</span><span class="p">,</span> <span class="n">RouteType</span><span class="o">.</span><span class="n">Interaction</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="EventRoutes"><a class="viewcode-back" href="../../glados.route_type.html#glados.EventRoutes">[docs]</a><span class="k">class</span> <span class="nc">EventRoutes</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="EventRoutes"><a class="viewcode-back" href="../../glados.html#glados.EventRoutes">[docs]</a><span class="k">class</span> <span class="nc">EventRoutes</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="n">app_home_opened</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">message</span> <span class="o">=</span> <span class="mi">2</span></div>
 </pre></div>

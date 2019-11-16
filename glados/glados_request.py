@@ -1,7 +1,7 @@
 from glados import RouteType, BOT_ROUTES
 
 
-class GladosParams(object):
+class GladosParams:
     def __init__(self, **kwargs):
         for name, value in kwargs.items():
             self.add_param(name, value)
@@ -16,7 +16,7 @@ class GladosParams(object):
             return None
 
 
-class SlackVerification():
+class SlackVerification:
     def __init__(self, data: str, timestamp: str = None, signature: str = None):
         """
 
@@ -34,7 +34,7 @@ class SlackVerification():
         self.signature = signature
 
     @property
-    def json(self):
+    def json(self) -> dict:
         return {
             "data":      self.data,
             "timestamp": self.timestamp,
@@ -42,7 +42,7 @@ class SlackVerification():
         }
 
 
-class GladosRequest():
+class GladosRequest:
     def __init__(self, route_type: RouteType, route: str, slack_verify: SlackVerification = None,
                  bot_name: str = None, **kwargs):
         """
@@ -75,7 +75,7 @@ class GladosRequest():
         self.slack_verify = slack_verify
 
     @property
-    def route(self):
+    def route(self) -> str:
         return self.bot_route if self.route_type in BOT_ROUTES else self._route
 
     @route.setter

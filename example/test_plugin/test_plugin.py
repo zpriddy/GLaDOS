@@ -7,13 +7,13 @@ from slack.web.classes.elements import ButtonElement, ExternalDataSelectElement
 from slack.web.classes.actions import ActionButton
 
 from glados import GladosBot, GladosPlugin, GladosRequest, RouteType, EventRoutes
-from glados.message_blocks import ModalBuilder
 
 from .test_plugin_views import HOME_VIEW, SECURITY_MENU_1
 from .countries import COUNTRY_OPTIONS
 
+
 class TestPlugin(GladosPlugin):
-    def __init__(self, name, bot: GladosBot, **kwargs):
+    def __init__(self, bot: GladosBot, name="test plugin", **kwargs):
         super().__init__(name, bot, **kwargs)
 
         self.add_route(RouteType.SendMessage, "test_send_message", self.send_message)
@@ -24,11 +24,11 @@ class TestPlugin(GladosPlugin):
         self.add_route(RouteType.Menu, "testMenu", self.external_menu)
 
     def app_home(self, request: GladosRequest, **kwargs):
-        print("AppHome")
         self.bot.validate_slack_signature(request)
 
         if request.params.event.get("tab") == "home":
-            self.bot.client.views_publish(user_id=request.params.event.get("user"), view=HOME_VIEW.to_dict())
+            self.bot.client.views_publish(user_id=request.params.event.get("user"),
+                                          view=HOME_VIEW.to_dict())
         if request.params.event.get("tab") == "messages":
             pass
         return ""
@@ -49,18 +49,18 @@ class TestPlugin(GladosPlugin):
     def slash_security(self, request: GladosRequest, **kwargs):
         self.bot.validate_slack_signature(request)
 
-
         self.bot.client.views_open(view=SECURITY_MENU_1, trigger_id=request.params.trigger_id)
         return ""
 
     def action_go_to_alerts(self, request: GladosRequest, **kwargs):
         self.bot.validate_slack_signature(request)
-
-        print("GO TO ALERTS")
-        self.bot.send_message(message=Message(text="Going to alerts"), channel=request.params.user.get("id"))
+        self.bot.send_message(message=Message(text="Going to alerts"),
+                              channel=request.params.user.get("id"))
         return ""
 
     def external_menu(self, request: GladosRequest, **kwargs):
         self.bot.validate_slack_signature(request)
 
-        return {"options": COUNTRY_OPTIONS}
+        return {
+            "options": COUNTRY_OPTIONS
+        }
