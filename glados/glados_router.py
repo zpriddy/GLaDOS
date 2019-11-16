@@ -1,9 +1,11 @@
 from typing import Callable, Dict, List, NoReturn, Optional
 
-from glados import GladosRequest, RouteType
+from glados import GladosRequest, RouteType, GladosRouteNotFoundError
 
 
 class GladosRoute(object):
+    """Represents a single route"""
+
     def __init__(self, route_type: RouteType, route: str, function: Callable):
         self.route_type = route_type
         self.route = route
@@ -39,6 +41,17 @@ class GladosRouter(object):
         self.routes[route.route_type.value][route.route] = route
 
     def add_routes(self, routes: List[GladosRoute]):
+        """Add multiple routes to the router.
+
+        Parameters
+        ----------
+        routes : List[GladosRoute]
+            a list with the routes to be added
+
+        Returns
+        -------
+
+        """
         for route in routes:
             self.add_route(route)
 
@@ -59,12 +72,11 @@ class GladosRouter(object):
 
         Raises
         ------
-        KeyError
+        GladosRouteNotFoundError
             the requested route is not found
         """
         if not self.routes[route_type.value].get(route):
-            # TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteError
-            raise KeyError(
+            raise GladosRouteNotFoundError(
                     f"no route with the name of {route} exists in route type: {route_type.name}")
         return self.routes[route_type.value][route]
 
@@ -88,6 +100,15 @@ class GladosRouter(object):
 
     def exec_route(self, request: GladosRequest):
         """Execute a route function directly
+
+        Parameters
+        ----------
+        request: GladosRequest
+            the GLaDOS request
+
+        Returns
+        -------
+            the data returned by the plugin
 
         Examples
         ----------
@@ -113,23 +134,5 @@ class GladosRouter(object):
         >>> successful = router.exec_route(request)
         >>> print(successful)
         False
-
-
-
-        Parameters
-        ----------
-        route_type: RouteType
-            what type of route to execute
-        route: str
-            what is the route/path to execute
-        kwargs:
-            the arguments to pass into the plugin function
-            # TODO(zpriddy): Replace this with a request object?
-
-        Returns
-        -------
-        bool:
-            Did the function execute successfully
         """
         return self.route_function(request.route_type, request.route)(request)
-

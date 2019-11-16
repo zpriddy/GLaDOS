@@ -161,10 +161,12 @@
   <h1>Source code for glados.glados_router</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NoReturn</span><span class="p">,</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="n">RouteType</span>
+<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">GladosRouteNotFoundError</span>
 
 
 <div class="viewcode-block" id="GladosRoute"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRoute">[docs]</a><span class="k">class</span> <span class="nc">GladosRoute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents a single route&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">route_type</span> <span class="o">=</span> <span class="n">route_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">route</span> <span class="o">=</span> <span class="n">route</span>
@@ -200,6 +202,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">route</span><span class="o">.</span><span class="n">route</span><span class="p">]</span> <span class="o">=</span> <span class="n">route</span></div>
 
 <div class="viewcode-block" id="GladosRouter.add_routes"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.add_routes">[docs]</a>    <span class="k">def</span> <span class="nf">add_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">routes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GladosRoute</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;Add multiple routes to the router.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        routes : List[GladosRoute]</span>
+<span class="sd">            a list with the routes to be added</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="n">routes</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="n">route</span><span class="p">)</span></div>
 
@@ -220,12 +233,11 @@
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
-<span class="sd">        KeyError</span>
+<span class="sd">        GladosRouteNotFoundError</span>
 <span class="sd">            the requested route is not found</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">route</span><span class="p">):</span>
-            <span class="c1"># TODO(zpriddy): Add custom errors to GLaDOS and raise a RouteError</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+            <span class="k">raise</span> <span class="n">GladosRouteNotFoundError</span><span class="p">(</span>
                     <span class="n">f</span><span class="s2">&quot;no route with the name of </span><span class="si">{route}</span><span class="s2"> exists in route type: </span><span class="si">{route_type.name}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">route</span><span class="p">]</span></div>
 
@@ -249,6 +261,15 @@
 
 <div class="viewcode-block" id="GladosRouter.exec_route"><a class="viewcode-back" href="../../glados.glados_router.html#glados.glados_router.GladosRouter.exec_route">[docs]</a>    <span class="k">def</span> <span class="nf">exec_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute a route function directly</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        request: GladosRequest</span>
+<span class="sd">            the GLaDOS request</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            the data returned by the plugin</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        ----------</span>
@@ -274,26 +295,8 @@
 <span class="sd">        &gt;&gt;&gt; successful = router.exec_route(request)</span>
 <span class="sd">        &gt;&gt;&gt; print(successful)</span>
 <span class="sd">        False</span>
-
-
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        route_type: RouteType</span>
-<span class="sd">            what type of route to execute</span>
-<span class="sd">        route: str</span>
-<span class="sd">            what is the route/path to execute</span>
-<span class="sd">        kwargs:</span>
-<span class="sd">            the arguments to pass into the plugin function</span>
-<span class="sd">            # TODO(zpriddy): Replace this with a request object?</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        bool:</span>
-<span class="sd">            Did the function execute successfully</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_function</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">route_type</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">route</span><span class="p">)(</span><span class="n">request</span><span class="p">)</span></div></div>
-
 </pre></div>
 
            </div>

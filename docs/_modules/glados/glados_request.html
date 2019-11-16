@@ -159,7 +159,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for glados.glados_request</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">RouteType</span>
+<span></span><span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">BOT_ROUTES</span>
 
 
 <div class="viewcode-block" id="GladosParams"><a class="viewcode-back" href="../../glados.glados_request.html#glados.GladosParams">[docs]</a><span class="k">class</span> <span class="nc">GladosParams</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -203,15 +203,17 @@
         <span class="p">}</span></div>
 
 
-<div class="viewcode-block" id="GladosRequest"><a class="viewcode-back" href="../../glados.glados_request.html#glados.GladosRequest">[docs]</a><span class="k">class</span> <span class="nc">GladosRequest</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosRequest"><a class="viewcode-back" href="../../glados.glados_request.html#glados.GladosRequest">[docs]</a><span class="k">class</span> <span class="nc">GladosRequest</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">slack_verify</span><span class="p">:</span> <span class="n">SlackVerification</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">bot_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        route_type</span>
-<span class="sd">        route</span>
+<span class="sd">        route_type: RouteType</span>
+<span class="sd">            what type of route is this</span>
+<span class="sd">        route: str</span>
+<span class="sd">            what is the route to be called</span>
 <span class="sd">        slack_verify: SlackVerification</span>
 <span class="sd">            slack data used for verifying the request came from Slack</span>
 <span class="sd">        bot_name: str</span>
@@ -235,7 +237,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">route</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot_route</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_type</span> <span class="ow">in</span> <span class="p">[</span><span class="n">RouteType</span><span class="o">.</span><span class="n">Events</span><span class="p">]</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_route</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot_route</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_type</span> <span class="ow">in</span> <span class="n">BOT_ROUTES</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_route</span>
 
     <span class="nd">@route</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>

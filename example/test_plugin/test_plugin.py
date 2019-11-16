@@ -28,10 +28,9 @@ class TestPlugin(GladosPlugin):
         self.bot.validate_slack_signature(request)
 
         if request.params.event.get("tab") == "home":
-            self.bot.client.views_publish(user_id=request.params.event.get("user"), view=HOME_VIEW)
-        # Cool idea but got annoying
-        # else:
-        #    self.bot.send_message(message=Message(text="Hello, I am GLaDOS. How can I help you?"), channel=request.params.event.get("channel"))
+            self.bot.client.views_publish(user_id=request.params.event.get("user"), view=HOME_VIEW.to_dict())
+        if request.params.event.get("tab") == "messages":
+            pass
         return ""
 
     def send_message(self, request: GladosRequest, **kwargs):

@@ -10,8 +10,9 @@ class RouteType(Enum):
     Interaction = 6
     Menu = 7
 
-BOT_ROUTES = [RouteType.Events]
+BOT_ROUTES = [RouteType.Events, RouteType.Interaction]
 
 
 class EventRoutes(Enum):
     app_home_opened = 1
+    message = 2

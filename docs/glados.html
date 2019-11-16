@@ -317,8 +317,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><code class="xref py py-class docutils literal notranslate"><span class="pre">RouteType</span></code></a>) – </p></li>
-<li><p><strong>route</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
+<li><p><strong>route_type</strong> (<a class="reference internal" href="#glados.RouteType" title="glados.RouteType"><em>RouteType</em></a>) – what type of route is this</p></li>
+<li><p><strong>route</strong> (<em>str</em>) – what is the route to be called</p></li>
 <li><p><strong>slack_verify</strong> (<a class="reference internal" href="glados.glados_request.html#glados.glados_request.SlackVerification" title="glados.glados_request.SlackVerification"><em>SlackVerification</em></a>) – slack data used for verifying the request came from Slack</p></li>
 <li><p><strong>bot_name</strong> (<em>str</em>) – The name of the bot to send the request to. This is used for select RouteTypes</p></li>
 <li><p><strong>kwargs</strong> – </p></li>
@@ -390,6 +390,11 @@
 <dl class="attribute">
 <dt id="glados.EventRoutes.app_home_opened">
 <code class="sig-name descname">app_home_opened</code><em class="property"> = 1</em><a class="headerlink" href="#glados.EventRoutes.app_home_opened" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="glados.EventRoutes.message">
+<code class="sig-name descname">message</code><em class="property"> = 2</em><a class="headerlink" href="#glados.EventRoutes.message" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

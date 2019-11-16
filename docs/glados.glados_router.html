@@ -172,6 +172,7 @@
 <dt id="glados.glados_router.GladosRoute">
 <em class="property">class </em><code class="sig-prename descclassname">glados.glados_router.</code><code class="sig-name descname">GladosRoute</code><span class="sig-paren">(</span><em class="sig-param">route_type</em>, <em class="sig-param">route</em>, <em class="sig-param">function</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_router.html#GladosRoute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_router.GladosRoute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a single route</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -207,9 +208,10 @@
 <dl class="method">
 <dt id="glados.glados_router.GladosRouter.add_routes">
 <code class="sig-name descname">add_routes</code><span class="sig-paren">(</span><em class="sig-param">routes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_router.html#GladosRouter.add_routes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_router.GladosRouter.add_routes" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Add multiple routes to the router.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>routes</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#glados.glados_router.GladosRoute" title="glados.glados_router.GladosRoute"><code class="xref py py-class docutils literal notranslate"><span class="pre">GladosRoute</span></code></a>]) – </p>
+<dd class="field-odd"><p><strong>routes</strong> (<em>List</em><em>[</em><a class="reference internal" href="#glados.glados_router.GladosRoute" title="glados.glados_router.GladosRoute"><em>GladosRoute</em></a><em>]</em>) – a list with the routes to be added</p>
 </dd>
 </dl>
 </dd></dl>
@@ -218,6 +220,17 @@
 <dt id="glados.glados_router.GladosRouter.exec_route">
 <code class="sig-name descname">exec_route</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/glados_router.html#GladosRouter.exec_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.glados_router.GladosRouter.exec_route" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a route function directly</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> (<a class="reference internal" href="glados.html#glados.GladosRequest" title="glados.GladosRequest"><em>GladosRequest</em></a>) – the GLaDOS request</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>the data returned by the plugin</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">mock_function</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Mock Function: </span><span class="si">{request.params.message}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -244,23 +257,6 @@
 <span class="go">False</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.html#glados.RouteType" title="glados.RouteType"><em>RouteType</em></a>) – what type of route to execute</p></li>
-<li><p><strong>route</strong> (<em>str</em>) – what is the route/path to execute</p></li>
-<li><p><strong>kwargs</strong> – the arguments to pass into the plugin function
-# TODO(zpriddy): Replace this with a request object?</p></li>
-<li><p><strong>request</strong> (<a class="reference internal" href="glados.glados_request.html#glados.glados_request.GladosRequest" title="glados.glados_request.GladosRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">GladosRequest</span></code></a>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Did the function execute successfully</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="method">
@@ -281,7 +277,7 @@
 <dd class="field-odd"><p><a class="reference internal" href="#glados.glados_router.GladosRoute" title="glados.glados_router.GladosRoute">GladosRoute</a></p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>KeyError</strong> – the requested route is not found</p>
+<dd class="field-even"><p><a class="reference internal" href="glados.glados_errors.html#glados.glados_errors.GladosRouteNotFoundError" title="glados.glados_errors.GladosRouteNotFoundError"><strong>GladosRouteNotFoundError</strong></a> – the requested route is not found</p>
 </dd>
 </dl>
 </dd></dl>

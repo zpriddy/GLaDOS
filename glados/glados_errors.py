@@ -7,7 +7,7 @@ class GladosError(Exception):
     """Base class for Client errors"""
     pass
 
-class GladosPathNotFoundError(GladosError):
+class GladosRouteNotFoundError(GladosError):
     """Error raised when the requested path is not found"""
     pass
 

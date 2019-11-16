@@ -4,30 +4,30 @@ from slack.web.classes.objects import MarkdownTextObject, PlainTextObject, Optio
 from slack.web.classes.elements import ButtonElement, ExternalDataSelectElement
 from slack.web.classes.actions import ActionButton
 
-HOME_VIEW = home = {
-    "type":   "home",
-    "blocks": [
-        SectionBlock(text=MarkdownTextObject(text="*Welcome to GLaDOS*")).to_dict(),
-        DividerBlock().to_dict(),
-        SectionBlock(text="*Security Events*",
-                     fields=["*New Alerts*\n20",
-                             "*Open Cases*\n5"],
-                     accessory=ButtonElement(text="Go To Security Alerts",
-                                             action_id="gotoSecurityAlerts",
-                                             value="go")
-                     ).to_dict(),
-        DividerBlock().to_dict(),
-        SectionBlock(text="*Service Tickets*",
-                     fields=["*Total Tickets*\n23"],
-                     accessory=ButtonElement(text="Go To Service Desk",
-                                             action_id="gotoServiceDesk",
-                                             value="go")).to_dict(),
-        DividerBlock().to_dict(),
-        SectionBlock(text="Test External Menu",
-                     accessory=ExternalDataSelectElement(placeholder="Loading",
-                                                         action_id="testMenu")).to_dict()
-    ]
-}
+from glados.slack_classes.views import Home
+
+
+HOME_VIEW = Home(blocks=[
+    SectionBlock(text=MarkdownTextObject(text="*Welcome to GLaDOS!*")),
+    DividerBlock(),
+    SectionBlock(text="*Security Events*",
+                 fields=["*New Alerts*\n20",
+                         "*Open Cases*\n5"],
+                 accessory=ButtonElement(text="Go To Security Alerts",
+                                         action_id="gotoSecurityAlerts",
+                                         value="go")
+                 ),
+    DividerBlock(),
+    SectionBlock(text="*Service Tickets*",
+                 fields=["*Total Tickets*\n23"],
+                 accessory=ButtonElement(text="Go To Service Desk",
+                                         action_id="gotoServiceDesk",
+                                         value="go")),
+    DividerBlock(),
+    SectionBlock(text="Test External Menu",
+                 accessory=ExternalDataSelectElement(placeholder="Loading",
+                                                     action_id="testMenu"))
+])
 
 SECURITY_MENU_1 = {
     "type":   "modal",

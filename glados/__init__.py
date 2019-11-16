@@ -1,6 +1,6 @@
 from .route_type import RouteType, EventRoutes, BOT_ROUTES
 from .glados_request import GladosRequest, SlackVerification
-from .glados_errors import GladosPathExistsError, GladosPathNotFoundError
+from .glados_errors import GladosPathExistsError, GladosRouteNotFoundError
 
 from .glados_bot import GladosBot
 from .glados_router import GladosRouter, GladosRoute

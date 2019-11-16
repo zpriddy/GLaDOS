@@ -1,4 +1,4 @@
-from glados import RouteType
+from glados import RouteType, BOT_ROUTES
 
 
 class GladosParams(object):
@@ -42,15 +42,17 @@ class SlackVerification():
         }
 
 
-class GladosRequest(object):
+class GladosRequest():
     def __init__(self, route_type: RouteType, route: str, slack_verify: SlackVerification = None,
                  bot_name: str = None, **kwargs):
         """
 
         Parameters
         ----------
-        route_type
-        route
+        route_type: RouteType
+            what type of route is this
+        route: str
+            what is the route to be called
         slack_verify: SlackVerification
             slack data used for verifying the request came from Slack
         bot_name: str
@@ -74,7 +76,7 @@ class GladosRequest(object):
 
     @property
     def route(self):
-        return self.bot_route if self.route_type in [RouteType.Events] else self._route
+        return self.bot_route if self.route_type in BOT_ROUTES else self._route
 
     @route.setter
     def route(self, value):
