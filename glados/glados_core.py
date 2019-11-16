@@ -4,9 +4,7 @@ from glados import GladosPlugin, GladosRequest, GladosRouter, GladosBot
 
 
 class Glados:
-    """Glados is the core of the GLaDOS package.
-
-    """
+    """Glados is the core of the GLaDOS package."""
 
     def __init__(self):
         self.router = GladosRouter()

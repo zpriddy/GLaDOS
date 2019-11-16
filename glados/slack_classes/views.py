@@ -1,9 +1,11 @@
 from slack.web.classes import JsonObject, extract_json
 from slack.web.classes.blocks import Block
 
+
 class Home(JsonObject):
     attributes = {"home"}
-    def __init__(self,*,blocks=None):
+
+    def __init__(self, *, blocks=None):
         if not blocks:
             blocks = list()
         self.blocks = blocks
