@@ -67,3 +67,5 @@ apidoc_separate_modules = True
 autoclass_content = "both"
 autosummary_generate = True
 pygments_style = 'sphinx'
+set_type_checking_flag = True
+autodoc_mock_imports = ['slack']
