@@ -1,0 +1,14 @@
+[run]
+parallel = true
+source =
+    glados
+
+[paths]
+source =
+    src/glados
+    */src/glados
+    */site-packages/glados
+
+[report]
+show_missing = true
+precision = 2
