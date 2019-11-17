@@ -26,7 +26,7 @@ class GladosRouter(object):
         for route in RouteType._member_names_:
             self.routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]
 
-    def add_route(self, plugin: 'GladosPlugin', route: GladosRoute) -> NoReturn:
+    def add_route(self, plugin: "GladosPlugin", route: GladosRoute) -> NoReturn:
         """Add a route to the router
 
         Parameters
@@ -49,7 +49,7 @@ class GladosRouter(object):
             )
         self.routes[route.route_type.value][route.route] = plugin.send_request
 
-    def add_routes(self, plugin: 'GladosPlugin'):
+    def add_routes(self, plugin: "GladosPlugin"):
         """Add multiple routes to the router.
 
         Parameters

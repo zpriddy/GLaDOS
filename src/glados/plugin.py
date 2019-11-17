@@ -1,8 +1,14 @@
 from typing import Callable, Dict, Union
 
 from glados import (
-    GladosBot, RouteType, GladosRoute, BOT_ROUTES, GladosPathExistsError,
-    GladosRequest, VERIFY_ROUTES, EventRoutes
+    GladosBot,
+    RouteType,
+    GladosRoute,
+    BOT_ROUTES,
+    GladosPathExistsError,
+    GladosRequest,
+    VERIFY_ROUTES,
+    EventRoutes,
 )
 
 
@@ -44,7 +50,9 @@ class GladosPlugin:
                 RouteType[route].value
             ] = dict()  # type: Dict[str, GladosRoute]
 
-    def add_route(self, route_type: RouteType, route: Union[EventRoutes, str], function: Callable):
+    def add_route(
+        self, route_type: RouteType, route: Union[EventRoutes, str], function: Callable
+    ):
         """Add a new route to the plugin
 
         Parameters
@@ -67,7 +75,7 @@ class GladosPlugin:
             new_route.route = f"{self.bot.name}_{route}"
         if new_route.route in self._routes[new_route.route_type.value]:
             raise GladosPathExistsError(
-                    f"a route with the name of {new_route.route} already exists in the route type: {new_route.route_type.name}"
+                f"a route with the name of {new_route.route} already exists in the route type: {new_route.route_type.name}"
             )
         self._routes[new_route.route_type.value][new_route.route] = new_route
 
@@ -89,7 +97,9 @@ class GladosPlugin:
         """
         if request.route_type in VERIFY_ROUTES:
             self.bot.validate_slack_signature(request)
-        response = self._routes[request.route_type.value][request.route].function(request, **kwargs)
+        response = self._routes[request.route_type.value][request.route].function(
+            request, **kwargs
+        )
         if response is None:
             # TODO(zpriddy): add logging.
             return ""
@@ -121,8 +131,8 @@ class GladosPlugin:
         [
             routes.extend(route_object)
             for route_object in [
-            list(route.values())
-            for route in [route_type for route_type in self._routes.values()]
-        ]
+                list(route.values())
+                for route in [route_type for route_type in self._routes.values()]
+            ]
         ]
         return routes

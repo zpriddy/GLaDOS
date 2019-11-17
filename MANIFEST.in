@@ -1,5 +1,15 @@
-# Include the README
-include *.md
+graft src/glados
+graft tests
+graft docs
+graft docs-src
+graft .github
+graft example
 
-# Include the license file
+include README.md
 include LICENSE.md
+
+include pyproject.toml setup.cfg
+include .coveragerc
+include tox.ini rtd.txt
+
+recursive-exclude * __pycache__ *.py[cod]
