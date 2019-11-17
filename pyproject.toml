@@ -7,7 +7,7 @@ py36 = false
 exclude = '''
 /(
   \.git
-  | .tox
-  | examples
+  | \.tox
 )/
+line-length = 120
 '''
