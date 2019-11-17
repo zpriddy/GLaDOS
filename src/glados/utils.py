@@ -1,6 +1,7 @@
 import json
 
-class PyJSON():
+
+class PyJSON:
     def __init__(self, d):
         if type(d) is str:
             d = json.loads(d)

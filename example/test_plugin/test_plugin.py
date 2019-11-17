@@ -43,7 +43,6 @@ class TestPlugin(GladosPlugin):
         if request.json.event.tab == "messages":
             pass
 
-
     def send_message(self, request: GladosRequest, **kwargs):
         message = Message(
             text=request.json.message,
@@ -79,8 +78,7 @@ class TestPlugin(GladosPlugin):
     def action_go_to_alerts(self, request: GladosRequest, **kwargs):
         # self.bot.validate_slack_signature(request)
         self.bot.send_message(
-            message=Message(text="Going to alerts"),
-            channel=request.json.user.id,
+            message=Message(text="Going to alerts"), channel=request.json.user.id,
         )
 
     def receive_message(self, request: GladosRequest, **kwargs):

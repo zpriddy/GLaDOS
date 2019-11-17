@@ -16,24 +16,32 @@ import pkg_resources
 
 # -- Project information -----------------------------------------------------
 
-project = 'GLaDOS'
-copyright = '2019, Zachary Priddy'
-author = 'Zachary Priddy'
+project = "GLaDOS"
+copyright = "2019, Zachary Priddy"
+author = "Zachary Priddy"
 
 # The full version, including alpha/beta/rc tags
-release = pkg_resources.get_distribution('glados').version
+release = pkg_resources.get_distribution("glados").version
 
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.napoleon', 'sphinx.ext.autodoc',  'sphinx_rtd_theme', 'sphinx_autodoc_typehints', 'sphinx.ext.viewcode', 'sphinx.ext.autosummary', 'sphinx.ext.githubpages']
+extensions = [
+    "sphinx.ext.napoleon",
+    "sphinx.ext.autodoc",
+    "sphinx_rtd_theme",
+    "sphinx_autodoc_typehints",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.githubpages",
+]
 
 always_document_param_types = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to docs-src directory, that match files and
 # directories to ignore when looking for docs-src files.
@@ -45,27 +53,25 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-#html_static_path = ['_static']
+# html_static_path = ['_static']
 
-master_doc = 'index'
+master_doc = "index"
 
 napoleon_use_param = True
 
-html_theme_options = {
-    'collapse_navigation': False
-}
+html_theme_options = {"collapse_navigation": False}
 
-github_url="https://github.com/zpriddy/GLaDOS"
+github_url = "https://github.com/zpriddy/GLaDOS"
 
 apidoc_module_dir = "../glados"
 apidoc_separate_modules = True
 autoclass_content = "both"
 autosummary_generate = True
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 set_type_checking_flag = True
-autodoc_mock_imports = ['slack']
+autodoc_mock_imports = ["slack"]

@@ -87,7 +87,7 @@ def interaction(bot):
     request_json = request.form.to_dict()
     request_json = json.loads(request_json.get("payload"))
     r = GladosRequest(
-        RouteType.Interaction,slack_verify=slack_info, bot_name=bot, json=request_json
+        RouteType.Interaction, slack_verify=slack_info, bot_name=bot, json=request_json
     )
     try:
         return glados.request(r)
