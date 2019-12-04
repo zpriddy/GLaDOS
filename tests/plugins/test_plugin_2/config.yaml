@@ -1,0 +1,6 @@
+TestPlugin2:
+  enabled: yes
+  module: TestPlugin2
+  bot:
+    name: Bot3
+

@@ -1,0 +1,5 @@
+import_bots: yes
+bots_config_folder: tests/bots_config
+plugins_folder: tests/plugins
+logging_format: "%(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName).5s() ] %(message)s"
+logging_level: DEBUG

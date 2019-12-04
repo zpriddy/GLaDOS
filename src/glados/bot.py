@@ -2,10 +2,38 @@ from slack import WebClient
 from slack.web.classes.messages import Message
 from slack.web.slack_response import SlackResponse
 from slack.errors import SlackRequestError
+import yaml
+import glob
+from typing import Dict
 
 import logging
 
 from glados import GladosRequest
+
+class BotImporter:
+    def __init__(self, bots_dir: str):
+        logging.info(f"starting BotImporter with config dir: {bots_dir}")
+        self.bots = dict() # type: Dict[str, GladosBot]
+        self._bots_yaml = dict()
+        self._dir = bots_dir
+
+    def import_bots(self):
+        """Import all bots in the bots config folder
+
+        Returns
+        -------
+
+        """
+        files = glob.glob(f"{self._dir}/*.yaml")
+        logging.debug(f"bot config files found: {files}")
+        for f in files:
+            with open(f) as file:
+                self._bots_yaml.update(yaml.load(file, Loader=yaml.FullLoader))
+
+        for bot_name, bot_config in self._bots_yaml.items():
+            self.bots[bot_name] = GladosBot(name=bot_name, **bot_config)
+
+
 
 
 class GladosBot:
