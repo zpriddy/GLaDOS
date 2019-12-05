@@ -3,6 +3,8 @@ import yaml
 import glob
 import logging
 
+from pathlib import Path
+
 import importlib
 
 from glados import (
@@ -19,12 +21,72 @@ from glados import (
 )
 
 
+class PluginBotConfig:
+    def __init__(self, name="NOT SET"):
+        self.name = name
+
+    def to_dict(self):
+        return dict(name=self.name)
+
+
+# TODO
+# Read the plugin config
+# read the user config
+# running_config = plugin_config.update(user_config
+class PluginConfig:
+    def __init__(self, name, config_file, module=None, enabled=False, bot=None, **kwargs):
+        if not bot:
+            bot = dict()
+        self.name = name
+        self.module = module
+        self.enabled = enabled
+        self.bot = PluginBotConfig(**bot)
+        self.config_file = config_file
+
+        package = config_file.replace("/", ".")
+        package = package.replace(".config.yaml", "")
+        self.package = package
+
+    def update(self, config: "PluginConfig", use_base_module:bool = True):
+        """Update a config object using the default values from the config object passed in.
+
+        Parameters
+        ----------
+        config : PluginConfig
+            the config object to use as the base. By default the module property will be set from
+            the base config object only
+        use_base_module: bool
+            if set true use the value of module and package from the base config object only.
+
+        Returns
+        -------
+
+        """
+        config = config.__dict__.copy()
+        self_config = self.__dict__
+        if use_base_module:
+            self_config.pop('module')
+            self_config.pop('package')
+        config.update(self_config)
+        self.__dict__ = config
+
+    def to_dict(self, user_config_only=True):
+        config = dict(enabled=self.enabled, bot=self.bot.to_dict())
+        if not user_config_only:
+            config["module"] = self.module
+        return {self.name: config}
+
+    def to_yaml(self, user_config_only=True):
+        return yaml.dump(self.to_dict(user_config_only))
+
+
 class PluginImporter:
-    def __init__(self, plugins_folder: str):
+    def __init__(self, plugins_folder: str, plugins_config_folder: str):
         self.plugins = dict()
         self.plugins_folder = plugins_folder
+        self.plugins_config_folder = plugins_config_folder
         self.config_files = list()
-        self.plugin_configs = dict()
+        self.plugin_configs = dict()  # type: Dict[str, PluginConfig]
 
     def discover_plugins(self):
         """Discover all plugin config files in the plugins folder
@@ -37,20 +99,56 @@ class PluginImporter:
         config_files = glob.glob(f"{self.plugins_folder}/**/*.yaml", recursive=True)
         self.config_files = config_files
 
-    def load_discovered_plugins_config(self):
+    def load_discovered_plugins_config(self, write_to_user_config=True):
         """Load all the yaml configs for the plugins"""
+        plugin_package_config = None
+        plugin_user_config = None
+
         logging.debug("starting import of plugins")
         for config_file in self.config_files:
+            # Read the plugin package config
+            plugin_name = None
             with open(config_file) as file:
                 c = yaml.load(file, yaml.FullLoader)
-                logging.debug(c)
                 if len(c.keys()) != 1:
                     logging.critical(
                         f"zero or more than one object in config file: {config_file}"
                     )
                     continue
-                c[list(c.keys())[0]]["config_file"] = config_file
-                self.plugin_configs.update(c)
+                plugin_name = list(c.keys())[0]
+                c[plugin_name]["config_file"] = config_file
+                plugin_package_config = PluginConfig(plugin_name, **c[plugin_name])
+
+            if plugin_name is None:
+                logging.critical(
+                    f"invalid or missing plugin name. config file: {config_file}"
+                )
+                continue
+
+            user_config_path = Path(self.plugins_config_folder, f"{plugin_name}.yaml")
+
+            # Write defaults to user file
+            if not user_config_path.is_file() and write_to_user_config:
+                with open(user_config_path, "w") as file:
+                    plugin_package_config.enabled = False
+                    yaml.dump(plugin_package_config.to_dict(), file)
+
+            elif not user_config_path.is_file() and not write_to_user_config:
+                logging.warning(f"no user plugin config for {plugin_name}. skipping.")
+                continue
+
+            with open(user_config_path) as file:
+                c = yaml.load(file, yaml.FullLoader)
+                if len(c.keys()) != 1:
+                    logging.critical(
+                        f"zero or more than one object in config file: {config_file}"
+                    )
+                    continue
+                c[plugin_name]["config_file"] = str(user_config_path)
+                plugin_user_config = PluginConfig(plugin_name, **c[plugin_name])
+                plugin_user_config.update(plugin_package_config)
+
+            self.plugin_configs[plugin_name] = plugin_user_config
 
     def import_discovered_plugins(self, bots: Dict[str, GladosBot]):
         """Import all discovered plugins and store them in self.plugins.
@@ -67,16 +165,11 @@ class PluginImporter:
 
         """
         for plugin_name, plugin_config in self.plugin_configs.items():
-            if not plugin_config.get("enabled", False):
+            if not plugin_config.enabled:
                 logging.warning(f"plugin {plugin_name} is disabled")
                 continue
             logging.info(f"importing plugin {plugin_name}")
-            # Convert the config file path into the package
-            package = plugin_config.get("config_file")
-            package = package.replace("/", ".")
-            package = package.replace(".config.yaml", "")
-            logging.debug(package)
-            module = importlib.import_module(package)
+            module = importlib.import_module(plugin_config.package)
 
             # TODO(zpriddy): Do we want to allow bots to be setup in the plugin config?
             # Check if required bot is imported
@@ -96,13 +189,13 @@ class PluginImporter:
                 return bot
 
             try:
-                bot = get_required_bot(plugin_config.get("bot", {}).get("name"), bots)
+                bot = get_required_bot(plugin_config.bot.name, bots)
             except GladosError as e:
                 logging.error(f"{e} :: disabling plugin: {plugin_name}")
                 self.plugin_configs[plugin_name]["enabled"] = False
                 continue
 
-            plugin = getattr(module, plugin_config.get("module"))(bot, plugin_name)
+            plugin = getattr(module, plugin_config.module)(bot, plugin_name)
             self.plugins[plugin_name] = plugin
 
 

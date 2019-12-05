@@ -1,0 +1,4 @@
+TestPlugin1:
+  enabled: yes
+  bot:
+    name: Bot1

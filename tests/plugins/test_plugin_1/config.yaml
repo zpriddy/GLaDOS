@@ -1,5 +1,5 @@
 TestPlugin1:
-  enabled: yes
+  enabled: no
   module: TestPlugin1
   bot:
     name: Bot1
