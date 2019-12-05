@@ -10,10 +10,11 @@ import logging
 
 from glados import GladosRequest
 
+
 class BotImporter:
     def __init__(self, bots_dir: str):
         logging.info(f"starting BotImporter with config dir: {bots_dir}")
-        self.bots = dict() # type: Dict[str, GladosBot]
+        self.bots = dict()  # type: Dict[str, GladosBot]
         self._bots_yaml = dict()
         self._dir = bots_dir
 
@@ -32,8 +33,6 @@ class BotImporter:
 
         for bot_name, bot_config in self._bots_yaml.items():
             self.bots[bot_name] = GladosBot(name=bot_name, **bot_config)
-
-
 
 
 class GladosBot:

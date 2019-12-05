@@ -2,6 +2,7 @@ import pytest
 from tests import SORTED_BOT_NAMES
 from glados import BotImporter
 
+
 def test_import_bots():
     bot_importer = BotImporter("tests/bots_config")
     bot_importer.import_bots()

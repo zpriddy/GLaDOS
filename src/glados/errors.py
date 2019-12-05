@@ -3,8 +3,10 @@ class GladosError(Exception):
 
     pass
 
+
 class GladosBotNotFoundError(GladosError):
     """Error raised when GladosBot is not found"""
+
 
 class GladosRouteNotFoundError(GladosError):
     """Error raised when the requested path is not found"""

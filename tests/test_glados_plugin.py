@@ -6,10 +6,10 @@ from pathlib import Path
 import os
 
 
-PC_BASE_PATH = Path('tests', 'plugins_config')
-PC1 = Path(PC_BASE_PATH, 'TestPlugin1.yaml')
-PC2 = Path(PC_BASE_PATH, 'TestPlugin2.yaml')
-PC3 = Path(PC_BASE_PATH, 'TestPlugin3.yaml')
+PC_BASE_PATH = Path("tests", "plugins_config")
+PC1 = Path(PC_BASE_PATH, "TestPlugin1.yaml")
+PC2 = Path(PC_BASE_PATH, "TestPlugin2.yaml")
+PC3 = Path(PC_BASE_PATH, "TestPlugin3.yaml")
 
 
 @pytest.fixture
@@ -21,6 +21,7 @@ def check_only_one_file():
     assert PC1.is_file() is True
     assert PC2.is_file() is False
     assert PC3.is_file() is False
+
 
 def cleanup():
     os.remove(PC2)

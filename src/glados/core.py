@@ -8,7 +8,13 @@ from glados import GladosPlugin, GladosRequest, GladosRouter, GladosBot, BotImpo
 class Glados:
     """Glados is the core of the GLaDOS package."""
 
-    def __init__(self, config_file=None, plugins_folder=None, bots_config_dir=None, plugins_config_dir=None):
+    def __init__(
+        self,
+        config_file=None,
+        plugins_folder=None,
+        bots_config_dir=None,
+        plugins_config_dir=None,
+    ):
         self.router = GladosRouter()
         self.plugins = list()  # type: List[GladosPlugin]
         self.bots = dict()  # type: Dict[str, GladosBot]
@@ -16,7 +22,7 @@ class Glados:
         self.config_file = config_file  # type: str
         self.plugins_folder = plugins_folder  # type: str
         self.bots_config_dir = bots_config_dir  # type: str
-        self.plugins_config_dir = plugins_config_dir # type: str
+        self.plugins_config_dir = plugins_config_dir  # type: str
         self.logging_level = logging.getLevelName("WARN")
         self.logging_format = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
 

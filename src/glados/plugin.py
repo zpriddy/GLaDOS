@@ -34,7 +34,9 @@ class PluginBotConfig:
 # read the user config
 # running_config = plugin_config.update(user_config
 class PluginConfig:
-    def __init__(self, name, config_file, module=None, enabled=False, bot=None, **kwargs):
+    def __init__(
+        self, name, config_file, module=None, enabled=False, bot=None, **kwargs
+    ):
         if not bot:
             bot = dict()
         self.name = name
@@ -47,7 +49,7 @@ class PluginConfig:
         package = package.replace(".config.yaml", "")
         self.package = package
 
-    def update(self, config: "PluginConfig", use_base_module:bool = True):
+    def update(self, config: "PluginConfig", use_base_module: bool = True):
         """Update a config object using the default values from the config object passed in.
 
         Parameters
@@ -65,8 +67,8 @@ class PluginConfig:
         config = config.__dict__.copy()
         self_config = self.__dict__
         if use_base_module:
-            self_config.pop('module')
-            self_config.pop('package')
+            self_config.pop("module")
+            self_config.pop("package")
         config.update(self_config)
         self.__dict__ = config
 
