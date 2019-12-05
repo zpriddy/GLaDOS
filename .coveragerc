@@ -12,6 +12,6 @@ source =
 [report]
 omit =
     */slack_classes/*
-    message_blocks.py
+    *message_blocks.py
 show_missing = true
 precision = 2
