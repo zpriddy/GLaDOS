@@ -14,6 +14,8 @@ from .bot import GladosBot, BotImporter
 from .router import GladosRouter, GladosRoute
 from .plugin import GladosPlugin, PluginImporter
 
+from .configs import GladosConfig
+
 from .core import Glados
 
 # LOGGING_FORMAT = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
@@ -32,4 +34,5 @@ __all__ = [
     "RouteType",
     "EventRoutes",
     "GladosPlugin",
+    "GladosConfig"
 ]

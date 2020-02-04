@@ -41,8 +41,10 @@ class Glados:
             logging.error("glados config file not found")
             exit(1)
 
-        if not config:
+        if not config or config.get("glados") is None:
             logging.info("did not import any config items")
+
+        config = config.get("glados")
 
         self.logging_level = config.get("logging_level", self.logging_level)
         self.logging_format = config.get("logging_format", self.logging_format)

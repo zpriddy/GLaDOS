@@ -1,9 +1,10 @@
-from tests import SORTED_BOT_NAMES
+from tests import SORTED_BOT_NAMES, GLADOS_CONFIG_FILE
 from glados import Glados
 
 
 def test_glados_import_bots(caplog):
-    g = Glados("tests/glados.yaml")
+    g = Glados(GLADOS_CONFIG_FILE)
     g.read_config()
+    g.import_bots()
     assert len(g.bots) == 3
     assert sorted(list(g.bots.keys())) == SORTED_BOT_NAMES
