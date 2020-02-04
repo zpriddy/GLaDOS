@@ -76,14 +76,15 @@ class Glados:
             self.import_plugins()
 
     def import_bots(self):
+        """Import all discovered bots"""
         logging.info("importing bots...")
         importer = BotImporter(self.bots_config_dir)
         importer.import_bots()
         self.bots = importer.bots.copy()
         logging.info(f"successfully imported {len(self.bots)} bots")
 
-    # TODO: IMPORT PLUGINS HERE
     def import_plugins(self):
+        """Import all discovered plugins and add them to the plugin list."""
         logging.info("Importing plugins...")
         importer = PluginImporter(self.plugins_folder, self.plugins_config_dir)
         importer.discover_plugins()

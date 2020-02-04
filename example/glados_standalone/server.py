@@ -33,10 +33,10 @@ def extract_slack_info(r: request):
         return None
 
 
-@app.route("/SendMessage/<route>", methods=["POST"])
-def send_message_route(route):
+@app.route("/SendMessage/<bot>/<route>", methods=["POST"])
+def send_message_route(bot, route):
     glados_request = GladosRequest(
-        RouteType.SendMessage, route, json=request.get_json()
+        RouteType.SendMessage, route, bot_name=bot, json=request.get_json()
     )
     return glados.request(glados_request)
 
@@ -61,11 +61,13 @@ def event_subscriptions(bot):
         return ""
 
 
-@app.route("/Slash/<route>", methods=["POST"])
-def slash_command(route):
+@app.route("/Slash/<bot>/<route>", methods=["POST"])
+def slash_command(bot, route):
     slack_info = extract_slack_info(request)
     request_json = request.form.to_dict()
-    r = GladosRequest(RouteType.Slash, route, slack_info, json=request_json)
+    r = GladosRequest(
+        RouteType.Slash, route, slack_info, bot_name=bot, json=request_json
+    )
     return glados.request(r)
 
 

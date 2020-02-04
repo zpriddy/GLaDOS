@@ -11,7 +11,13 @@ class RouteType(Enum):
     Menu = 7
 
 
-BOT_ROUTES = [RouteType.Events, RouteType.Interaction]
+BOT_ROUTES = [
+    RouteType.Events,
+    RouteType.Interaction,
+    RouteType.Slash,
+    RouteType.SendMessage,
+]
+
 VERIFY_ROUTES = [
     RouteType.Slash,
     RouteType.Events,
