@@ -1,0 +1,18 @@
+glados:
+  import_bots: yes
+  bots_config_folder: tests/bots_config
+  plugins_config_folder: tests/plugins_config
+  plugins_folder: tests/plugins
+  logging_format: "%(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName).5s() ] %(message)s"
+  logging_level: DEBUG
+
+server:
+  secret_key: NotSoSecret!! ** CHANGE ME ** <--<--<--<-<-<-<-<<<<<<<<---------
+  debug: no
+  host: localhost
+  port: 8083
+
+ngrok:
+  enabled: yes
+  options:
+    subdomain: zpriddy

@@ -1,0 +1,3 @@
+ExampleBot:
+  signing_secret: bot_1_signing_secret
+  token: bot-1-api-token

@@ -1,0 +1,6 @@
+ExamplePlugin:
+  enabled: no
+  module: ExamplePlugin
+  bot:
+    name: ExampleBot
+
