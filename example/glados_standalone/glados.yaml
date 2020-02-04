@@ -1,8 +1,9 @@
 glados:
   import_bots: yes
-  bots_config_folder: tests/bots_config
-  plugins_config_folder: tests/plugins_config
-  plugins_folder: tests/plugins
+  import_plugins: yes
+  bots_config_folder: glados_standalone/bots_config
+  plugins_config_folder: glados_standalone/plugins_config
+  plugins_folder: plugins
   logging_format: "%(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName).5s() ] %(message)s"
   logging_level: DEBUG
 
@@ -13,6 +14,6 @@ server:
   port: 8083
 
 ngrok:
-  enabled: yes
+  enabled: no
   options:
     subdomain: zpriddy

@@ -157,13 +157,6 @@ def read_config(config_file: str = "glados.yaml"):
     return config
 
 
-def teardown_db():
-    db = g.pop("db", None)
-
-    if db is not None:
-        db.close()
-
-
 def setup_ngrok(app):
     from .ngrok_handler import start_ngrok
 

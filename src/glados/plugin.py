@@ -170,7 +170,7 @@ class PluginImporter:
             if not plugin_config.enabled:
                 logging.warning(f"plugin {plugin_name} is disabled")
                 continue
-            logging.info(f"importing plugin {plugin_name}")
+            logging.info(f"importing plugin: {plugin_name}")
             module = importlib.import_module(plugin_config.package)
 
             # TODO(zpriddy): Do we want to allow bots to be setup in the plugin config?

@@ -2,7 +2,14 @@ from typing import List, Dict
 import yaml
 import logging
 
-from glados import GladosPlugin, GladosRequest, GladosRouter, GladosBot, BotImporter
+from glados import (
+    GladosPlugin,
+    GladosRequest,
+    GladosRouter,
+    GladosBot,
+    BotImporter,
+    PluginImporter,
+)
 
 
 class Glados:
@@ -44,6 +51,7 @@ class Glados:
         if not config or config.get("glados") is None:
             logging.info("did not import any config items")
 
+        # TODO: Handle more sections than just glados. I.E. Server
         config = config.get("glados")
 
         self.logging_level = config.get("logging_level", self.logging_level)
@@ -55,12 +63,17 @@ class Glados:
         )
 
         self.plugins_folder = config.get("plugins_folder")
+        self.plugins_config_dir = config.get("plugins_config_folder")
         self.bots_config_dir = config.get("bots_config_folder")
 
         import_bots = config.get("import_bots")
         if import_bots:
             logging.info("auto-importing bots as set in glados config file")
             self.import_bots()
+
+        import_plugins = config.get("import_plugins", True)
+        if import_plugins:
+            self.import_plugins()
 
     def import_bots(self):
         logging.info("importing bots...")
@@ -70,6 +83,16 @@ class Glados:
         logging.info(f"successfully imported {len(self.bots)} bots")
 
     # TODO: IMPORT PLUGINS HERE
+    def import_plugins(self):
+        logging.info("Importing plugins...")
+        importer = PluginImporter(self.plugins_folder, self.plugins_config_dir)
+        importer.discover_plugins()
+        importer.load_discovered_plugins_config(False)
+        importer.import_discovered_plugins(self.bots)
+        for plugin in importer.plugins.values():
+            print(type(plugin))
+            self.add_plugin(plugin)
+        logging.info(f"successfully imported {len(self.plugins)} plugins")
 
     def add_plugin(self, plugin: GladosPlugin):
         """Add a plugin to GLaDOS
