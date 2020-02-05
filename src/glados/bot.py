@@ -4,11 +4,11 @@ from slack.web.slack_response import SlackResponse
 from slack.errors import SlackRequestError
 import yaml
 import glob
-from typing import Dict
+from typing import Dict, Union
 
 import logging
 
-from glados import GladosRequest
+from glados import GladosRequest, get_var, get_enc_var
 
 
 class BotImporter:
@@ -62,7 +62,21 @@ class GladosBot:
 
     """
 
-    def __init__(self, token, name, signing_secret=None, **kwargs):
+    def __init__(self, token: Union[str, Dict[str, str]], name, signing_secret=None, **kwargs):
+        if type(token) is dict and "env_var" in token:
+            token_var_name = token["env_var"]
+            try:
+                token = get_var(token_var_name)
+            except KeyError:
+                logging.critical(f"missing env var: {token['env_var']}")
+        if type(token) is dict and "enc_env_var" in token:
+            token_var_name = token["enc_env_var"]
+            try:
+                token = get_enc_var(token_var_name)
+            except KeyError:
+                logging.critical(f"missing enc env var: {token['enc_env_var']}")
+
+
         self.name = name
         self.token = token
         self.client = WebClient(token=token)

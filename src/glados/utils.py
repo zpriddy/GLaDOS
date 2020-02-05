@@ -1,6 +1,33 @@
 import json
 import logging
 
+import os
+from base64 import b64decode
+
+
+def get_var(var_name: str):
+    """Get an ENV VAR"""
+    return os.environ[var_name]
+
+
+def decode_kms(ciphertext_blob: str) -> str:
+    """Decode a secret using the IAM role of the lambda function.
+
+    :param ciphertext_blob: str
+        ciphertext_blob to decode
+    :return:
+    str
+        decoded text
+    """
+    import boto3
+    return boto3.client("kms").decrypt(CiphertextBlob=b64decode(ciphertext_blob))[
+        "Plaintext"].decode("utf-8")
+
+
+def get_enc_var(var_name: str):
+    """Get an encrypted ENV VAR"""
+    ciphertext_blob = get_var(var_name)
+    return decode_kms(ciphertext_blob)
 
 def read_config(config_file: str):
     from glados import GladosConfig
