@@ -46,10 +46,10 @@ class GladosBot:
     ----------
     name: str
         The name of the bot (URL Safe)
-    token: str
+    token: str, Dict[str, str]
         The bot token
-    client: WebClient
-        A Slack client generated for that bot
+    signing_secret: str, Dict[str, str]
+        The bot signing secret.
 
     Attributes
     ----------
@@ -59,28 +59,52 @@ class GladosBot:
         The bot token
     client: WebClient
         A Slack client generated for that bot
+    signing_secret: str
+        The bots signing secret.
 
     """
 
-    def __init__(self, token: Union[str, Dict[str, str]], name, signing_secret=None, **kwargs):
-        if type(token) is dict and "env_var" in token:
-            token_var_name = token["env_var"]
-            try:
-                token = get_var(token_var_name)
-            except KeyError:
-                logging.critical(f"missing env var: {token['env_var']}")
-        if type(token) is dict and "enc_env_var" in token:
-            token_var_name = token["enc_env_var"]
-            try:
-                token = get_enc_var(token_var_name)
-            except KeyError:
-                logging.critical(f"missing enc env var: {token['enc_env_var']}")
-
+    def __init__(
+        self,
+        token: Union[str, Dict[str, str]],
+        name,
+        signing_secret: Union[str, Dict[str, str]] = None,
+        **kwargs,
+    ):
+        # Get the values from the env vars if used.
+        token = self.check_for_env_vars(token)
+        signing_secret = self.check_for_env_vars(signing_secret)
 
         self.name = name
         self.token = token
         self.client = WebClient(token=token)
         self.signing_secret = signing_secret
+
+    def check_for_env_vars(self, value):
+        """Check an input value to see if it is an env_var or enc_env_var and get the value.
+
+        Parameters
+        ----------
+        value : input to check.
+
+        Returns
+        -------
+        Any:
+            Returns the value of the var from either the passed in value, or the env var value.
+        """
+        if type(value) is dict and "env_var" in value:
+            var_name = value["env_var"]
+            try:
+                return get_var(var_name)
+            except KeyError:
+                logging.critical(f"missing env var: {value['env_var']}")
+        if type(value) is dict and "enc_env_var" in value:
+            var_name = value["enc_env_var"]
+            try:
+                return get_enc_var(var_name)
+            except KeyError:
+                logging.critical(f"missing enc env var: {value['enc_env_var']}")
+        return value
 
     def validate_slack_signature(self, request: GladosRequest):
         valid = self.client.validate_slack_signature(
