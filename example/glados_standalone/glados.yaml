@@ -9,8 +9,8 @@ glados:
 
 server:
   secret_key: NotSoSecret!! ** CHANGE ME ** <--<--<--<-<-<-<-<<<<<<<<---------
-  debug: no
-  host: localhost
+  debug: yes
+  host: 127.0.0.1
   port: 8083
 
 ngrok:

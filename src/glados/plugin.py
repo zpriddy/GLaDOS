@@ -2,6 +2,7 @@ from typing import Callable, Dict, Union
 import yaml
 import glob
 import logging
+import requests
 
 from pathlib import Path
 
@@ -19,6 +20,11 @@ from glados import (
     VERIFY_ROUTES,
     EventRoutes,
 )
+
+from slack.web.classes.messages import Message
+from slack.web.classes.objects import MarkdownTextObject, TextObject, PlainTextObject
+
+SLACK_MESSAGE_TYPES = [Message, MarkdownTextObject, TextObject, PlainTextObject]
 
 
 class PluginBotConfig:
@@ -276,7 +282,24 @@ class GladosPlugin:
         if response is None:
             # TODO(zpriddy): add logging.
             return ""
+
+        if request.route_type is RouteType.Interaction and request.response_url:
+            if type(response) is str:
+                self.respond_to_url(request, response)
+            if type(response) in SLACK_MESSAGE_TYPES:
+                response = response.to_dict()
+            if type(response) is dict:
+                self.respond_to_url(request, **response)
+
         return response
+
+    def respond_to_url(self, request: GladosRequest, text: str, **kwargs):
+        if not request.response_url:
+            logging.error("no response_url provided in request.")
+            return
+        kwargs["text"] = text
+        r = requests.post(request.response_url, json=kwargs)
+        logging.info(f"slack response: {r}")
 
     @property
     def routes(self):

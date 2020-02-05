@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, TYPE_CHECKING
 import yaml
 import logging
 
@@ -9,7 +9,11 @@ from glados import (
     GladosBot,
     BotImporter,
     PluginImporter,
+    read_config,
 )
+
+if TYPE_CHECKING:
+    from glados import GladosConfig
 
 
 class Glados:
@@ -32,27 +36,19 @@ class Glados:
         self.plugins_config_dir = plugins_config_dir  # type: str
         self.logging_level = logging.getLevelName("WARN")
         self.logging_format = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
+        self.gloabl_config = None
 
     def read_config(self):
         # TODO: Fix logging setup
         if not self.config_file:
             logging.info("glados config file not set.")
 
-        config = dict()
+        self.gloabl_config = read_config(self.config_file)
 
-        try:
-            with open(self.config_file) as file:
-                config = yaml.load(file, Loader=yaml.FullLoader).copy()
-                logging.debug(f"glados config: {config}")
-        except FileNotFoundError:
-            logging.error("glados config file not found")
-            exit(1)
-
-        if not config or config.get("glados") is None:
+        if "glados" not in self.gloabl_config.sections:
             logging.info("did not import any config items")
 
-        # TODO: Handle more sections than just glados. I.E. Server
-        config = config.get("glados")
+        config = self.gloabl_config.config.glados
 
         self.logging_level = config.get("logging_level", self.logging_level)
         self.logging_format = config.get("logging_format", self.logging_format)

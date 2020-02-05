@@ -76,6 +76,12 @@ class GladosRequest:
         self.bot_name = bot_name
         self._route = route
         self.slack_verify = slack_verify
+        self.response_url = None
+        self.trigger_id = None
+
+        if route_type is RouteType.Interaction:
+            self.response_url = self.json.get("response_url")
+            self.trigger_id = self.json.get("trigger_id")
 
         if route_type is RouteType.Menu:
             self._route = self.json.action_id

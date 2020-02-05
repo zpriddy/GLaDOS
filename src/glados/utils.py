@@ -1,4 +1,14 @@
 import json
+import logging
+
+
+def read_config(config_file: str):
+    from glados import GladosConfig
+
+    logging.debug(f"Reading GLaDOS config from {config_file}")
+    config = GladosConfig(config_file)
+    config.read_config()
+    return config
 
 
 class PyJSON:
@@ -39,3 +49,9 @@ class PyJSON:
 
     def __getitem__(self, key):
         return self.__dict__[key]
+
+    def get(self, key, default=None):
+        try:
+            return self.__getitem__(key)
+        except:
+            return default

@@ -15,6 +15,7 @@ from .router import GladosRouter, GladosRoute
 from .plugin import GladosPlugin, PluginImporter
 
 from .configs import GladosConfig
+from .utils import read_config
 
 from .core import Glados
 
@@ -34,5 +35,6 @@ __all__ = [
     "RouteType",
     "EventRoutes",
     "GladosPlugin",
-    "GladosConfig"
+    "GladosConfig",
+    "read_config",
 ]

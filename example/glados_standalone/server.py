@@ -10,15 +10,21 @@ from glados import (
     RouteType,
     SlackVerification,
     GladosRouteNotFoundError,
+    read_config,
 )
 from test_plugin.test_plugin import TestPlugin
 from example import FLASK_HOST, FLASK_PORT
 import json
 
-glados_config = "glados_standalone/glados.yaml"
+glados_config_file = "glados_standalone/glados.yaml"
+config = read_config(glados_config_file)
 
 app = Flask(__name__)
-glados = Glados(glados_config)
+
+server_config = config.config.server
+glados = Glados(config.config_file)
+
+app.secret_key = server_config.secret_key
 
 
 def extract_slack_info(r: request):
@@ -97,12 +103,11 @@ def external_menu():
 
 def start():
     glados.read_config()
-    print(glados.router.routes)
 
 
 def run():
     start()
-    app.run("127.0.0.1", FLASK_PORT, debug=False, load_dotenv=False)
+    app.run(server_config.host, server_config.port, debug=server_config.debug)
 
 
 if __name__ == "__main__":
