@@ -11,4 +11,4 @@ logging.basicConfig(
 )
 
 
-SORTED_BOT_NAMES = sorted(["SecurityBot", "Bot1", "Bot2"])
+SORTED_BOT_NAMES = sorted(["SecurityBot", "Bot1", "Bot2", "Bot3"])
