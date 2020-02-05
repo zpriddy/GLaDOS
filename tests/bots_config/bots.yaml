@@ -1,0 +1,13 @@
+Bot1:
+  signing_secret: bot_1_signing_secret
+  token: bot-1-api-token
+
+Bot2:
+  signing_secret: bot_2_signing_secret
+  token: bot-2-api-token
+
+Bot3:
+  signing_secret:
+    env_var: bot3secret
+  token:
+    env_var: bot3token

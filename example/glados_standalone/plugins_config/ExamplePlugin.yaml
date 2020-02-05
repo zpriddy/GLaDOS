@@ -1,0 +1,4 @@
+ExamplePlugin:
+  enabled: yes
+  bot:
+    name: glados

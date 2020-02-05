@@ -1,0 +1,3 @@
+SecurityBot:
+  signing_secret: test_signing_secret
+  token: my-bot-api-token
