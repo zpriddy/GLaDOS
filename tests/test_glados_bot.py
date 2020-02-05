@@ -2,6 +2,7 @@ from tests import SORTED_BOT_NAMES
 from glados import BotImporter
 import os
 
+
 def test_import_bots():
     # Set the OS Envars for bot 3
     bot3_secret = "my_bot_3_secret"
