@@ -1,5 +1,6 @@
 import pytest
 from glados import GladosPlugin, RouteType, PluginImporter, BotImporter, GladosBot
+from glados.plugin import PluginConfig
 from glados.errors import GladosPathExistsError
 import logging
 from pathlib import Path
@@ -18,8 +19,13 @@ def MockGladosBot():
 
 
 @pytest.fixture
-def MockGladosPlugin(MockGladosBot):
-    return GladosPlugin("mock", MockGladosBot)
+def MockPluginConfig():
+    return PluginConfig("test", "None")
+
+
+@pytest.fixture
+def MockGladosPlugin(MockGladosBot, MockPluginConfig):
+    return GladosPlugin(MockPluginConfig, MockGladosBot)
 
 
 def check_only_one_file():
