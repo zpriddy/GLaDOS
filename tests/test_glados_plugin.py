@@ -55,7 +55,9 @@ def test_cant_add_existing(MockGladosPlugin):
 def test_add_route(MockGladosPlugin):
     assert MockGladosPlugin.routes == []
 
-    MockGladosPlugin.add_route(RouteType.SendMessage, "send_message", lambda request: True)
+    MockGladosPlugin.add_route(
+        RouteType.SendMessage, "send_message", lambda request: True
+    )
 
     assert len(MockGladosPlugin.routes) == 1
 
