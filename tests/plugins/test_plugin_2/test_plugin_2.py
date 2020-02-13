@@ -1,10 +1,11 @@
 from glados import GladosBot, GladosPlugin
+from glados.plugin import PluginConfig
 import logging
 
 
 class TestPlugin2(GladosPlugin):
-    def __init__(self, bot: GladosBot, name, **kwargs):
-        super().__init__(name, bot, **kwargs)
+    def __init__(self, config: PluginConfig, bot: GladosBot, **kwargs):
+        super().__init__(config, bot, **kwargs)
         logging.info(f"plugin {self.name} imported")
 
     def test_function(self, echo, **kwargs):
