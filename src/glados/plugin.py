@@ -176,6 +176,7 @@ class PluginImporter:
             if not plugin_config.enabled:
                 logging.warning(f"plugin {plugin_name} is disabled")
                 continue
+            plugin_config.name = plugin_name
             logging.info(f"importing plugin: {plugin_name}")
             module = importlib.import_module(plugin_config.package)
 
@@ -203,7 +204,7 @@ class PluginImporter:
                 self.plugin_configs[plugin_name]["enabled"] = False
                 continue
 
-            plugin = getattr(module, plugin_config.module)(bot, plugin_name)
+            plugin = getattr(module, plugin_config.module)(plugin_config, bot)
             self.plugins[plugin_name] = plugin
 
 
@@ -218,8 +219,9 @@ class GladosPlugin:
         the GLaDOS bot that this plugin will use
     """
 
-    def __init__(self, name: str, bot: GladosBot, **kwargs):
-        self.name = name
+    def __init__(self, config: PluginConfig, bot: GladosBot, **kwargs):
+        self.config = config
+        self.name = self.config.name
         self.bot = bot
 
         self._routes = dict()  # type: Dict[int, Dict[str, GladosRoute]]
