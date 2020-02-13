@@ -12,14 +12,15 @@ from slack.web.classes.elements import ButtonElement, ExternalDataSelectElement
 from slack.web.classes.actions import ActionButton
 
 from glados import GladosBot, GladosPlugin, GladosRequest, RouteType, EventRoutes
+from glados.plugin import PluginConfig
 
 from .views import HOME_VIEW, SECURITY_MENU_1
 from .countries import COUNTRY_OPTIONS
 
 
 class ExamplePlugin(GladosPlugin):
-    def __init__(self, bot: GladosBot, name="test plugin", **kwargs):
-        super().__init__(name, bot, **kwargs)
+    def __init__(self, config: PluginConfig, bot: GladosBot, **kwargs):
+        super().__init__(config, bot, **kwargs)
 
         self.add_route(RouteType.SendMessage, "test_send_message", self.send_message)
         self.add_route(
