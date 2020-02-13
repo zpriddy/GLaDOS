@@ -87,7 +87,6 @@ class Glados:
         importer.load_discovered_plugins_config(False)
         importer.import_discovered_plugins(self.bots)
         for plugin in importer.plugins.values():
-            print(type(plugin))
             self.add_plugin(plugin)
         logging.info(f"successfully imported {len(self.plugins)} plugins")
 
