@@ -1,4 +1,4 @@
 ExamplePlugin:
   enabled: yes
   bot:
-    name: glados
+    name: ExampleBot

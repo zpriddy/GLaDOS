@@ -19,6 +19,7 @@ from glados import (
     GladosRequest,
     VERIFY_ROUTES,
     EventRoutes,
+    PyJSON,
 )
 
 from slack.web.classes.messages import Message
@@ -50,6 +51,7 @@ class PluginConfig:
         self.enabled = enabled
         self.bot = PluginBotConfig(**bot)
         self.config_file = config_file
+        self.config = PyJSON(kwargs)
 
         package = config_file.replace("/", ".")
         package = package.replace(".config.yaml", "")
@@ -147,15 +149,16 @@ class PluginImporter:
 
             with open(user_config_path) as file:
                 c = yaml.load(file, yaml.FullLoader)
+
                 if len(c.keys()) != 1:
                     logging.critical(
                         f"zero or more than one object in config file: {config_file}"
                     )
                     continue
+
                 c[plugin_name]["config_file"] = str(user_config_path)
                 plugin_user_config = PluginConfig(plugin_name, **c[plugin_name])
                 plugin_user_config.update(plugin_package_config)
-
             self.plugin_configs[plugin_name] = plugin_user_config
 
     def import_discovered_plugins(self, bots: Dict[str, GladosBot]):
@@ -220,8 +223,9 @@ class GladosPlugin:
     """
 
     def __init__(self, config: PluginConfig, bot: GladosBot, **kwargs):
-        self.config = config
-        self.name = self.config.name
+        self.name = config.name
+        self._config = config
+        self.config = config.config
         self.bot = bot
 
         self._routes = dict()  # type: Dict[int, Dict[str, GladosRoute]]
