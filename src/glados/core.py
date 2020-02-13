@@ -36,19 +36,19 @@ class Glados:
         self.plugins_config_dir = plugins_config_dir  # type: str
         self.logging_level = logging.getLevelName("WARN")
         self.logging_format = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
-        self.gloabl_config = None
+        self.global_config = None
 
     def read_config(self):
         # TODO: Fix logging setup
         if not self.config_file:
             logging.info("glados config file not set.")
 
-        self.gloabl_config = read_config(self.config_file)
+        self.global_config = read_config(self.config_file)
 
-        if "glados" not in self.gloabl_config.sections:
+        if "glados" not in self.global_config.sections:
             logging.info("did not import any config items")
 
-        config = self.gloabl_config.config.glados
+        config = self.global_config.config.glados
 
         self.logging_level = config.get("logging_level", self.logging_level)
         self.logging_format = config.get("logging_format", self.logging_format)
