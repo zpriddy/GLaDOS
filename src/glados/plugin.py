@@ -40,9 +40,7 @@ class PluginBotConfig:
 # read the user config
 # running_config = plugin_config.update(user_config
 class PluginConfig:
-    def __init__(
-        self, name, config_file, module=None, enabled=False, bot=None, **kwargs
-    ):
+    def __init__(self, name, config_file, module=None, enabled=False, bot=None, **kwargs):
         if not bot:
             bot = dict()
         self.name = name
@@ -119,18 +117,14 @@ class PluginImporter:
             with open(config_file) as file:
                 c = yaml.load(file, yaml.FullLoader)
                 if len(c.keys()) != 1:
-                    logging.critical(
-                        f"zero or more than one object in config file: {config_file}"
-                    )
+                    logging.critical(f"zero or more than one object in config file: {config_file}")
                     continue
                 plugin_name = list(c.keys())[0]
                 c[plugin_name]["config_file"] = config_file
                 plugin_package_config = PluginConfig(plugin_name, **c[plugin_name])
 
             if plugin_name is None:
-                logging.critical(
-                    f"invalid or missing plugin name. config file: {config_file}"
-                )
+                logging.critical(f"invalid or missing plugin name. config file: {config_file}")
                 continue
 
             user_config_path = Path(self.plugins_config_folder, f"{plugin_name}.yaml")
@@ -148,9 +142,7 @@ class PluginImporter:
             with open(user_config_path) as file:
                 c = yaml.load(file, yaml.FullLoader)
                 if len(c.keys()) != 1:
-                    logging.critical(
-                        f"zero or more than one object in config file: {config_file}"
-                    )
+                    logging.critical(f"zero or more than one object in config file: {config_file}")
                     continue
                 c[plugin_name]["config_file"] = str(user_config_path)
                 plugin_user_config = PluginConfig(plugin_name, **c[plugin_name])
@@ -189,9 +181,7 @@ class PluginImporter:
                     raise GladosError(f"no bot name set for plugin: {plugin_name}")
                 bot = bots.get(bot_name)
                 if not bot:
-                    logging.error(
-                        f"bot: {bot_name} is not found. disabling plugin: {plugin_name}"
-                    )
+                    logging.error(f"bot: {bot_name} is not found. disabling plugin: {plugin_name}")
                     raise GladosBotNotFoundError(
                         f"bot: {bot_name} is not found as required for {plugin_name}"
                     )
@@ -219,7 +209,7 @@ class GladosPlugin:
         the GLaDOS bot that this plugin will use
     """
 
-    def __init__(self,  config: PluginConfig, bot: GladosBot,  **kwargs):
+    def __init__(self, config: PluginConfig, bot: GladosBot, **kwargs):
         self.config = config
         self.name = self.config.name
         self.bot = bot
@@ -227,13 +217,9 @@ class GladosPlugin:
         self._routes = dict()  # type: Dict[int, Dict[str, GladosRoute]]
 
         for route in RouteType._member_names_:
-            self._routes[
-                RouteType[route].value
-            ] = dict()  # type: Dict[str, GladosRoute]
+            self._routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]
 
-    def add_route(
-        self, route_type: RouteType, route: Union[EventRoutes, str], function: Callable
-    ):
+    def add_route(self, route_type: RouteType, route: Union[EventRoutes, str], function: Callable):
         """Add a new route to the plugin
 
         Parameters
