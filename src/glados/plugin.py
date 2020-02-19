@@ -205,7 +205,7 @@ class PluginImporter:
                 bot = get_required_bot(plugin_config.bot.name, bots)
             except GladosError as e:
                 logging.error(f"{e} :: disabling plugin: {plugin_name}")
-                self.plugin_configs[plugin_name]["enabled"] = False
+                self.plugin_configs[plugin_name].enabled = False
                 continue
 
             plugin = getattr(module, plugin_config.module)(plugin_config, bot)
