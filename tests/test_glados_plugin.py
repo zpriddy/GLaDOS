@@ -44,20 +44,18 @@ def test_cant_add_existing(MockGladosPlugin):
     def mock_function(request):
         return "something"
 
-    MockGladosPlugin.add_route(RouteType.SendMessage, "send_message", mock_function)
+    MockGladosPlugin.add_route(RouteType.Webhook, "send_message", mock_function)
 
     assert len(MockGladosPlugin.routes) == 1
 
     with pytest.raises(GladosPathExistsError):
-        MockGladosPlugin.add_route(RouteType.SendMessage, "send_message", mock_function)
+        MockGladosPlugin.add_route(RouteType.Webhook, "send_message", mock_function)
 
 
 def test_add_route(MockGladosPlugin):
     assert MockGladosPlugin.routes == []
 
-    MockGladosPlugin.add_route(
-        RouteType.SendMessage, "send_message", lambda request: True
-    )
+    MockGladosPlugin.add_route(RouteType.Webhook, "send_message", lambda request: True)
 
     assert len(MockGladosPlugin.routes) == 1
 

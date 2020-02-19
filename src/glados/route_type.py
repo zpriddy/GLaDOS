@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class RouteType(Enum):
-    SendMessage = 1
+    Webhook = 1
     Response = 2
     Callback = 3
     Slash = 4
@@ -15,7 +15,7 @@ BOT_ROUTES = [
     RouteType.Events,
     RouteType.Interaction,
     RouteType.Slash,
-    RouteType.SendMessage,
+    RouteType.Webhook,
 ]
 
 VERIFY_ROUTES = [
