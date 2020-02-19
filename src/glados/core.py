@@ -34,7 +34,7 @@ class Glados:
         self.plugins_folder = plugins_folder  # type: str
         self.bots_config_dir = bots_config_dir  # type: str
         self.plugins_config_dir = plugins_config_dir  # type: str
-        self.logging_level = logging.getLevelName("WARN")
+        self.logging_level = logging.getLevelName("DEBUG")
         self.logging_format = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
         self.global_config = None
 
@@ -90,6 +90,10 @@ class Glados:
 
         # Remove unused bots if a bot name is provided.
         # This will cause a bunch of warnings of bots not existing. This is expected.
+        # TODO(zpriddy): This should not remove the bots from the global bots.
+        #  It should also check to see if plugins are already installed before
+        #  installing them. This is key for AWS Lambda caching issues.
+
         if bot_name:
             bots = self.bots.copy()  #  type: dict
             for b_name, b_config in self.bots.items():
