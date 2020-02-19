@@ -61,8 +61,14 @@ resource "aws_api_gateway_integration" "menu" {
 # Send Message
 ###################################################################################################
 
-resource "aws_api_gateway_resource" "send_message" {
+resource "aws_api_gateway_resource" "send_message_bot" {
   parent_id   = aws_api_gateway_resource.send_message_root.id
+  path_part   = "{bot}"
+  rest_api_id = aws_api_gateway_rest_api.glados_example_api.id
+}
+
+resource "aws_api_gateway_resource" "send_message" {
+  parent_id   = aws_api_gateway_resource.send_message_bot.id
   path_part   = "{route+}"
   rest_api_id = aws_api_gateway_rest_api.glados_example_api.id
 }
@@ -74,6 +80,7 @@ resource "aws_api_gateway_method" "send_message" {
   authorization = "NONE"
 
   request_parameters = {
+    "method.request.path.bot" = true
     "method.request.path.route" = true
   }
 }
@@ -87,6 +94,7 @@ resource "aws_api_gateway_integration" "send_message" {
   uri                     = module.lambda_function.invoke_arn
 
   request_parameters = {
+    "integration.request.path.bot" = "method.request.path.bot"
     "integration.request.path.route" = "method.request.path.route"
   }
 }

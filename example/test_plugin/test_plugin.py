@@ -21,9 +21,9 @@ class TestPlugin(GladosPlugin):
     def __init__(self, bot: GladosBot, name="test plugin", **kwargs):
         super().__init__(name, bot, **kwargs)
 
-        self.add_route(RouteType.SendMessage, "test_send_message", self.send_message)
+        self.add_route(RouteType.Webhook, "test_send_message", self.send_message)
         self.add_route(
-            RouteType.SendMessage, "test_update_message", self.update_message
+            RouteType.Webhook, "test_update_message", self.update_message
         )
         self.add_route(RouteType.Events, EventRoutes.app_home_opened, self.app_home)
         self.add_route(RouteType.Slash, "security", self.slash_security)

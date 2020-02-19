@@ -40,7 +40,7 @@ class ExamplePlugin(GladosPlugin):
     def __init__(self, bot: GladosBot, name="Example Plugin", **kwargs):
         super().__init__(name, bot, **kwargs)
 
-        self.add_route(RouteType.SendMessage, "example_send_message", self.send_message)
+        self.add_route(RouteType.Webhook, "example_send_message", self.send_message)
         self.add_route(RouteType.Events, EventRoutes.app_home_opened, self.app_home)
 
     def send_message(self, request: GladosRequest, **kwargs):

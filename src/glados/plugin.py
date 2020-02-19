@@ -188,7 +188,6 @@ class PluginImporter:
             logging.info(f"importing plugin: {plugin_name}")
             module = importlib.import_module(plugin_config.package)
 
-            # TODO(zpriddy): Do we want to allow bots to be setup in the plugin config?
             # Check if required bot is imported
             def get_required_bot(
                 bot_name: str, bots: Dict[str, GladosBot]

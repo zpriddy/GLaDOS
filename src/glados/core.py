@@ -38,7 +38,7 @@ class Glados:
         self.logging_format = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
         self.global_config = None
 
-    def read_config(self):
+    def read_config(self, bot_name=None):
         # TODO: Fix logging setup
         if not self.config_file:
             logging.info("glados config file not set.")
@@ -68,8 +68,10 @@ class Glados:
             self.import_bots()
 
         import_plugins = config.get("import_plugins", True)
-        if import_plugins:
+        if import_plugins is True:
             self.import_plugins()
+        if import_plugins == "limited":
+            self.import_plugins(bot_name=bot_name)
 
     def import_bots(self):
         """Import all discovered bots"""
@@ -79,12 +81,21 @@ class Glados:
         self.bots = importer.bots.copy()
         logging.info(f"successfully imported {len(self.bots)} bots")
 
-    def import_plugins(self):
+    def import_plugins(self, bot_name=None):
         """Import all discovered plugins and add them to the plugin list."""
         logging.info("Importing plugins...")
         importer = PluginImporter(self.plugins_folder, self.plugins_config_dir)
         importer.discover_plugins()
         importer.load_discovered_plugins_config(False)
+
+        # Remove unused bots if a bot name is provided.
+        if bot_name:
+            bots = self.bots.copy()  #  type: dict
+            for b_name, b_config in self.bots.items():
+                if b_name != bot_name:
+                    bots.pop(b_name)
+            self.bots = bots.copy()
+
         importer.import_discovered_plugins(self.bots)
         for plugin in importer.plugins.values():
             self.add_plugin(plugin)

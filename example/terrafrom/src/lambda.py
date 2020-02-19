@@ -22,7 +22,7 @@ glados.add_plugin(ExamplePlugin(glados_bot))
 def send_message(event):
     print("sending message")
     route = event.get("pathParameters").get("route")
-    r = GladosRequest(RouteType.SendMessage, route, json=json.loads(event.get("body")))
+    r = GladosRequest(RouteType.Webhook, route, json=json.loads(event.get("body")))
     return glados.request(r)
 
 
