@@ -89,6 +89,7 @@ class Glados:
         importer.load_discovered_plugins_config(False)
 
         # Remove unused bots if a bot name is provided.
+        # This will cause a bunch of warnings of bots not existing. This is expected.
         if bot_name:
             bots = self.bots.copy()  #  type: dict
             for b_name, b_config in self.bots.items():

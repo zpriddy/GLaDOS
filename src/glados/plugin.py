@@ -161,10 +161,7 @@ class PluginImporter:
                 plugin_user_config.update(plugin_package_config)
             self.plugin_configs[plugin_name] = plugin_user_config
 
-    # TODO(zpriddy): Add option to only import plugins based off of bot name
-    #  The reason for this is so when Lambda starts up we can have the option to
-    #  only import the plugins that use the bot that the request was for. This
-    #  will make it load faster as we get more plugins
+    # TODO(zpriddy): Filter out warnings and errors if importing plugins in a limited way.
 
     def import_discovered_plugins(self, bots: Dict[str, GladosBot]):
         """Import all discovered plugins and store them in self.plugins.
