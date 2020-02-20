@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.request module &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.request module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
   
 
   
@@ -187,17 +187,17 @@
 <span id="glados-request-module"></span><h1>glados.request module<a class="headerlink" href="#module-glados.request" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="glados.request.GladosRequest">
-<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">GladosRequest</code><span class="sig-paren">(</span><em class="sig-param">route_type</em>, <em class="sig-param">route</em>, <em class="sig-param">slack_verify=None</em>, <em class="sig-param">bot_name=None</em>, <em class="sig-param">json=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">GladosRequest</code><span class="sig-paren">(</span><em class="sig-param">route_type: glados.route_type.RouteType</em>, <em class="sig-param">route: str = None</em>, <em class="sig-param">slack_verify: glados.request.SlackVerification = None</em>, <em class="sig-param">bot_name: str = None</em>, <em class="sig-param">json: Union[str</em>, <em class="sig-param">dict] = None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>GLaDOS Request Object. This holds all the data required to process the request.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><em>RouteType</em></a>) – what type of route is this</p></li>
+<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.html#glados.RouteType" title="glados.RouteType"><em>RouteType</em></a>) – what type of route is this</p></li>
 <li><p><strong>route</strong> (<em>str</em>) – what is the route to be called</p></li>
 <li><p><strong>slack_verify</strong> (<a class="reference internal" href="#glados.request.SlackVerification" title="glados.request.SlackVerification"><em>SlackVerification</em></a>) – slack data used for verifying the request came from Slack</p></li>
 <li><p><strong>bot_name</strong> (<em>str</em>) – The name of the bot to send the request to. This is used for select RouteTypes</p></li>
-<li><p><strong>json</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – the json paylod of the request</p></li>
+<li><p><strong>json</strong> – the json paylod of the request</p></li>
 <li><p><strong>kwargs</strong> – </p></li>
 </ul>
 </dd>
@@ -218,18 +218,13 @@
 <em class="property">property </em><code class="sig-name descname">route</code><a class="headerlink" href="#glados.request.GladosRequest.route" title="Permalink to this definition">¶</a></dt>
 <dd><p>the actual route</p>
 <p>If the route automatically prefixed the route with the bot name, it will return the route with the prefix</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="glados.request.SlackVerification">
-<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">SlackVerification</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">timestamp=None</em>, <em class="sig-param">signature=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#SlackVerification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.SlackVerification" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">SlackVerification</code><span class="sig-paren">(</span><em class="sig-param">data: str</em>, <em class="sig-param">timestamp: str = None</em>, <em class="sig-param">signature: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#SlackVerification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.SlackVerification" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An object to hold slack verification data</p>
 <dl class="field-list simple">
@@ -244,12 +239,7 @@
 <dl class="method">
 <dt id="glados.request.SlackVerification.json">
 <em class="property">property </em><code class="sig-name descname">json</code><a class="headerlink" href="#glados.request.SlackVerification.json" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
-</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 </dd></dl>
 

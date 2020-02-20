@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.router &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.router &mdash; GLaDOS 0.0.1.dev14 documentation</title>
   
 
   
@@ -204,7 +204,7 @@
         <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="n">RouteType</span><span class="o">.</span><span class="n">_member_names_</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">RouteType</span><span class="p">[</span><span class="n">route</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, GladosRoute]</span>
 
-<div class="viewcode-block" id="GladosRouter.add_route"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.add_route">[docs]</a>    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="s1">&#39;GladosPlugin&#39;</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="n">GladosRoute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<div class="viewcode-block" id="GladosRouter.add_route"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.add_route">[docs]</a>    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="s2">&quot;GladosPlugin&quot;</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="n">GladosRoute</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Add a route to the router</span>
 
 <span class="sd">        Parameters</span>
@@ -227,7 +227,7 @@
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">routes</span><span class="p">[</span><span class="n">route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">route</span><span class="o">.</span><span class="n">route</span><span class="p">]</span> <span class="o">=</span> <span class="n">plugin</span><span class="o">.</span><span class="n">send_request</span></div>
 
-<div class="viewcode-block" id="GladosRouter.add_routes"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.add_routes">[docs]</a>    <span class="k">def</span> <span class="nf">add_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="s1">&#39;GladosPlugin&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosRouter.add_routes"><a class="viewcode-back" href="../../glados.router.html#glados.router.GladosRouter.add_routes">[docs]</a>    <span class="k">def</span> <span class="nf">add_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="s2">&quot;GladosPlugin&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add multiple routes to the router.</span>
 
 <span class="sd">        Parameters</span>

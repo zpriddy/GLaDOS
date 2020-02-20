@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.core module &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.core module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
   
 
   
@@ -187,12 +187,12 @@
 <span id="glados-core-module"></span><h1>glados.core module<a class="headerlink" href="#module-glados.core" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="glados.core.Glados">
-<em class="property">class </em><code class="sig-prename descclassname">glados.core.</code><code class="sig-name descname">Glados</code><a class="reference internal" href="_modules/glados/core.html#Glados"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.core.</code><code class="sig-name descname">Glados</code><span class="sig-paren">(</span><em class="sig-param">config_file=None</em>, <em class="sig-param">plugins_folder=None</em>, <em class="sig-param">bots_config_dir=None</em>, <em class="sig-param">plugins_config_dir=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Glados is the core of the GLaDOS package.</p>
 <dl class="method">
 <dt id="glados.core.Glados.add_bot">
-<code class="sig-name descname">add_bot</code><span class="sig-paren">(</span><em class="sig-param">bot</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.add_bot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.add_bot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_bot</code><span class="sig-paren">(</span><em class="sig-param">bot: glados.bot.GladosBot</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.add_bot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.add_bot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a new bot to GLaDOS.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -203,7 +203,7 @@
 
 <dl class="method">
 <dt id="glados.core.Glados.add_plugin">
-<code class="sig-name descname">add_plugin</code><span class="sig-paren">(</span><em class="sig-param">plugin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.add_plugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.add_plugin" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_plugin</code><span class="sig-paren">(</span><em class="sig-param">plugin: glados.plugin.GladosPlugin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.add_plugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.add_plugin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a plugin to GLaDOS</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -213,8 +213,25 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="glados.core.Glados.import_bots">
+<code class="sig-name descname">import_bots</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.import_bots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.import_bots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import all discovered bots</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.core.Glados.import_plugins">
+<code class="sig-name descname">import_plugins</code><span class="sig-paren">(</span><em class="sig-param">bot_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.import_plugins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.import_plugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import all discovered plugins and add them to the plugin list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.core.Glados.read_config">
+<code class="sig-name descname">read_config</code><span class="sig-paren">(</span><em class="sig-param">bot_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.read_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.read_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="glados.core.Glados.request">
-<code class="sig-name descname">request</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.request" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">request</code><span class="sig-paren">(</span><em class="sig-param">request: glados.request.GladosRequest</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/core.html#Glados.request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.core.Glados.request" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send a request to GLaDOS.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

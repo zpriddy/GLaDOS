@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.router module &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.router module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
   
 
   
@@ -186,18 +186,9 @@
 <span id="glados-router-module"></span><h1>glados.router module<a class="headerlink" href="#module-glados.router" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="glados.router.GladosRoute">
-<em class="property">class </em><code class="sig-prename descclassname">glados.router.</code><code class="sig-name descname">GladosRoute</code><span class="sig-paren">(</span><em class="sig-param">route_type</em>, <em class="sig-param">route</em>, <em class="sig-param">function</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRoute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRoute" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.router.</code><code class="sig-name descname">GladosRoute</code><span class="sig-paren">(</span><em class="sig-param">route_type: glados.route_type.RouteType</em>, <em class="sig-param">route: str</em>, <em class="sig-param">function: Callable</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRoute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRoute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Represents a single route</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><code class="xref py py-class docutils literal notranslate"><span class="pre">RouteType</span></code></a>) – </p></li>
-<li><p><strong>route</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
-<li><p><strong>function</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – </p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="class">
@@ -206,7 +197,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="method">
 <dt id="glados.router.GladosRouter.add_route">
-<code class="sig-name descname">add_route</code><span class="sig-paren">(</span><em class="sig-param">plugin</em>, <em class="sig-param">route</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRouter.add_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.add_route" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_route</code><span class="sig-paren">(</span><em class="sig-param">plugin: GladosPlugin</em>, <em class="sig-param">route: glados.router.GladosRoute</em><span class="sig-paren">)</span> &#x2192; NoReturn<a class="reference internal" href="_modules/glados/router.html#GladosRouter.add_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.add_route" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a route to the router</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -218,29 +209,23 @@
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>KeyError</strong> – a route with the same type and same name already exists</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="glados.router.GladosRouter.add_routes">
-<code class="sig-name descname">add_routes</code><span class="sig-paren">(</span><em class="sig-param">plugin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRouter.add_routes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.add_routes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_routes</code><span class="sig-paren">(</span><em class="sig-param">plugin: GladosPlugin</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRouter.add_routes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.add_routes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add multiple routes to the router.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>routes</strong> (<a class="reference internal" href="glados.html#glados.GladosPlugin" title="glados.GladosPlugin"><em>GladosPlugin</em></a>) – the plugin to add routes from</p></li>
-<li><p><strong>plugin</strong> (<a class="reference internal" href="glados.html#glados.GladosPlugin" title="glados.GladosPlugin"><em>GladosPlugin</em></a>) – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>routes</strong> (<a class="reference internal" href="glados.html#glados.GladosPlugin" title="glados.GladosPlugin"><em>GladosPlugin</em></a>) – the plugin to add routes from</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="glados.router.GladosRouter.exec_route">
-<code class="sig-name descname">exec_route</code><span class="sig-paren">(</span><em class="sig-param">request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRouter.exec_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.exec_route" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">exec_route</code><span class="sig-paren">(</span><em class="sig-param">request: glados.request.GladosRequest</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRouter.exec_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.exec_route" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a route function directly</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -283,12 +268,12 @@
 
 <dl class="method">
 <dt id="glados.router.GladosRouter.get_route">
-<code class="sig-name descname">get_route</code><span class="sig-paren">(</span><em class="sig-param">route_type</em>, <em class="sig-param">route</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRouter.get_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.get_route" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_route</code><span class="sig-paren">(</span><em class="sig-param">route_type: glados.route_type.RouteType</em>, <em class="sig-param">route: str</em><span class="sig-paren">)</span> &#x2192; Optional[glados.router.GladosRoute]<a class="reference internal" href="_modules/glados/router.html#GladosRouter.get_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.get_route" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a GladosRoute object for the requested route.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><em>RouteType</em></a>) – the type of route to get</p></li>
+<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.html#glados.RouteType" title="glados.RouteType"><em>RouteType</em></a>) – the type of route to get</p></li>
 <li><p><strong>route</strong> (<em>str</em>) – the route to get</p></li>
 </ul>
 </dd>
@@ -306,12 +291,12 @@
 
 <dl class="method">
 <dt id="glados.router.GladosRouter.route_function">
-<code class="sig-name descname">route_function</code><span class="sig-paren">(</span><em class="sig-param">route_type</em>, <em class="sig-param">route</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/router.html#GladosRouter.route_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.route_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">route_function</code><span class="sig-paren">(</span><em class="sig-param">route_type: glados.route_type.RouteType</em>, <em class="sig-param">route: str</em><span class="sig-paren">)</span> &#x2192; Callable<a class="reference internal" href="_modules/glados/router.html#GladosRouter.route_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.router.GladosRouter.route_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return only the callable function for the requested GladosRoute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><em>RouteType</em></a>) – the type of route to get</p></li>
+<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.html#glados.RouteType" title="glados.RouteType"><em>RouteType</em></a>) – the type of route to get</p></li>
 <li><p><strong>route</strong> (<em>str</em>) – the route to get</p></li>
 </ul>
 </dd>

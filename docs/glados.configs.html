@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.glados_router module &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.configs module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
   
 
   
@@ -158,13 +158,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>glados.glados_router module</li>
+      <li>glados.configs module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/glados.glados_router.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/glados.configs.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -177,8 +177,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="glados-glados-router-module">
-<h1>glados.glados_router module<a class="headerlink" href="#glados-glados-router-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="glados-configs-module">
+<h1>glados.configs module<a class="headerlink" href="#glados-configs-module" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-glados.configs"></span><dl class="class">
+<dt id="glados.configs.GladosConfig">
+<em class="property">class </em><code class="sig-prename descclassname">glados.configs.</code><code class="sig-name descname">GladosConfig</code><span class="sig-paren">(</span><em class="sig-param">config_file: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/configs.html#GladosConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.configs.GladosConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="glados.configs.GladosConfig.read_config">
+<code class="sig-name descname">read_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/configs.html#GladosConfig.read_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.configs.GladosConfig.read_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the config file into a config object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="glados.configs.GladosConfig.sections">
+<em class="property">property </em><code class="sig-name descname">sections</code><a class="headerlink" href="#glados.configs.GladosConfig.sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>what sections are there in the config file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>sorted list of sections in the yaml file</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

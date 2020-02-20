@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.bot &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.bot &mdash; GLaDOS 0.0.1.dev14 documentation</title>
   
 
   
@@ -180,10 +180,37 @@
 <span class="kn">from</span> <span class="nn">slack.web.classes.messages</span> <span class="k">import</span> <span class="n">Message</span>
 <span class="kn">from</span> <span class="nn">slack.web.slack_response</span> <span class="k">import</span> <span class="n">SlackResponse</span>
 <span class="kn">from</span> <span class="nn">slack.errors</span> <span class="k">import</span> <span class="n">SlackRequestError</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosRequest</span>
+<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="n">get_var</span><span class="p">,</span> <span class="n">get_enc_var</span>
+
+
+<div class="viewcode-block" id="BotImporter"><a class="viewcode-back" href="../../glados.bot.html#glados.BotImporter">[docs]</a><span class="k">class</span> <span class="nc">BotImporter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bots_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;starting BotImporter with config dir: </span><span class="si">{bots_dir}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bots</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, GladosBot]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bots_yaml</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dir</span> <span class="o">=</span> <span class="n">bots_dir</span>
+
+<div class="viewcode-block" id="BotImporter.import_bots"><a class="viewcode-back" href="../../glados.bot.html#glados.BotImporter.import_bots">[docs]</a>    <span class="k">def</span> <span class="nf">import_bots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Import all bots in the bots config folder</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{self._dir}</span><span class="s2">/*.yaml&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;bot config files found: </span><span class="si">{files}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_bots_yaml</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">bot_name</span><span class="p">,</span> <span class="n">bot_config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bots_yaml</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bots</span><span class="p">[</span><span class="n">bot_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">GladosBot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">bot_name</span><span class="p">,</span> <span class="o">**</span><span class="n">bot_config</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="GladosBot"><a class="viewcode-back" href="../../glados.bot.html#glados.GladosBot">[docs]</a><span class="k">class</span> <span class="nc">GladosBot</span><span class="p">:</span>
@@ -197,10 +224,10 @@
 <span class="sd">    ----------</span>
 <span class="sd">    name: str</span>
 <span class="sd">        The name of the bot (URL Safe)</span>
-<span class="sd">    token: str</span>
+<span class="sd">    token: str, Dict[str, str]</span>
 <span class="sd">        The bot token</span>
-<span class="sd">    client: WebClient</span>
-<span class="sd">        A Slack client generated for that bot</span>
+<span class="sd">    signing_secret: str, Dict[str, str]</span>
+<span class="sd">        The bot signing secret.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -210,14 +237,52 @@
 <span class="sd">        The bot token</span>
 <span class="sd">    client: WebClient</span>
 <span class="sd">        A Slack client generated for that bot</span>
+<span class="sd">    signing_secret: str</span>
+<span class="sd">        The bots signing secret.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">signing_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">token</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
+        <span class="n">name</span><span class="p">,</span>
+        <span class="n">signing_secret</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># Get the values from the env vars if used.</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_for_env_vars</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="n">signing_secret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_for_env_vars</span><span class="p">(</span><span class="n">signing_secret</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">token</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">WebClient</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">signing_secret</span> <span class="o">=</span> <span class="n">signing_secret</span>
+
+<div class="viewcode-block" id="GladosBot.check_for_env_vars"><a class="viewcode-back" href="../../glados.bot.html#glados.GladosBot.check_for_env_vars">[docs]</a>    <span class="k">def</span> <span class="nf">check_for_env_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check an input value to see if it is an env_var or enc_env_var and get the value.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        value : input to check.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Any:</span>
+<span class="sd">            Returns the value of the var from either the passed in value, or the env var value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span> <span class="ow">and</span> <span class="s2">&quot;env_var&quot;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+            <span class="n">var_name</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;env_var&quot;</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">get_var</span><span class="p">(</span><span class="n">var_name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;missing env var: </span><span class="si">{value[&#39;env_var&#39;]}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span> <span class="ow">and</span> <span class="s2">&quot;enc_env_var&quot;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+            <span class="n">var_name</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;enc_env_var&quot;</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">get_enc_var</span><span class="p">(</span><span class="n">var_name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;missing enc env var: </span><span class="si">{value[&#39;enc_env_var&#39;]}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
 
 <div class="viewcode-block" id="GladosBot.validate_slack_signature"><a class="viewcode-back" href="../../glados.bot.html#glados.GladosBot.validate_slack_signature">[docs]</a>    <span class="k">def</span> <span class="nf">validate_slack_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">):</span>
         <span class="n">valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">validate_slack_signature</span><span class="p">(</span>

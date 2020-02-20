@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.core &mdash; GLaDOS 0.0.1-alpha1 documentation</title>
+  <title>glados.core &mdash; GLaDOS 0.0.1.dev14 documentation</title>
   
 
   
@@ -176,19 +176,113 @@
            <div itemprop="articleBody">
             
   <h1>Source code for glados.core</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosPlugin</span><span class="p">,</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="n">GladosRouter</span><span class="p">,</span> <span class="n">GladosBot</span>
+<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">GladosPlugin</span><span class="p">,</span>
+    <span class="n">GladosRequest</span><span class="p">,</span>
+    <span class="n">GladosRouter</span><span class="p">,</span>
+    <span class="n">GladosBot</span><span class="p">,</span>
+    <span class="n">BotImporter</span><span class="p">,</span>
+    <span class="n">PluginImporter</span><span class="p">,</span>
+    <span class="n">read_config</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosConfig</span>
 
 
 <div class="viewcode-block" id="Glados"><a class="viewcode-back" href="../../glados.core.html#glados.Glados">[docs]</a><span class="k">class</span> <span class="nc">Glados</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Glados is the core of the GLaDOS package.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">config_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugins_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">bots_config_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugins_config_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">router</span> <span class="o">=</span> <span class="n">GladosRouter</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>  <span class="c1"># type: List[GladosPlugin]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bots</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, GladosBot]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_file</span> <span class="o">=</span> <span class="n">config_file</span>  <span class="c1"># type: str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugins_folder</span> <span class="o">=</span> <span class="n">plugins_folder</span>  <span class="c1"># type: str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bots_config_dir</span> <span class="o">=</span> <span class="n">bots_config_dir</span>  <span class="c1"># type: str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_dir</span> <span class="o">=</span> <span class="n">plugins_config_dir</span>  <span class="c1"># type: str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLevelName</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> :: </span><span class="si">%(levelname)-8s</span><span class="s2"> :: [</span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)s</span><span class="s2"> :: </span><span class="si">%(funcName)s</span><span class="s2">() ] </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_config</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Glados.read_config"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.read_config">[docs]</a>    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># TODO: Fix logging setup</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_file</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;glados config file not set.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_config</span> <span class="o">=</span> <span class="n">read_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config_file</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;glados&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_config</span><span class="o">.</span><span class="n">sections</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;did not import any config items&quot;</span><span class="p">)</span>
+
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_config</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">glados</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logging_level&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logging_format&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+            <span class="n">level</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span><span class="p">,</span>
+            <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span><span class="p">,</span>
+            <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugins_folder</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;plugins_folder&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;plugins_config_folder&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bots_config_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bots_config_folder&quot;</span><span class="p">)</span>
+
+        <span class="n">import_bots</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;import_bots&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">import_bots</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;auto-importing bots as set in glados config file&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">import_bots</span><span class="p">()</span>
+
+        <span class="n">import_plugins</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;import_plugins&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">import_plugins</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">import_plugins</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">import_plugins</span> <span class="o">==</span> <span class="s2">&quot;limited&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">import_plugins</span><span class="p">(</span><span class="n">bot_name</span><span class="o">=</span><span class="n">bot_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Glados.import_bots"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.import_bots">[docs]</a>    <span class="k">def</span> <span class="nf">import_bots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Import all discovered bots&quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;importing bots...&quot;</span><span class="p">)</span>
+        <span class="n">importer</span> <span class="o">=</span> <span class="n">BotImporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bots_config_dir</span><span class="p">)</span>
+        <span class="n">importer</span><span class="o">.</span><span class="n">import_bots</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bots</span> <span class="o">=</span> <span class="n">importer</span><span class="o">.</span><span class="n">bots</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;successfully imported {len(self.bots)} bots&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Glados.import_plugins"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.import_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">import_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Import all discovered plugins and add them to the plugin list.&quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Importing plugins...&quot;</span><span class="p">)</span>
+        <span class="n">importer</span> <span class="o">=</span> <span class="n">PluginImporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plugins_folder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_dir</span><span class="p">)</span>
+        <span class="n">importer</span><span class="o">.</span><span class="n">discover_plugins</span><span class="p">()</span>
+        <span class="n">importer</span><span class="o">.</span><span class="n">load_discovered_plugins_config</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Remove unused bots if a bot name is provided.</span>
+        <span class="c1"># This will cause a bunch of warnings of bots not existing. This is expected.</span>
+        <span class="c1"># TODO(zpriddy): This should not remove the bots from the global bots.</span>
+        <span class="c1">#  It should also check to see if plugins are already installed before</span>
+        <span class="c1">#  installing them. This is key for AWS Lambda caching issues.</span>
+
+        <span class="k">if</span> <span class="n">bot_name</span><span class="p">:</span>
+            <span class="n">bots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bots</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1">#  type: dict</span>
+            <span class="k">for</span> <span class="n">b_name</span><span class="p">,</span> <span class="n">b_config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bots</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">b_name</span> <span class="o">!=</span> <span class="n">bot_name</span><span class="p">:</span>
+                    <span class="n">bots</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">b_name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bots</span> <span class="o">=</span> <span class="n">bots</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">importer</span><span class="o">.</span><span class="n">import_discovered_plugins</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bots</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">importer</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_plugin</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;successfully imported {len(self.plugins)} plugins&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Glados.add_plugin"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.add_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">add_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="n">GladosPlugin</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a plugin to GLaDOS</span>
