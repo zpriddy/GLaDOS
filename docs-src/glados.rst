@@ -19,6 +19,7 @@ Submodules
 .. toctree::
 
    glados.bot
+   glados.configs
    glados.core
    glados.errors
    glados.message_blocks
@@ -26,3 +27,4 @@ Submodules
    glados.request
    glados.route_type
    glados.router
+   glados.utils
