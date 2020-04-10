@@ -108,7 +108,7 @@ class GladosRouter(object):
         """
         return self.get_route(route_type, route)
 
-    def exec_route(self, request: GladosRequest):
+    def exec_route(self, request):
         """Execute a route function directly
 
         Parameters

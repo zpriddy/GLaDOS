@@ -21,6 +21,7 @@ Submodules
    glados.bot
    glados.core
    glados.errors
+   glados.configs
    glados.message_blocks
    glados.plugin
    glados.request

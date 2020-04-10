@@ -14,7 +14,7 @@ Welcome to GLaDOS's documentation!
    install
    glados_structure
    glados_plugin
-   modules
+   glados
 
 
 
