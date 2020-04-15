@@ -1,4 +1,4 @@
-from typing import List, Dict, TYPE_CHECKING
+from typing import List, Dict, TYPE_CHECKING, Optional
 import yaml
 import logging
 
@@ -10,6 +10,7 @@ from glados import (
     BotImporter,
     PluginImporter,
     read_config,
+    DataStore,
 )
 
 if TYPE_CHECKING:
@@ -20,11 +21,7 @@ class Glados:
     """Glados is the core of the GLaDOS package."""
 
     def __init__(
-        self,
-        config_file=None,
-        plugins_folder=None,
-        bots_config_dir=None,
-        plugins_config_dir=None,
+        self, config_file=None, plugins_folder=None, bots_config_dir=None, plugins_config_dir=None,
     ):
         self.router = GladosRouter()
         self.plugins = list()  # type: List[GladosPlugin]
@@ -37,6 +34,8 @@ class Glados:
         self.logging_level = logging.getLevelName("DEBUG")
         self.logging_format = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
         self.global_config = None
+        self.enable_datastore = False
+        self.datastore = None  # type: Optional[DataStore]
 
     def read_config(self, bot_name=None):
         # TODO: Fix logging setup
@@ -53,9 +52,7 @@ class Glados:
         self.logging_level = config.get("logging_level", self.logging_level)
         self.logging_format = config.get("logging_format", self.logging_format)
         logging.basicConfig(
-            level=self.logging_level,
-            format=self.logging_format,
-            datefmt="%Y-%m-%d %H:%M:%S",
+            level=self.logging_level, format=self.logging_format, datefmt="%Y-%m-%d %H:%M:%S",
         )
 
         self.plugins_folder = config.get("plugins_folder")
@@ -72,6 +69,36 @@ class Glados:
             self.import_plugins()
         if import_plugins == "limited":
             self.import_plugins(bot_name=bot_name)
+
+        # Config datastore
+        if "datastore" in self.global_config.sections:
+            ds_config = self.global_config.config.datastore
+            ds_enabled = ds_config.get("enabled", False)
+            ds_host = ds_config.get("host")
+            ds_port = ds_config.get("port", 5432)
+            ds_username = ds_config.get("username")
+            ds_password = ds_config.get("password")
+            ds_database = ds_config.get("database", "glados")
+            ds_recreate = ds_config.get("recreate", False)
+            if None in [ds_enabled, ds_host, ds_port, ds_username, ds_password, ds_database]:
+                logging.warning(
+                    "missing datastore config item(s) or datastore disabled. disabling datastore."
+                )
+                self.enable_datastore = False
+            else:
+                self.enable_datastore = ds_enabled
+                if ds_enabled:
+                    self.datastore = DataStore(
+                        host=ds_host,
+                        port=ds_port,
+                        username=ds_username,
+                        password=ds_password,
+                        database=ds_database,
+                    )
+                    self.datastore.create_table(force=ds_recreate)
+        else:
+            logging.warning("datastore section not found in config file")
+            self.enable_datastore = False
 
     def import_bots(self):
         """Import all discovered bots"""
@@ -136,8 +163,13 @@ class Glados:
         """
         self.bots[bot.name] = bot
 
+    def has_datastore(self):
+        return True if self.enable_datastore is True and self.datastore is not None else False
+
     def request(self, request: GladosRequest):
         """Send a request to GLaDOS.
+
+        This function will also set the datastore session for the request, try to find the interaction in the datastore and fetch it. This info is available in the request.
 
         Parameters
         ----------
@@ -148,4 +180,20 @@ class Glados:
         -------
 
         """
-        return self.router.exec_route(request)
+        # DataStore actions if enabled
+        if self.has_datastore():
+            request.set_datastore(self.datastore)
+            request.set_interaction_from_datastore()
+
+        response = self.router.exec_route(request)
+
+        if self.has_datastore() and request.auto_link and request.new_interaction:
+            try:
+                request.link_interaction_to_message_response(request.new_interaction, response)
+            except Exception as e:
+                logging.error(f"error linking response to interaction: {e} response: {response}")
+
+        if self.has_datastore():
+            request.close_session()
+
+        return response
