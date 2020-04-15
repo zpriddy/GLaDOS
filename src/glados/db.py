@@ -7,6 +7,7 @@ from sqlalchemy import Column, DateTime, Integer, MetaData, String, Table, creat
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Query, Session, sessionmaker
+from sqlalchemy.orm.exc import MultipleResultsFound
 
 Metadata = MetaData()
 Base = declarative_base(metadata=Metadata)
@@ -31,21 +32,10 @@ class DataStoreInteraction(Base):
     followed_up = Column(DateTime, default=None)
     followed_up_ts = Column(DateTime, default=None)
 
-    @property
-    def __sql_values__(self) -> dict:
-        values = self.__dict__.copy()
-        values.pop("_sa_instance_state")
-        values.pop("interaction_id")
-        return values
-
-    @property
-    def object(self):
-        return self
-
-    def update_row(self, session: Session):
-        session.query(DataStoreInteraction).filter(
-            DataStoreInteraction.interaction_id == self.interaction_id
-        ).update(self.__sql_values__)
+    def update(self, **kwargs):
+        for k, v in kwargs:
+            if hasattr(self, k):
+                setattr(self, k, v)
 
 
 class DataStore:
@@ -67,6 +57,7 @@ class DataStore:
             f"postgres://{self.username}:{self.password}@{self.host}:{self.port}/"
             f"{self.database}"
         )
+        self.session_maker = sessionmaker(self.db)
 
     def create_session(self) -> Session:
         """Generate a new session with the existing connection.
@@ -76,8 +67,7 @@ class DataStore:
         Session:
             the session that was generated
         """
-        session = sessionmaker(self.db)  # type: sessionmaker
-        return session()
+        return self.session_maker()
 
     def table_exists(self, table=TABLE_INTERACTIONS) -> bool:
         """Check to see if the GLaDOS table is found in postgres.
@@ -147,9 +137,7 @@ class DataStore:
 
         """
         result = session.query(DataStoreInteraction).get(interaction_id)
-
-        logging.debug(result.interaction_id)
-        return result.object
+        return result
 
     def update_interaction(
         self, interaction_id, session: Session, **kwargs
@@ -162,19 +150,22 @@ class DataStore:
             interaction ID to update
         session : Session
             session to be used
-        kwargs : dict
+        kwargs :
             fields and new values to update
 
         Returns
         -------
 
         """
-        s = (
-            session.query(DataStoreInteraction)
-            .filter(DataStoreInteraction.interaction_id == interaction_id)
-            .update(kwargs)
-        )
-        return s
+        interaction = session.query(DataStoreInteraction).get(
+            interaction_id
+        )  # type: DataStoreInteraction
+        for k, v in kwargs.items():
+            if hasattr(interaction, k):
+                continue
+            kwargs.pop(k)
+        interaction.update(**kwargs)
+        return interaction
 
     def insert_interaction(self, interaction: DataStoreInteraction, session: Session):
         """Insert an interaction object into the database.
@@ -272,19 +263,13 @@ class DataStore:
         ReferenceError :
             There were more than one interaction that matched the channel and message_ts
         """
-        query = session.query(DataStoreInteraction).filter(
-            DataStoreInteraction.message_ts == ts
-            and DataStoreInteraction.message_channel == channel
+        query = (
+            session.query(DataStoreInteraction)
+            .filter(DataStoreInteraction.message_ts == ts)
+            .filter(DataStoreInteraction.message_channel == channel)
         )  # type: Query
-        if query.count() == 1:
-            return query.all()[0]
-        elif query.count() == 0:
-            logging.error(
-                f"no matching interaction for channel: {channel} and ts: {ts}"
-            )
-            return None
-        else:
-            raise ReferenceError(
-                f"more than one matching interaction for channel: {channel} and ts: "
-                f"{ts}"
-            )
+        try:
+            result = query.one_or_none()
+            return result
+        except MultipleResultsFound as e:
+            raise ReferenceError(e)

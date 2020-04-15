@@ -199,8 +199,13 @@ class Glados:
         """
         # DataStore actions if enabled
         if self.has_datastore():
-            request.set_datastore(self.datastore)
-            request.set_interaction_from_datastore()
+            try:
+                request.set_datastore(self.datastore)
+                request.set_interaction_from_datastore()
+            except Exception as e:
+                logging.error(
+                    f"error setting up datastore or retrieving interaction : {e} for request: {request}"
+                )
 
         response = self.router.exec_route(request)
 
@@ -213,8 +218,12 @@ class Glados:
                 logging.error(
                     f"error linking response to interaction: {e} response: {response}"
                 )
+                request._session.rollback()
+            finally:
+                request.close_session()
+                return response
 
-        if self.has_datastore():
+        elif self.has_datastore():
             request.close_session()
 
         return response

@@ -95,7 +95,7 @@ class GladosRequest:
             None
         )  # type: Optional[Session] # This is the datastore session for this request.
         self._interaction = None  #  type: Optional[DataStoreInteraction] # This is the interaction database object for this request.
-        self.auto_link = True  # if this is true, then it will expect the response from the plugin to want to try to autolink to the interaction datastore.
+        self.auto_link = False  # if this is true, then it will expect the response from the plugin to want to try to autolink to the interaction datastore.
 
         if route_type is RouteType.Interaction:
             self.response_url = self.json.get("response_url")
@@ -273,6 +273,11 @@ class GladosRequest:
         if not self._session or not self._session.is_active:
             self._session.close()
 
+    def rollback_session(self):
+        """Rollback the session."""
+        if self._session.is_active:
+            self._session.rollback()
+
     def has_interaction(self) -> bool:
         """Check if request has interaction.
 
@@ -283,8 +288,19 @@ class GladosRequest:
         """
         return True if self.interaction else False
 
+    def has_new_interaction(self) -> bool:
+        """check if request has a new interaction object."""
+        return True if self.new_interaction else False
+
     def gen_new_interaction(
-        self, *, followup_action=None, followup_ts=None, ttl=None, data=None
+        self,
+        *,
+        followup_action=None,
+        followup_ts=None,
+        ttl=None,
+        data=None,
+        auto_link: bool = True,
+        auto_set: bool = True,
     ):
         """Generate a new interaction object and set it as new_interaction.
 
@@ -294,6 +310,10 @@ class GladosRequest:
         followup_ts :
         ttl :
         data :
+        auto_link: bool
+            set this request to auto-link using the return payload. The return payload must be the response from sending a slack message.
+        auto_set: bool
+            set this new interaction object as the request new_interaction
 
         Returns
         -------
@@ -301,14 +321,22 @@ class GladosRequest:
         """
         if not data:
             data = dict()
-        self.new_interaction = DataStoreInteraction(
+
+        self.auto_link = auto_link
+
+        new_interaction = DataStoreInteraction(
             bot=self.bot_name,
             followup_action=followup_action,
             followup_ts=followup_ts,
             ttl=ttl,
             data=data,
         )
-        return self.new_interaction
+
+        if auto_set:
+            self.new_interaction = new_interaction
+            return self.new_interaction
+
+        return new_interaction
 
     @property
     def interaction_id(self):
