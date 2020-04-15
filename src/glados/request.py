@@ -1,4 +1,4 @@
-from glados import RouteType, BOT_ROUTES, PyJSON
+from glados import RouteType, BOT_ROUTES, PyJSON, DataStoreInteraction, DataStore
 from typing import Union, Optional, TYPE_CHECKING
 import json
 import logging
@@ -6,7 +6,6 @@ from datetime import datetime
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import Session
-    from glados import DataStoreInteraction, DataStore
 
 
 class SlackVerification:
@@ -271,6 +270,19 @@ class GladosRequest:
         return True if self.interaction else False
 
     def gen_new_interaction(self, *, followup_action=None, followup_ts=None, ttl=None, data=None):
+        """Generate a new interaction object and set it as new_interaction.
+
+        Parameters
+        ----------
+        followup_action :
+        followup_ts :
+        ttl :
+        data :
+
+        Returns
+        -------
+
+        """
         if not data:
             data = dict()
         self.new_interaction = DataStoreInteraction(
