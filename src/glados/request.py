@@ -190,7 +190,9 @@ class GladosRequest:
         )
         self._interaction = interaction
 
-    def add_interaction_to_datastore(self, interaction: DataStoreInteraction) -> Optional[DataStoreInteraction]:
+    def add_interaction_to_datastore(
+        self, interaction: DataStoreInteraction
+    ) -> Optional[DataStoreInteraction]:
         """Add an interaction to the datastore and return the updated interaction.
 
         Notes
@@ -213,7 +215,6 @@ class GladosRequest:
         if not self._session:
             raise ConnectionError("session not set for request")
         return self._datastore.insert_interaction(interaction, self._session)
-
 
     def link_interaction_to_message_response(self, interaction_id: str, message_response: dict):
         """Link interaction to message response
@@ -268,6 +269,18 @@ class GladosRequest:
             True if interaction is set.
         """
         return True if self.interaction else False
+
+    def gen_new_interaction(self, *, followup_action=None, followup_ts=None, ttl=None, data=None):
+        if not data:
+            data = dict()
+        self.new_interaction = DataStoreInteraction(
+            bot=self.bot_name,
+            followup_action=followup_action,
+            followup_ts=followup_ts,
+            ttl=ttl,
+            data=data,
+        )
+        return self.new_interaction
 
     @property
     def interaction_id(self):

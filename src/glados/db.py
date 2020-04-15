@@ -25,7 +25,7 @@ class DataStoreInteraction(Base):
     ttl = Column(Integer, default=None)
     followup_ts = Column(DateTime, default=None)
     followup_action = Column(String, default=None)
-    cron_followup_action = Column(String, default=None)
+    cron_followup_action = Column(String, default=None) # TODO(zpriddy): Do I need? Is this the same as followup_action? 
     followed_up = Column(DateTime, default=None)
     followed_up_ts = Column(DateTime, default=None)
 
