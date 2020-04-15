@@ -21,7 +21,11 @@ class Glados:
     """Glados is the core of the GLaDOS package."""
 
     def __init__(
-        self, config_file=None, plugins_folder=None, bots_config_dir=None, plugins_config_dir=None,
+        self,
+        config_file=None,
+        plugins_folder=None,
+        bots_config_dir=None,
+        plugins_config_dir=None,
     ):
         self.router = GladosRouter()
         self.plugins = list()  # type: List[GladosPlugin]
@@ -52,7 +56,9 @@ class Glados:
         self.logging_level = config.get("logging_level", self.logging_level)
         self.logging_format = config.get("logging_format", self.logging_format)
         logging.basicConfig(
-            level=self.logging_level, format=self.logging_format, datefmt="%Y-%m-%d %H:%M:%S",
+            level=self.logging_level,
+            format=self.logging_format,
+            datefmt="%Y-%m-%d %H:%M:%S",
         )
 
         self.plugins_folder = config.get("plugins_folder")
@@ -80,7 +86,14 @@ class Glados:
             ds_password = ds_config.get("password")
             ds_database = ds_config.get("database", "glados")
             ds_recreate = ds_config.get("recreate", False)
-            if None in [ds_enabled, ds_host, ds_port, ds_username, ds_password, ds_database]:
+            if None in [
+                ds_enabled,
+                ds_host,
+                ds_port,
+                ds_username,
+                ds_password,
+                ds_database,
+            ]:
                 logging.warning(
                     "missing datastore config item(s) or datastore disabled. disabling datastore."
                 )
@@ -164,7 +177,11 @@ class Glados:
         self.bots[bot.name] = bot
 
     def has_datastore(self):
-        return True if self.enable_datastore is True and self.datastore is not None else False
+        return (
+            True
+            if self.enable_datastore is True and self.datastore is not None
+            else False
+        )
 
     def request(self, request: GladosRequest):
         """Send a request to GLaDOS.
@@ -189,9 +206,13 @@ class Glados:
 
         if self.has_datastore() and request.auto_link and request.new_interaction:
             try:
-                request.link_interaction_to_message_response(request.new_interaction, response)
+                request.link_interaction_to_message_response(
+                    request.new_interaction, response
+                )
             except Exception as e:
-                logging.error(f"error linking response to interaction: {e} response: {response}")
+                logging.error(
+                    f"error linking response to interaction: {e} response: {response}"
+                )
 
         if self.has_datastore():
             request.close_session()

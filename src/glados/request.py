@@ -116,7 +116,11 @@ class GladosRequest:
 
         If the route automatically prefixed the route with the bot name, it will return the route with the prefix
         """
-        return f"{self.bot_name}_{self._route}" if self.route_type in BOT_ROUTES else self._route
+        return (
+            f"{self.bot_name}_{self._route}"
+            if self.route_type in BOT_ROUTES
+            else self._route
+        )
 
     @route.setter
     def route(self, value):
@@ -180,7 +184,9 @@ class GladosRequest:
         message_ts = container_payload.get("message_ts")
 
         if None in [channel, message_ts]:
-            logging.warning(f"missing channel_id or message_ts in container: {container_payload}")
+            logging.warning(
+                f"missing channel_id or message_ts in container: {container_payload}"
+            )
             self._interaction = None
             return self.interaction
 
@@ -215,7 +221,9 @@ class GladosRequest:
             raise ConnectionError("session not set for request")
         return self._datastore.insert_interaction(interaction, self._session)
 
-    def link_interaction_to_message_response(self, interaction_id: str, message_response: dict):
+    def link_interaction_to_message_response(
+        self, interaction_id: str, message_response: dict
+    ):
         """Link interaction to message response
 
         Parameters
@@ -232,9 +240,13 @@ class GladosRequest:
         if not self._session:
             raise ConnectionError("session not set for request")
 
-        self._datastore.link_to_message_response(interaction_id, message_response, self._session)
+        self._datastore.link_to_message_response(
+            interaction_id, message_response, self._session
+        )
 
-    def link_interaction_to_message(self, interaction_id: str, channel: str, message_ts: datetime):
+    def link_interaction_to_message(
+        self, interaction_id: str, channel: str, message_ts: datetime
+    ):
         """Link interaction to message
 
         Parameters
@@ -252,7 +264,9 @@ class GladosRequest:
         """
         if not self._session:
             raise ConnectionError("session not set for request")
-        self._datastore.link_to_message(interaction_id, channel, message_ts, self._session)
+        self._datastore.link_to_message(
+            interaction_id, channel, message_ts, self._session
+        )
 
     def close_session(self):
         """Close session for request"""
@@ -269,7 +283,9 @@ class GladosRequest:
         """
         return True if self.interaction else False
 
-    def gen_new_interaction(self, *, followup_action=None, followup_ts=None, ttl=None, data=None):
+    def gen_new_interaction(
+        self, *, followup_action=None, followup_ts=None, ttl=None, data=None
+    ):
         """Generate a new interaction object and set it as new_interaction.
 
         Parameters

@@ -50,7 +50,12 @@ class DataStoreInteraction(Base):
 
 class DataStore:
     def __init__(
-        self, host: str, username: str, password: str, port: int = 5432, database: str = "glados"
+        self,
+        host: str,
+        username: str,
+        password: str,
+        port: int = 5432,
+        database: str = "glados",
     ):
         self.host = host
         self.port = port
@@ -215,9 +220,13 @@ class DataStore:
             raise KeyError(f"channel missing from message body: {message_response}")
         ts = datetime.fromtimestamp(ts_str)
 
-        self.update_interaction(interaction_id, session, message_channel=channel, message_ts=ts)
+        self.update_interaction(
+            interaction_id, session, message_channel=channel, message_ts=ts
+        )
 
-    def link_to_message(self, interaction_id: str, channel: str, ts: datetime, session: "Session"):
+    def link_to_message(
+        self, interaction_id: str, channel: str, ts: datetime, session: "Session"
+    ):
         """Link to message by setting message ts and channel.
 
         Parameters
@@ -235,7 +244,9 @@ class DataStore:
         -------
 
         """
-        self.update_interaction(interaction_id, session, message_channel=channel, message_ts=ts)
+        self.update_interaction(
+            interaction_id, session, message_channel=channel, message_ts=ts
+        )
 
     def find_interaction_by_channel_ts(
         self, channel: str, ts: datetime, session: Session
@@ -268,9 +279,12 @@ class DataStore:
         if query.count() == 1:
             return query.all()[0]
         elif query.count() == 0:
-            logging.error(f"no matching interaction for channel: {channel} and ts: {ts}")
+            logging.error(
+                f"no matching interaction for channel: {channel} and ts: {ts}"
+            )
             return None
         else:
             raise ReferenceError(
-                f"more than one matching interaction for channel: {channel} and ts: " f"{ts}"
+                f"more than one matching interaction for channel: {channel} and ts: "
+                f"{ts}"
             )

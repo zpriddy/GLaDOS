@@ -22,10 +22,14 @@ class GladosConfig:
             logging.critical(f"glados config file not found: {self.config_file} - {e}")
             raise FileNotFoundError(e)
         except OSError as e:
-            logging.critical(f"error reading glados config file: {self.config_file} - {e}")
+            logging.critical(
+                f"error reading glados config file: {self.config_file} - {e}"
+            )
             raise OSError(e)
         except yaml.YAMLError as e:
-            logging.critical(f"error reading yaml in glados config file: {self.config_file} - {e}")
+            logging.critical(
+                f"error reading yaml in glados config file: {self.config_file} - {e}"
+            )
             raise yaml.YAMLError(e)
 
     @property

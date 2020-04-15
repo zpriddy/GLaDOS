@@ -192,7 +192,9 @@ class ModalBuilder(JsonObject):
                 secondary content
         """
         self._blocks.append(
-            SectionBlock(text=text, block_id=block_id, fields=fields, accessory=accessory)
+            SectionBlock(
+                text=text, block_id=block_id, fields=fields, accessory=accessory
+            )
         )
         return self
 
@@ -235,11 +237,15 @@ class ModalBuilder(JsonObject):
                 Cannot exceed 255 characters.
         """
         self._blocks.append(
-            ImageBlock(image_url=image_url, alt_text=alt_text, title=title, block_id=block_id)
+            ImageBlock(
+                image_url=image_url, alt_text=alt_text, title=title, block_id=block_id
+            )
         )
         return self
 
-    def actions(self, *, elements: List[InteractiveElement], block_id: Optional[str] = None):
+    def actions(
+        self, *, elements: List[InteractiveElement], block_id: Optional[str] = None
+    ):
         """A block that is used to hold interactive elements.
 
         https://api.slack.com/reference/block-kit/blocks#actions
@@ -252,7 +258,9 @@ class ModalBuilder(JsonObject):
         self._blocks.append(ActionsBlock(elements=elements, block_id=block_id))
         return self
 
-    def context(self, *, elements: List[InteractiveElement], block_id: Optional[str] = None):
+    def context(
+        self, *, elements: List[InteractiveElement], block_id: Optional[str] = None
+    ):
         """Displays message context, which can include both images and text.
 
         https://api.slack.com/reference/block-kit/blocks#context
@@ -347,7 +355,9 @@ class ModalBuilder(JsonObject):
     #
     #     return True
 
-    @JsonValidator(f"private_metadata cannot exceed {private_metadata_max_length} characters")
+    @JsonValidator(
+        f"private_metadata cannot exceed {private_metadata_max_length} characters"
+    )
     def private_metadata_max_length(self):
         if self._private_metadata is None:
             return True
