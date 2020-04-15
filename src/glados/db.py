@@ -25,7 +25,9 @@ class DataStoreInteraction(Base):
     ttl = Column(Integer, default=None)
     followup_ts = Column(DateTime, default=None)
     followup_action = Column(String, default=None)
-    cron_followup_action = Column(String, default=None) # TODO(zpriddy): Do I need? Is this the same as followup_action? 
+    cron_followup_action = Column(
+        String, default=None
+    )  # TODO(zpriddy): Do I need? Is this the same as followup_action?
     followed_up = Column(DateTime, default=None)
     followed_up_ts = Column(DateTime, default=None)
 
@@ -42,7 +44,7 @@ class DataStoreInteraction(Base):
 
     def update_row(self, session: Session):
         session.query(DataStoreInteraction).filter(
-                DataStoreInteraction.interaction_id == self.interaction_id
+            DataStoreInteraction.interaction_id == self.interaction_id
         ).update(self.__sql_values__)
 
 
@@ -144,7 +146,9 @@ class DataStore:
         logging.debug(result.interaction_id)
         return result.object
 
-    def update_interaction(self, interaction_id, session: Session, **kwargs) -> DataStoreInteraction:
+    def update_interaction(
+        self, interaction_id, session: Session, **kwargs
+    ) -> DataStoreInteraction:
         """Find and update an interaction with the provided values.
 
         Parameters
@@ -258,7 +262,8 @@ class DataStore:
             There were more than one interaction that matched the channel and message_ts
         """
         query = session.query(DataStoreInteraction).filter(
-                DataStoreInteraction.message_ts == ts and DataStoreInteraction.message_channel == channel
+            DataStoreInteraction.message_ts == ts
+            and DataStoreInteraction.message_channel == channel
         )  # type: Query
         if query.count() == 1:
             return query.all()[0]

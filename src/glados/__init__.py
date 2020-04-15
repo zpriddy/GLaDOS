@@ -19,7 +19,6 @@ from .configs import GladosConfig
 from .utils import read_config
 
 
-
 from .core import Glados
 
 # LOGGING_FORMAT = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
