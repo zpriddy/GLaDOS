@@ -43,6 +43,7 @@ class DataStoreInteraction(Base):
     followed_up: datetime
         This is the time when the action was followed up at. If it has not happened yet this value will be None.
     """
+
     __tablename__ = TABLE_INTERACTIONS
     interaction_id = Column(UUID, primary_key=True, default=str(uuid4()))
     ts = Column(DateTime, default=datetime.now())
