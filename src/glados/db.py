@@ -20,27 +20,27 @@ class DataStoreInteraction(Base):
 
     Attributes
     ----------
-    interaction_id: :obj: `str`
+    interaction_id: :obj:`str`
         This is the primary key of the datastore. This is the ID of the entry in the datastore.
-    ts: :obj: `datetime`
+    ts: :obj:`datetime`
         This is the time the row was put into the database.
-    bot: :obj: `str`
+    bot: :obj:`str`
         This is the name of the bot it should use when completing followup actions.
-    data: :obj: `dict`
+    data: :obj:`dict`
         Any extra data stored with the interaction. This is a JSON blob.
-    message_channel: :obj: `str`
+    message_channel: :obj:`str`
         The channel that this interaction was sent to.
-    message_ts: :obj: `datetime`
+    message_ts: :obj:`datetime`
         The message timestamp when this interaction was sent.
-    ttl: :obj: `int`
+    ttl: :obj:`int`
         How long this interaction should live for.
-    followup_ts: :obj: `datetime`
+    followup_ts: :obj:`datetime`
         When should the follow up action happen.
-    followup_action: :obj: `str`
+    followup_action: :obj:`str`
         The action name to execute when following up. If None then no action will happen.
-    cron_followup_action: :obj: `str`
+    cron_followup_action: :obj:`str`
         The action name to execute on a normal cron schedule like every 5 min. If None then no action will happen.
-    followed_up: :obj: `datetime`
+    followed_up: :obj:`datetime`
         This is the time when the action was followed up at. If it has not happened yet this value will be None.
     """
 
@@ -223,7 +223,7 @@ class DataStore:
             The interaction ID that was returned on adding the message to the database.
         message_response
             The raw message response from slack. The channel and ts will be pulled from this.
-        session:
+        session
             session to be used
         """
         ts_str = message_response.get("ts")
