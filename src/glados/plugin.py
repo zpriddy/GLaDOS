@@ -46,7 +46,7 @@ class PluginConfig:
         bot=None,
         **kwargs,
     ):
-        """
+        """Plugin Config Object.
 
         Parameters
         ----------
@@ -94,7 +94,15 @@ class PluginConfig:
         config.update(self_config)
         self.__dict__ = config
 
-    def to_dict(self, user_config_only=True):
+    def to_dict(self, user_config_only=True) -> dict:
+        """Return config as dict
+
+        Parameters
+        ----------
+        user_config_only
+            if True only get get waht is in the config file and not the running config.
+
+        """
         config = dict(enabled=self.enabled, bot=self.bot.to_dict())
         if not user_config_only:
             config["module"] = self.module
@@ -106,7 +114,15 @@ class PluginConfig:
 
 class PluginImporter:
     def __init__(self, plugins_folder: str, plugins_config_folder: str):
-        """Create the PluginImporter object."""
+        """Create the PluginImporter object.
+
+        Parameters
+        ----------
+        plugins_folder
+            plugin folder
+        plugins_config_folder
+            plugin config folder
+        """
         self.plugins = dict()
         self.plugins_folder = plugins_folder
         self.plugins_config_folder = plugins_config_folder

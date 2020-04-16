@@ -146,7 +146,11 @@ class DataStore:
             drop existing tables and rebuild. (default: False)
 
         """
+        logging.info("creating datastore table")
         if force:
+            logging.warning(
+                "DROPPING CURRENT TABLES! the 'force' flag was passed when calling create table."
+            )
             if tables:
                 for table in tables:
                     self.drop_table(table)

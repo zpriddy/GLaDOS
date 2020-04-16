@@ -105,6 +105,7 @@ class Glados:
 
         # Config datastore
         if "datastore" in self.global_config.sections:
+            logging.info("setting up glados datastore")
             ds_config = self.global_config.config.datastore
             ds_enabled = ds_config.get("enabled", False)
             ds_host = ds_config.get("host")
@@ -136,6 +137,21 @@ class Glados:
                         database=ds_database,
                     )
                     self.datastore.create_table(force=ds_recreate)
+                    logging.info("testing datastore connection...")
+                    session = self.datastore.create_session()
+                    if not session.is_active:
+                        logging.warning(
+                            f"datastore session is not active. {session.info}"
+                        )
+                    else:
+                        logging.info(
+                            f"datastore connection is successful. {session.info}"
+                        )
+                    session.close()
+                else:
+                    logging.info(
+                        "datastore is not enabled. continuing without the datastore."
+                    )
         else:
             logging.warning("datastore section not found in config file")
             self.enable_datastore = False
