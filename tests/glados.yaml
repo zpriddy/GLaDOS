@@ -6,6 +6,9 @@ glados:
   logging_format: "%(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName).5s() ] %(message)s"
   logging_level: DEBUG
 
+datastore:
+  enabled: false
+
 my_other_config:
   log: yes
   force_quit: no
