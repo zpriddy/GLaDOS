@@ -1,5 +1,5 @@
-glados.request module
-=====================
+Request
+=======
 
 .. automodule:: glados.request
    :members:

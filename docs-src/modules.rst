@@ -1,10 +1,9 @@
-glados
-======
+Modules
+=======
 
 .. toctree::
-   :maxdepth: 6
+   :maxdepth: 7
 
-   glados
    glados.bot
    glados.configs
    glados.core

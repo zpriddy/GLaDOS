@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Union
+from typing import Callable, Dict, Union, List, NoReturn, Any
 import yaml
 import glob
 import logging
@@ -36,14 +36,32 @@ class PluginBotConfig:
         return dict(name=self.name)
 
 
-# TODO
-# Read the plugin config
-# read the user config
-# running_config = plugin_config.update(user_config
 class PluginConfig:
     def __init__(
-        self, name, config_file, module=None, enabled=False, bot=None, **kwargs
+        self,
+        name: str,
+        config_file: str,
+        module=None,
+        enabled=False,
+        bot=None,
+        **kwargs,
     ):
+        """
+
+        Parameters
+        ----------
+        name
+            Plugin Name
+        config_file
+            Path to config file for plugin
+        module
+            plugin python module name
+        enabled
+            enable this plugin
+        bot
+            what bot does this plugin use
+        kwargs
+        """
         if not bot:
             bot = dict()
         self.name = name
@@ -57,7 +75,7 @@ class PluginConfig:
         package = package.replace(".config.yaml", "")
         self.package = package
 
-    def update(self, config: "PluginConfig", use_base_module: bool = True):
+    def update(self, config: "PluginConfig", use_base_module: bool = True) -> NoReturn:
         """Update a config object using the default values from the config object passed in.
 
         Parameters
@@ -67,10 +85,6 @@ class PluginConfig:
             the base config object only
         use_base_module: bool
             if set true use the value of module and package from the base config object only.
-
-        Returns
-        -------
-
         """
         config = config.__dict__.copy()
         self_config = self.__dict__
@@ -92,24 +106,21 @@ class PluginConfig:
 
 class PluginImporter:
     def __init__(self, plugins_folder: str, plugins_config_folder: str):
+        """Create the PluginImporter object."""
         self.plugins = dict()
         self.plugins_folder = plugins_folder
         self.plugins_config_folder = plugins_config_folder
         self.config_files = list()
         self.plugin_configs = dict()  # type: Dict[str, PluginConfig]
 
-    def discover_plugins(self):
-        """Discover all plugin config files in the plugins folder
-
-        Returns
-        -------
-        list:
-            list of all yaml config files
-        """
+    def discover_plugins(self) -> NoReturn:
+        """Discover all plugin config files in the plugins folder"""
         config_files = glob.glob(f"{self.plugins_folder}/**/*.yaml", recursive=True)
         self.config_files = config_files
 
-    def load_discovered_plugins_config(self, write_to_user_config=True):
+    def load_discovered_plugins_config(
+        self, write_to_user_config: bool = True
+    ) -> NoReturn:
         """Load all the yaml configs for the plugins"""
         plugin_package_config = None
         plugin_user_config = None
@@ -163,17 +174,17 @@ class PluginImporter:
 
     # TODO(zpriddy): Filter out warnings and errors if importing plugins in a limited way.
 
-    def import_discovered_plugins(self, bots: Dict[str, GladosBot]):
+    def import_discovered_plugins(self, bots: Dict[str, GladosBot]) -> NoReturn:
         """Import all discovered plugins and store them in self.plugins.
 
         Parameters
         ----------
-        bots : Dict[str, GladosBot]
+        bots
             dict of all the imported bots
 
         Returns
         -------
-        None:
+        :obj: `NoReturn`:
             the results are updated in self.plugins
 
         """
@@ -217,9 +228,9 @@ class GladosPlugin:
 
     Parameters
     ----------
-    name : str
-        the name of the plugin
-    bot : GladosBot
+    config
+        PluginConfig object for the plugin.
+    bot
         the GLaDOS bot that this plugin will use
     """
 
@@ -238,21 +249,17 @@ class GladosPlugin:
 
     def add_route(
         self, route_type: RouteType, route: Union[EventRoutes, str], function: Callable
-    ):
+    ) -> NoReturn:
         """Add a new route to the plugin
 
         Parameters
         ----------
-        route_type : RouteType
+        route_type
             what type of route this is this
-        route : Union[EventRoutes, str]
+        route
             what is the route to be added
-        function : Callable
+        function
             the function to be executed when this route runs
-
-        Returns
-        -------
-
         """
         if type(route) is EventRoutes:
             route = route.name
@@ -265,7 +272,7 @@ class GladosPlugin:
             )
         self._routes[new_route.route_type.value][new_route.route] = new_route
 
-    def send_request(self, request: GladosRequest, **kwargs):
+    def send_request(self, request: GladosRequest, **kwargs) -> Any:
         """This is the function to be called when sending a request to a plugin.
 
         This function is responsible for validating the slack signature if needed. It also returns
@@ -273,13 +280,9 @@ class GladosPlugin:
 
         Parameters
         ----------
-        request : GladosRequest
+        request
             the request object to be sent
-        kwargs :
-
-        Returns
-        -------
-
+        kwargs
         """
         if request.route_type in VERIFY_ROUTES:
             self.bot.validate_slack_signature(request)
@@ -301,6 +304,7 @@ class GladosPlugin:
         return response
 
     def respond_to_url(self, request: GladosRequest, text: str, **kwargs):
+        """When you click on a link that was sent via slack it sends a callback, This is to handle that"""
         if not request.response_url:
             logging.error("no response_url provided in request.")
             return
@@ -309,13 +313,8 @@ class GladosPlugin:
         logging.info(f"slack response: {r}")
 
     @property
-    def routes(self):
-        """List all routes for the plugin.
-
-        Returns
-        -------
-
-        """
+    def routes(self) -> List[GladosRoute]:
+        """List all routes for the plugin."""
         routes = list()
         [
             routes.extend(route_object)

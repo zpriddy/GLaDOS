@@ -1,4 +1,4 @@
-glados package
+GLaDOS Package
 ==============
 
 .. automodule:: glados
@@ -6,17 +6,12 @@ glados package
    :undoc-members:
    :show-inheritance:
 
-Subpackages
------------
 
+
+Modules
+-------
 .. toctree::
-
-   glados.slack_classes
-
-Submodules
-----------
-
-.. toctree::
+   :maxdepth: 7
 
    glados.bot
    glados.configs

@@ -1,5 +1,5 @@
-glados.configs module
-====================
+Configs
+=======
 
 .. automodule:: glados.configs
    :members:

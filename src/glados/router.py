@@ -3,8 +3,8 @@ from typing import Callable, Dict, List, NoReturn, Optional, TYPE_CHECKING
 
 from glados import GladosRequest, GladosRouteNotFoundError, RouteType
 
-if TYPE_CHECKING:
-    from glados import GladosPlugin
+# if TYPE_CHECKING:
+#     from glados import GladosPlugin
 
 
 class GladosRoute(object):
@@ -21,18 +21,19 @@ class GladosRoute(object):
 
 class GladosRouter(object):
     """GladosRouter"""
+
     def __init__(self, **kwargs):
         # routes are stored as: {RouteType.SendMessage: {"ask_user",ask_user, "confirm":confirm}}
         self.routes = dict()  # type: Dict[RouteType, Dict[str, Callable]]
         for route in RouteType._member_names_:
             self.routes[RouteType[route].value] = dict()  # type: Dict[str, Callable]
 
-    def add_route(self, plugin: "GladosPlugin", route: GladosRoute) -> NoReturn:
+    def add_route(self, plugin, route: GladosRoute) -> NoReturn:
         """Add a route to the router
 
         Parameters
         ----------
-        plugin
+        plugin: :obj: `GladosPlugin`
             the plugin the route belongs to
         route
             the route to be added
@@ -50,12 +51,12 @@ class GladosRouter(object):
             )
         self.routes[route.route_type.value][route.route] = plugin.send_request
 
-    def add_routes(self, plugin: "GladosPlugin") -> NoReturn:
+    def add_routes(self, plugin) -> NoReturn:
         """Add multiple routes to the router.
 
         Parameters
         ----------
-        routes
+        plugin: :obj: `GladosPlugin`
             the plugin to add routes from
 
         """

@@ -1,7 +1,7 @@
-glados.bot module
-=================
+Bot
+===
 
 .. automodule:: glados.bot
    :members:
    :undoc-members:
-   :show-inheritance:
+   :no-show-inheritance:

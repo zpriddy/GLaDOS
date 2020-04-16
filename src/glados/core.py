@@ -18,7 +18,26 @@ if TYPE_CHECKING:
 
 
 class Glados:
-    """Glados is the core of the GLaDOS package."""
+    """Glados is the core of the GLaDOS package.
+
+    Parameters
+        ----------
+        config_file
+            path to config file
+        plugins_folder
+            path to plugins folder
+        bots_config_dir
+            path to bots config folder
+        plugins_config_dir
+            path to plugin config folder.
+
+        Notes
+        -----
+        If ``config_file`` is passed in and the file has ``plugins_folder``,
+        ``bots_config_dir``, ``plugins_config_dir`` in it , then the other
+        parameters are not required
+
+        """
 
     def __init__(
         self,
@@ -27,6 +46,7 @@ class Glados:
         bots_config_dir: Optional[str] = None,
         plugins_config_dir: Optional[str] = None,
     ):
+
         self.router = GladosRouter()
         self.plugins = list()  # type: List[GladosPlugin]
         self.bots = dict()  # type: Dict[str, GladosBot]

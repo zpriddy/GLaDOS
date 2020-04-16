@@ -13,11 +13,15 @@ def get_var(var_name: str):
 def decode_kms(ciphertext_blob: str) -> str:
     """Decode a secret using the IAM role of the lambda function.
 
-    :param ciphertext_blob: str
+    Parameters
+    ----------
+    ciphertext_blob
         ciphertext_blob to decode
-    :return:
-    str
-        decoded text
+
+    Returns
+    -------
+    :obj: `str`
+        Decoded KMS data
     """
     import boto3
 
@@ -28,7 +32,7 @@ def decode_kms(ciphertext_blob: str) -> str:
     )
 
 
-def get_enc_var(var_name: str):
+def get_enc_var(var_name: str) -> str:
     """Get an encrypted ENV VAR"""
     ciphertext_blob = get_var(var_name)
     return decode_kms(ciphertext_blob)

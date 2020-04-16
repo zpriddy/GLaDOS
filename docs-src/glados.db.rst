@@ -1,5 +1,5 @@
-glados.db module
-=================
+DataStore
+=========
 
 .. automodule:: glados.db
    :members:
