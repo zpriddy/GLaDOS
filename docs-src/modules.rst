@@ -7,6 +7,7 @@ glados
    glados.bot
    glados.configs
    glados.core
+   glados.db
    glados.errors
    glados.message_blocks
    glados.plugin

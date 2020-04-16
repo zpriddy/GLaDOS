@@ -16,6 +16,33 @@ TABLE_INTERACTIONS = "interactions"
 
 
 class DataStoreInteraction(Base):
+    """DataStoreInteraction represents a row in the datastore. This is used to update data in the datastore.
+
+    Attributes
+    ----------
+    interaction_id: str
+        This is the primary key of the datastore. This is the ID of the entry in the datastore.
+    ts: datetime
+        This is the time the row was put into the database.
+    bot: str
+        This is the name of the bot it should use when completing followup actions.
+    data: dict
+        Any extra data stored with the interaction. This is a JSON blob.
+    message_channel: str
+        The channel that this interaction was sent to.
+    message_ts: datetime
+        The message timestamp when this interaction was sent.
+    ttl: int
+        How long this interaction should live for.
+    followup_ts: datetime
+        When should the follow up action happen.
+    followup_action: str
+        The action name to execute when following up. If None then no action will happen.
+    cron_followup_action: str
+        The action name to execute on a normal cron schedule like every 5 min. If None then no action will happen.
+    followed_up: datetime
+        This is the time when the action was followed up at. If it has not happened yet this value will be None.
+    """
     __tablename__ = TABLE_INTERACTIONS
     interaction_id = Column(UUID, primary_key=True, default=str(uuid4()))
     ts = Column(DateTime, default=datetime.now())
@@ -26,13 +53,11 @@ class DataStoreInteraction(Base):
     ttl = Column(Integer, default=None)
     followup_ts = Column(DateTime, default=None)
     followup_action = Column(String, default=None)
-    cron_followup_action = Column(
-        String, default=None
-    )  # TODO(zpriddy): Do I need? Is this the same as followup_action?
+    cron_followup_action = Column(String, default=None)
     followed_up = Column(DateTime, default=None)
-    followed_up_ts = Column(DateTime, default=None)
 
     def update(self, **kwargs):
+        """Update the object dropping any arguments that are not valid"""
         for k, v in kwargs:
             if hasattr(self, k):
                 setattr(self, k, v)
