@@ -173,7 +173,7 @@ class DataStore:
         return result
 
     def update_interaction(
-        self, interaction_id, session: Session, **kwargs
+        self, interaction_id: str, session: Session, **kwargs
     ) -> DataStoreInteraction:
         """Find and update an interaction with the provided values.
 
