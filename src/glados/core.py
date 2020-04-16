@@ -27,24 +27,24 @@ class Glados:
     ):
         """Glados is the core of the GLaDOS package.
 
-                Attributes
-                ----------
-                config_file
-                    path to config file
-                plugins_folder
-                    path to plugins folder
-                bots_config_dir
-                    path to bots config folder
-                plugins_config_dir
-                    path to plugin config folder.
+        Parameters
+        ----------
+        config_file
+            path to config file
+        plugins_folder
+            path to plugins folder
+        bots_config_dir
+            path to bots config folder
+        plugins_config_dir
+            path to plugin config folder.
 
-                Notes
-                -----
-                If ``config_file`` is passed in and the file has ``plugins_folder``,
-                ``bots_config_dir``, ``plugins_config_dir`` in it , then the other
-                parameters are not required
+        Notes
+        -----
+        If ``config_file`` is passed in and the file has ``plugins_folder``,
+        ``bots_config_dir``, ``plugins_config_dir`` in it , then the other
+        parameters are not required
 
-                """
+        """
 
         self.router = GladosRouter()
         self.plugins = list()  # type: List[GladosPlugin]
