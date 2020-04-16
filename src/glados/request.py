@@ -137,7 +137,7 @@ class GladosRequest:
 
         Raises
         ------
-        :obj: `ConnectionError`
+        :obj:`ConnectionError`
             If the session is not active raise a ConnectionError
         """
         self._session = session
