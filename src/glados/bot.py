@@ -44,11 +44,11 @@ class GladosBot:
 
     Parameters
     ----------
-    name: str
+    name
         The name of the bot (URL Safe)
-    token: str, Dict[str, str]
+    token
         The bot token
-    signing_secret: str, Dict[str, str]
+    signing_secret
         The bot signing secret.
 
     Attributes
@@ -67,7 +67,7 @@ class GladosBot:
     def __init__(
         self,
         token: Union[str, Dict[str, str]],
-        name,
+        name: str,
         signing_secret: Union[str, Dict[str, str]] = None,
         **kwargs,
     ):
@@ -119,9 +119,9 @@ class GladosBot:
 
         Parameters
         ----------
-        channel : str
+        channel
             channel to send the message to
-        message : Message
+        message
             message object to send
 
         Returns
