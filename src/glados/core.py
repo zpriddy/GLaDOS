@@ -27,7 +27,7 @@ class Glados:
     ):
         """Glados is the core of the GLaDOS package.
 
-            Parameters
+                Attributes
                 ----------
                 config_file
                     path to config file
