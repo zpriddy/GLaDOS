@@ -1,4 +1,4 @@
-from typing import List, Dict, TYPE_CHECKING, Optional
+from typing import List, Dict, TYPE_CHECKING, Optional, NoReturn
 import yaml
 import logging
 
@@ -22,10 +22,10 @@ class Glados:
 
     def __init__(
         self,
-        config_file=None,
-        plugins_folder=None,
-        bots_config_dir=None,
-        plugins_config_dir=None,
+        config_file: Optional[str] = None,
+        plugins_folder: Optional[str] = None,
+        bots_config_dir: Optional[str] = None,
+        plugins_config_dir: Optional[str] = None,
     ):
         self.router = GladosRouter()
         self.plugins = list()  # type: List[GladosPlugin]
@@ -41,7 +41,15 @@ class Glados:
         self.enable_datastore = False
         self.datastore = None  # type: Optional[DataStore]
 
-    def read_config(self, bot_name=None):
+    def read_config(self, bot_name: Optional[str] = None) -> NoReturn:
+        """Read the GLaDOS config file. If a bot name is provided it will only install that bot. Else it will install all bots.
+
+        Parameters
+        ----------
+        bot_name
+            If provided, install only the bot with this name.
+
+        """
         # TODO: Fix logging setup
         if not self.config_file:
             logging.info("glados config file not set.")
@@ -113,7 +121,7 @@ class Glados:
             logging.warning("datastore section not found in config file")
             self.enable_datastore = False
 
-    def import_bots(self):
+    def import_bots(self) -> NoReturn:
         """Import all discovered bots"""
         logging.info("importing bots...")
         importer = BotImporter(self.bots_config_dir)
@@ -121,8 +129,14 @@ class Glados:
         self.bots = importer.bots.copy()
         logging.info(f"successfully imported {len(self.bots)} bots")
 
-    def import_plugins(self, bot_name=None):
-        """Import all discovered plugins and add them to the plugin list."""
+    def import_plugins(self, bot_name: Optional[str] = None) -> NoReturn:
+        """Import all discovered plugins and add them to the plugin list.
+
+        Parameters
+        ----------
+        bot_name
+            If set GLaDOS will only import the bot name that is provided here.
+        """
         logging.info("Importing plugins...")
         importer = PluginImporter(self.plugins_folder, self.plugins_config_dir)
         importer.discover_plugins()
@@ -146,37 +160,30 @@ class Glados:
             self.add_plugin(plugin)
         logging.info(f"successfully imported {len(self.plugins)} plugins")
 
-    def add_plugin(self, plugin: GladosPlugin):
+    def add_plugin(self, plugin: GladosPlugin) -> NoReturn:
         """Add a plugin to GLaDOS
 
         Parameters
         ----------
-        plugin : GladosPlugin
+        plugin
             the plugin to be added to GLaDOS
-
-        Returns
-        -------
-
         """
         logging.debug(f"installing plugin: {plugin.name}")
         self.plugins.append(plugin)
         self.router.add_routes(plugin)
 
-    def add_bot(self, bot: GladosBot):
+    def add_bot(self, bot: GladosBot) -> NoReturn:
         """Add a new bot to GLaDOS.
 
         Parameters
         ----------
-        bot : GladosBot
+        bot
             the bot to be added to GLaDOS
-
-        Returns
-        -------
-
         """
         self.bots[bot.name] = bot
 
-    def has_datastore(self):
+    def has_datastore(self) -> bool:
+        """Returns True if there is a datastore else False"""
         return (
             True
             if self.enable_datastore is True and self.datastore is not None
@@ -184,17 +191,14 @@ class Glados:
         )
 
     def request(self, request: GladosRequest):
-        """Send a request to GLaDOS.
+        """Send a request to GLaDOS. This returns whatever the plugin returns.
 
         This function will also set the datastore session for the request, try to find the interaction in the datastore and fetch it. This info is available in the request.
 
         Parameters
         ----------
-        request : GladosRequest
+        request
             the request to be sent to GLaDOS
-
-        Returns
-        -------
 
         """
         # DataStore actions if enabled

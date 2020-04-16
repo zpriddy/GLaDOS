@@ -1,5 +1,5 @@
 from glados import RouteType, BOT_ROUTES, PyJSON, DataStoreInteraction, DataStore
-from typing import Union, Optional, TYPE_CHECKING
+from typing import Union, Optional, TYPE_CHECKING, NoReturn
 import json
 import logging
 from datetime import datetime
@@ -13,11 +13,11 @@ class SlackVerification:
 
     Parameters
     ----------
-    data: str
+    data
         raw request body. This is used to verify the message is from slack.
-    timestamp: str
+    timestamp
         The X-Slack-Request-Timestamp from the headers of the request. This is used to verify the message is from slack.
-    signature: str
+    signature:
         The X-Slack-Signature from the headers of the request. This is used to verify the message is from slack.
     """
 
@@ -28,6 +28,7 @@ class SlackVerification:
 
     @property
     def json(self) -> dict:
+        """Returns the dict of the SlackVerification"""
         return {
             "data": self.data,
             "timestamp": self.timestamp,
@@ -40,17 +41,17 @@ class GladosRequest:
 
     Parameters
     ----------
-    route_type: RouteType
+    route_type
         what type of route is this
-    route: str
+    route
         what is the route to be called
-    slack_verify: SlackVerification
+    slack_verify
         slack data used for verifying the request came from Slack
-    bot_name: str
+    bot_name
         The name of the bot to send the request to. This is used for select RouteTypes
-    json:
+    json
         the json paylod of the request
-    data: dict
+    data
         data to send with the request. This should be from a database
     kwargs
 
@@ -126,49 +127,37 @@ class GladosRequest:
     def route(self, value):
         self._route = value
 
-    def set_session(self, session: "Session"):
+    def set_session(self, session: "Session") -> NoReturn:
         """Set the session for this request.
 
         Parameters
         ----------
-        session : Session
+        session
             session to use for this request.
-
-        Returns
-        -------
-        None
 
         Raises
         ------
-        ConnectionError
+        :obj: `ConnectionError`
             If the session is not active raise a ConnectionError
         """
         self._session = session
         if not self._session.is_active:
             raise ConnectionError("request session is not active")
 
-    def set_datastore(self, datastore: "DataStore"):
+    def set_datastore(self, datastore: "DataStore") -> NoReturn:
         """Set the Datastore and session for the request.
 
         Parameters
         ----------
-        datastore : DataStore
+        datastore
             Datastore to use. This datastore will be used to create the session.
-
-        Returns
-        -------
 
         """
         self._datastore = datastore
         self.set_session(self._datastore.create_session())
 
-    def set_interaction_from_datastore(self) -> None:
-        """Get the interaction object from the datastore.
-
-        Returns
-        -------
-
-        """
+    def set_interaction_from_datastore(self) -> NoReturn:
+        """Get the interaction object from the datastore."""
         # Get the interaction object from the datastore
         # see if there is channel and message ts in the payload.
         if not self._session:
@@ -206,13 +195,8 @@ class GladosRequest:
 
         Parameters
         ----------
-        interaction : DataStoreInteraction
+        interaction
             the interaction to be added
-
-        Returns
-        -------
-        DataStoreInteraction :
-            The inserted interaction object.
         """
         if not self._datastore:
             logging.warning("datastore not set for request")
@@ -223,19 +207,15 @@ class GladosRequest:
 
     def link_interaction_to_message_response(
         self, interaction_id: str, message_response: dict
-    ):
+    ) -> NoReturn:
         """Link interaction to message response
 
         Parameters
         ----------
-        interaction_id : str
+        interaction_id
             interaction ID to be linked
-        message_response : dict
+        message_response
             JSON payload response from sending message on slack.
-
-        Returns
-        -------
-
         """
         if not self._session:
             raise ConnectionError("session not set for request")
@@ -246,16 +226,16 @@ class GladosRequest:
 
     def link_interaction_to_message(
         self, interaction_id: str, channel: str, message_ts: datetime
-    ):
+    ) -> NoReturn:
         """Link interaction to message
 
         Parameters
         ----------
-        interaction_id : str
+        interaction_id
             interaction ID to link
-        channel : str
+        channel
             channel to be linked to
-        message_ts : datetime
+        message_ts
             ts to be linked to
 
         Returns
@@ -268,24 +248,18 @@ class GladosRequest:
             interaction_id, channel, message_ts, self._session
         )
 
-    def close_session(self):
+    def close_session(self) -> NoReturn:
         """Close session for request"""
         if not self._session or not self._session.is_active:
             self._session.close()
 
-    def rollback_session(self):
+    def rollback_session(self) -> NoReturn:
         """Rollback the session."""
         if self._session.is_active:
             self._session.rollback()
 
     def has_interaction(self) -> bool:
-        """Check if request has interaction.
-
-        Returns
-        -------
-        bool :
-            True if interaction is set.
-        """
+        """Check if request has interaction.        """
         return True if self.interaction else False
 
     def has_new_interaction(self) -> bool:
@@ -301,23 +275,19 @@ class GladosRequest:
         data=None,
         auto_link: bool = True,
         auto_set: bool = True,
-    ):
+    ) -> DataStoreInteraction:
         """Generate a new interaction object and set it as new_interaction.
 
         Parameters
         ----------
-        followup_action :
-        followup_ts :
-        ttl :
-        data :
-        auto_link: bool
+        followup_action
+        followup_ts
+        ttl
+        data
+        auto_link
             set this request to auto-link using the return payload. The return payload must be the response from sending a slack message.
-        auto_set: bool
+        auto_set
             set this new interaction object as the request new_interaction
-
-        Returns
-        -------
-
         """
         if not data:
             data = dict()
@@ -339,23 +309,27 @@ class GladosRequest:
         return new_interaction
 
     @property
-    def interaction_id(self):
+    def interaction_id(self) -> Optional[str]:
+        """Returns the interaction_id of request.interaction"""
         if not self.has_interaction():
             return None
         return self.interaction.interaction_id
 
     @property
-    def interaction(self):
+    def interaction(self) -> Optional[DataStoreInteraction]:
+        """Returns the interaction for the request"""
         if not self.has_interaction():
             return None
         return self.interaction
 
     @property
     def data(self) -> PyJSON:
+        """Returns the data object of the request"""
         return PyJSON(self._data)
 
     @property
     def data_blob(self) -> dict:
+        """Returns the raw dict of the data object"""
         return self._data
 
     @data.setter

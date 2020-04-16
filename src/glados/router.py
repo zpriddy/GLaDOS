@@ -20,20 +20,21 @@ class GladosRoute(object):
 
 
 class GladosRouter(object):
+    """GladosRouter"""
     def __init__(self, **kwargs):
         # routes are stored as: {RouteType.SendMessage: {"ask_user",ask_user, "confirm":confirm}}
-        self.routes = dict()  # type: Dict[RouteType, Dict[str, GladosRoute]]
+        self.routes = dict()  # type: Dict[RouteType, Dict[str, Callable]]
         for route in RouteType._member_names_:
-            self.routes[RouteType[route].value] = dict()  # type: Dict[str, GladosRoute]
+            self.routes[RouteType[route].value] = dict()  # type: Dict[str, Callable]
 
     def add_route(self, plugin: "GladosPlugin", route: GladosRoute) -> NoReturn:
         """Add a route to the router
 
         Parameters
         ----------
-        plugin: GladosPlugin
+        plugin
             the plugin the route belongs to
-        route: GladosRoute
+        route
             the route to be added
 
         Raises
@@ -49,35 +50,27 @@ class GladosRouter(object):
             )
         self.routes[route.route_type.value][route.route] = plugin.send_request
 
-    def add_routes(self, plugin: "GladosPlugin"):
+    def add_routes(self, plugin: "GladosPlugin") -> NoReturn:
         """Add multiple routes to the router.
 
         Parameters
         ----------
-        routes : GladosPlugin
+        routes
             the plugin to add routes from
-
-        Returns
-        -------
 
         """
         for route in plugin.routes:
             self.add_route(plugin, route)
 
-    def get_route(self, route_type: RouteType, route: str) -> Optional[GladosRoute]:
+    def get_route(self, route_type: RouteType, route: str) -> Callable:
         """Get a GladosRoute object for the requested route.
 
         Parameters
         ----------
-        route_type: RouteType
+        route_type
             the type of route to get
-        route: str
+        route
             the route to get
-
-        Returns
-        -------
-        GladosRoute
-            return the request route
 
         Raises
         ------
@@ -95,9 +88,9 @@ class GladosRouter(object):
 
         Parameters
         ----------
-        route_type: RouteType
+        route_type
             the type of route to get
-        route: str
+        route
             the route to get
 
         Returns
@@ -108,12 +101,12 @@ class GladosRouter(object):
         """
         return self.get_route(route_type, route)
 
-    def exec_route(self, request):
+    def exec_route(self, request: GladosRequest):
         """Execute a route function directly
 
         Parameters
         ----------
-        request: GladosRequest
+        request
             the GLaDOS request
 
         Returns

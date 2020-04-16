@@ -32,7 +32,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
     "sphinx_rtd_theme",
-    #"sphinx.ext.autodoc.typehints",
     "sphinx_autodoc_typehints",
     "sphinx.ext.viewcode",
     "sphinx.ext.autosummary",

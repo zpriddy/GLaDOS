@@ -38,7 +38,6 @@ class GladosConfig:
         
         Returns
         -------
-        List[str]:
             sorted list of sections in the yaml file
         """
         if not self.config:

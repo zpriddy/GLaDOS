@@ -4,6 +4,7 @@ glados
 .. toctree::
    :maxdepth: 6
 
+   glados
    glados.bot
    glados.configs
    glados.core

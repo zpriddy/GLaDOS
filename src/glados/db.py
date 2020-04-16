@@ -1,6 +1,6 @@
 import logging
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, NoReturn
 from uuid import uuid4
 
 from sqlalchemy import Column, DateTime, Integer, MetaData, String, Table, create_engine
@@ -20,27 +20,27 @@ class DataStoreInteraction(Base):
 
     Attributes
     ----------
-    interaction_id: str
+    interaction_id: :obj: `str`
         This is the primary key of the datastore. This is the ID of the entry in the datastore.
-    ts: datetime
+    ts: :obj: `datetime`
         This is the time the row was put into the database.
-    bot: str
+    bot: :obj: `str`
         This is the name of the bot it should use when completing followup actions.
-    data: dict
+    data: :obj: `dict`
         Any extra data stored with the interaction. This is a JSON blob.
-    message_channel: str
+    message_channel: :obj: `str`
         The channel that this interaction was sent to.
-    message_ts: datetime
+    message_ts: :obj: `datetime`
         The message timestamp when this interaction was sent.
-    ttl: int
+    ttl: :obj: `int`
         How long this interaction should live for.
-    followup_ts: datetime
+    followup_ts: :obj: `datetime`
         When should the follow up action happen.
-    followup_action: str
+    followup_action: :obj: `str`
         The action name to execute when following up. If None then no action will happen.
-    cron_followup_action: str
+    cron_followup_action: :obj: `str`
         The action name to execute on a normal cron schedule like every 5 min. If None then no action will happen.
-    followed_up: datetime
+    followed_up: :obj: `datetime`
         This is the time when the action was followed up at. If it has not happened yet this value will be None.
     """
 
@@ -65,6 +65,22 @@ class DataStoreInteraction(Base):
 
 
 class DataStore:
+    """DataStore is how GLaDOS stores async data.
+
+    Parameters
+    ----------
+    host
+        postgres host.
+    username
+        postgres username.
+    password
+        postgres password.
+    port
+        postgres port.
+    database
+        postgres database to use.
+    """
+
     def __init__(
         self,
         host: str,
@@ -86,37 +102,37 @@ class DataStore:
         self.session_maker = sessionmaker(self.db)
 
     def create_session(self) -> Session:
-        """Generate a new session with the existing connection.
-
-        Returns
-        -------
-        Session:
-            the session that was generated
-        """
+        """Generate a new session with the existing connection."""
         return self.session_maker()
 
-    def table_exists(self, table=TABLE_INTERACTIONS) -> bool:
+    def table_exists(self, table: str = TABLE_INTERACTIONS) -> bool:
         """Check to see if the GLaDOS table is found in postgres.
 
-        Returns
-        -------
-        bool:
-            True if the table is found. False if it is not found.
+        Parameters
+        ----------
+        table
+            table name to use.
 
         """
         return table in self.db.table_names()
 
-    def drop_table(self, table=TABLE_INTERACTIONS, force=False):
+    def drop_table(
+        self, table: str = TABLE_INTERACTIONS, force: bool = False
+    ) -> NoReturn:
         """Drop the GLaDOS table so that it can be re-created.
 
-        Returns
-        -------
-        bool:
-            was the drop table successful.
+        Parameters
+        ----------
+        table
+            table name to use.
+        force
+            if True will fill force drop the table without checks.
         """
         Table(table, Metadata).drop(self.db, checkfirst=not force)
 
-    def create_table(self, tables: Optional[List[str]] = None, force=False):
+    def create_table(
+        self, tables: Optional[List[str]] = None, force: bool = False
+    ) -> NoReturn:
         """Create the table.
 
         If you set force to True then it will drop the existing tables and
@@ -124,13 +140,10 @@ class DataStore:
 
         Parameters
         ----------
-        tables : Optional[List[str]]
+        tables
             only take action on these tables. If None, then take action on all tables
-        force : bool
+        force
             drop existing tables and rebuild. (default: False)
-
-        Returns
-        -------
 
         """
         if force:
@@ -151,16 +164,10 @@ class DataStore:
 
         Parameters
         ----------
-        interaction_id : str
+        interaction_id
             interaction ID to find
-        session : Session
+        session
             session to be used
-
-        Returns
-        -------
-        DataStore :
-            The interaction object
-
         """
         result = session.query(DataStoreInteraction).get(interaction_id)
         return result
@@ -172,16 +179,12 @@ class DataStore:
 
         Parameters
         ----------
-        interaction_id : str
+        interaction_id
             interaction ID to update
-        session : Session
+        session
             session to be used
-        kwargs :
+        kwargs
             fields and new values to update
-
-        Returns
-        -------
-
         """
         interaction = session.query(DataStoreInteraction).get(
             interaction_id
@@ -193,19 +196,17 @@ class DataStore:
         interaction.update(**kwargs)
         return interaction
 
-    def insert_interaction(self, interaction: DataStoreInteraction, session: Session):
+    def insert_interaction(
+        self, interaction: DataStoreInteraction, session: Session
+    ) -> NoReturn:
         """Insert an interaction object into the database.
 
         Parameters
         ----------
-        row : DataStoreInteraction
+        interaction
             The row to be inserted
-        session : Session
+        session
             session to be used
-
-        Returns
-        -------
-
         """
         session.add(interaction)
         session.commit()
@@ -213,21 +214,17 @@ class DataStore:
 
     def link_to_message_response(
         self, interaction_id: str, message_response: dict, session: Session
-    ):
+    ) -> NoReturn:
         """Add info from the Slack message into the database for the interaction.
 
         Parameters
         ----------
-        interaction_id : str
+        interaction_id
             The interaction ID that was returned on adding the message to the database.
-        message_response : dict
+        message_response
             The raw message response from slack. The channel and ts will be pulled from this.
-        session: Session
+        session:
             session to be used
-
-        Returns
-        -------
-
         """
         ts_str = message_response.get("ts")
         if not ts_str:
@@ -243,23 +240,19 @@ class DataStore:
 
     def link_to_message(
         self, interaction_id: str, channel: str, ts: datetime, session: "Session"
-    ):
+    ) -> NoReturn:
         """Link to message by setting message ts and channel.
 
         Parameters
         ----------
-        interaction_id : str
+        interaction_id
             interaction ID to link
-        channel : str
+        channel
             channel to link interaction to
-        ts : datetime
+        ts
             ts to link interaction to
-        session : Session
+        session
             session to be used
-
-        Returns
-        -------
-
         """
         self.update_interaction(
             interaction_id, session, message_channel=channel, message_ts=ts
@@ -272,21 +265,16 @@ class DataStore:
 
         Parameters
         ----------
-        channel : str
+        channel
             channel of the interaction youre looking for
-        ts : datetime
+        ts
             ts of the interaction you are looking for
-        session : Session
+        session
             session to be used
-
-        Returns
-        -------
-        DataStoreInteraction :
-            the interaction object
 
         Raises
         ------
-        ReferenceError :
+        ReferenceError
             There were more than one interaction that matched the channel and message_ts
         """
         query = (
