@@ -3,5 +3,5 @@ glados.db module
 
 .. automodule:: glados.db
    :members:
-   :undoc-members:
+   :no-undoc-members:
    :show-inheritance:
