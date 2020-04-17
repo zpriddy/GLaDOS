@@ -5,6 +5,7 @@ from os import environ
 
 environ["POSTGRES_HOST"] = POSTGRES_HOST
 
+
 def test_bad_config_file_path():
     gc = GladosConfig("blah.yaml")
     try:
