@@ -267,7 +267,7 @@ class GladosRequest:
 
     def has_interaction(self) -> bool:
         """Check if request has interaction.        """
-        return True if self.interaction else False
+        return True if self._interaction else False
 
     def has_new_interaction(self) -> bool:
         """check if request has a new interaction object."""
