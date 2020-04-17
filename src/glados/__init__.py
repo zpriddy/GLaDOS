@@ -52,12 +52,13 @@ from .errors import (
     GladosError,
 )
 
+from .configs import GladosConfig
+from .utils import read_config, check_for_env_vars
+
 from .bot import GladosBot, BotImporter
 from .router import GladosRouter, GladosRoute
 from .plugin import GladosPlugin, PluginImporter
 
-from .configs import GladosConfig
-from .utils import read_config
 
 from .core import Glados
 
@@ -75,4 +76,5 @@ __all__ = [
     "read_config",
     "logging",
     "set_logging",
+    "check_for_env_vars",
 ]

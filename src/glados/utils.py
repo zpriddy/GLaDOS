@@ -3,6 +3,35 @@ import os
 from base64 import b64decode
 
 from glados import logging
+from typing import Union
+
+
+def check_for_env_vars(value: Union[str, dict]):
+    """Check an input value to see if it is an env_var or enc_env_var and get the value.
+
+    Parameters
+    ----------
+    value
+        input to check.
+
+    Returns
+    -------
+    Any:
+        Returns the value of the var from either the passed in value, or the env var value.
+    """
+    if type(value) is dict and "env_var" in value:
+        var_name = value["env_var"]
+        try:
+            return get_var(var_name)
+        except KeyError:
+            logging.critical(f"missing env var: {value['env_var']}")
+    if type(value) is dict and "enc_env_var" in value:
+        var_name = value["enc_env_var"]
+        try:
+            return get_enc_var(var_name)
+        except KeyError:
+            logging.critical(f"missing enc env var: {value['enc_env_var']}")
+    return value
 
 
 def get_var(var_name: str):
@@ -57,6 +86,7 @@ class PyJSON:
     def from_dict(self, d):
         self.__dict__ = {}
         for key, value in d.items():
+            value = check_for_env_vars(value)
             if type(value) is dict:
                 value = PyJSON(value)
             if type(value) is list:
@@ -69,7 +99,7 @@ class PyJSON:
                 value = value_list
             self.__dict__[key] = value
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         d = {}
         for key, value in self.__dict__.items():
             if type(value) is PyJSON:
@@ -84,7 +114,8 @@ class PyJSON:
         self.__dict__[key] = value
 
     def __getitem__(self, key):
-        return self.__dict__[key]
+        value = self.__dict__[key]
+        return value
 
     def get(self, key, default=None):
         try:

@@ -8,6 +8,8 @@ glados:
 
 datastore:
   enabled: false
+  host:
+    env_var: POSTGRES_HOST
 
 my_other_config:
   log: yes
