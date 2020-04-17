@@ -1,10 +1,6 @@
-import logging
-from typing import Callable, Dict, List, NoReturn, Optional, TYPE_CHECKING
+from typing import Callable, Dict, NoReturn
 
-from glados import GladosRequest, GladosRouteNotFoundError, RouteType
-
-# if TYPE_CHECKING:
-#     from glados import GladosPlugin
+from glados import GladosRequest, GladosRouteNotFoundError, RouteType, logging
 
 
 class GladosRoute(object):

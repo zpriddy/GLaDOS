@@ -1,9 +1,8 @@
-import json
+from typing import List, Union
+
 import yaml
-from pathlib import Path
-from glados import PyJSON
-import logging
-from typing import Union, List
+
+from glados import PyJSON, logging
 
 
 class GladosConfig:

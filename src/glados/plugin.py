@@ -1,29 +1,27 @@
-from typing import Callable, Dict, Union, List, NoReturn, Any
-import yaml
 import glob
-import logging
-import requests
-
-from pathlib import Path
-
 import importlib
+from pathlib import Path
+from typing import Any, Callable, Dict, List, NoReturn, Union
+
+import requests
+import yaml
+from slack.web.classes.messages import Message
+from slack.web.classes.objects import MarkdownTextObject, PlainTextObject, TextObject
 
 from glados import (
-    GladosBot,
-    RouteType,
-    GladosRoute,
     BOT_ROUTES,
-    GladosPathExistsError,
+    EventRoutes,
+    GladosBot,
     GladosBotNotFoundError,
     GladosError,
+    GladosPathExistsError,
     GladosRequest,
-    VERIFY_ROUTES,
-    EventRoutes,
+    GladosRoute,
     PyJSON,
+    RouteType,
+    VERIFY_ROUTES,
+    logging,
 )
-
-from slack.web.classes.messages import Message
-from slack.web.classes.objects import MarkdownTextObject, TextObject, PlainTextObject
 
 SLACK_MESSAGE_TYPES = [Message, MarkdownTextObject, TextObject, PlainTextObject]
 

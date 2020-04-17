@@ -1,20 +1,19 @@
-from typing import List, Dict, TYPE_CHECKING, Optional, NoReturn
-import yaml
-import logging
+from typing import Dict, List, NoReturn, Optional
 
 from glados import (
+    BotImporter,
+    DataStore,
+    GladosBot,
     GladosPlugin,
     GladosRequest,
     GladosRouter,
-    GladosBot,
-    BotImporter,
+    LOGGING_FORMAT,
+    LOGGING_LEVEL,
     PluginImporter,
+    logging,
     read_config,
-    DataStore,
+    set_logging,
 )
-
-if TYPE_CHECKING:
-    from glados import GladosConfig
 
 
 class Glados:
@@ -54,8 +53,8 @@ class Glados:
         self.plugins_folder = plugins_folder  # type: str
         self.bots_config_dir = bots_config_dir  # type: str
         self.plugins_config_dir = plugins_config_dir  # type: str
-        self.logging_level = logging.getLevelName("DEBUG")
-        self.logging_format = "%(asctime)s :: %(levelname)-8s :: [%(filename)s:%(lineno)s :: %(funcName)s() ] %(message)s"
+        self.logging_level = LOGGING_LEVEL
+        self.logging_format = LOGGING_FORMAT
         self.global_config = None
         self.enable_datastore = False
         self.datastore = None  # type: Optional[DataStore]
@@ -81,12 +80,8 @@ class Glados:
         config = self.global_config.config.glados
 
         self.logging_level = config.get("logging_level", self.logging_level)
-        self.logging_format = config.get("logging_format", self.logging_format)
-        logging.basicConfig(
-            level=self.logging_level,
-            format=self.logging_format,
-            datefmt="%Y-%m-%d %H:%M:%S",
-        )
+        self.logging_format = config.get("logging_format", LOGGING_FORMAT)
+        set_logging(self.logging_level, self.logging_format)
 
         self.plugins_folder = config.get("plugins_folder")
         self.plugins_config_dir = config.get("plugins_config_folder")

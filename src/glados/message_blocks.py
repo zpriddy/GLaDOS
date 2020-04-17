@@ -1,21 +1,17 @@
-from slack.web.classes import JsonObject, JsonValidator, extract_json
-from slack.web.classes.elements import PlainTextObject
-
 from typing import List, Optional, Union
 
+from slack.web.classes import JsonObject, JsonValidator, extract_json
 from slack.web.classes.blocks import (
+    ActionsBlock,
     Block,
     BlockElement,
-    SectionBlock,
+    ContextBlock,
     DividerBlock,
     ImageBlock,
-    ActionsBlock,
     InteractiveElement,
-    ContextBlock,
-    # InputBlock,
-    # AbstractSelector,
-    # FileBlock,
-)
+    SectionBlock,
+)  # InputBlock,; AbstractSelector,; FileBlock,
+from slack.web.classes.elements import PlainTextObject
 from slack.web.classes.objects import TextObject
 
 

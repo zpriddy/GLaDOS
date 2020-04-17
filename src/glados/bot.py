@@ -1,14 +1,13 @@
-from slack import WebClient
-from slack.web.classes.messages import Message
-from slack.web.slack_response import SlackResponse
-from slack.errors import SlackRequestError
-import yaml
 import glob
 from typing import Dict, Union
 
-import logging
+import yaml
+from slack import WebClient
+from slack.errors import SlackRequestError
+from slack.web.classes.messages import Message
+from slack.web.slack_response import SlackResponse
 
-from glados import GladosRequest, get_var, get_enc_var
+from glados import GladosRequest, get_enc_var, get_var, logging
 
 
 class BotImporter:

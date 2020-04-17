@@ -1,6 +1,5 @@
-import logging
 from datetime import datetime
-from typing import List, Optional, NoReturn
+from typing import List, NoReturn, Optional
 from uuid import uuid4
 
 from sqlalchemy import Column, DateTime, Integer, MetaData, String, Table, create_engine
@@ -8,6 +7,8 @@ from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Query, Session, sessionmaker
 from sqlalchemy.orm.exc import MultipleResultsFound
+
+from glados import logging
 
 Metadata = MetaData()
 Base = declarative_base(metadata=Metadata)
