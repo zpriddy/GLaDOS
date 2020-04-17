@@ -1,8 +1,6 @@
 import logging as RootLogging
 from logging import Logger
-from pkg_resources import get_distribution
 
-__version__ = get_distribution("glados").version
 
 LOGGING_FORMAT = "%(levelname)-8s :: [ %(module)s.%(funcName)s:%(lineno)s ] %(message)s"
 LOGGING_LEVEL = "WARNING"

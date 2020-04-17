@@ -1,4 +1,5 @@
 from typing import Dict, List, NoReturn, Optional
+from pkg_resources import get_distribution
 
 from glados import (
     BotImporter,
@@ -17,6 +18,8 @@ from glados import (
 
 
 class Glados:
+    __version__ = get_distribution("glados").version
+
     def __init__(
         self,
         config_file: Optional[str] = None,

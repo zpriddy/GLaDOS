@@ -18,19 +18,23 @@ def check_for_env_vars(value: Union[str, dict]):
     -------
     Any:
         Returns the value of the var from either the passed in value, or the env var value.
+
+    Raises
+    ------
+    KeyError if the env var is not set for what youre tying to get.
     """
     if type(value) is dict and "env_var" in value:
         var_name = value["env_var"]
         try:
             return get_var(var_name)
         except KeyError:
-            logging.critical(f"missing env var: {value['env_var']}")
+            raise KeyError(f"missing env var: {value['env_var']}")
     if type(value) is dict and "enc_env_var" in value:
         var_name = value["enc_env_var"]
         try:
             return get_enc_var(var_name)
         except KeyError:
-            logging.critical(f"missing enc env var: {value['enc_env_var']}")
+            raise KeyError(f"missing enc env var: {value['enc_env_var']}")
     return value
 
 

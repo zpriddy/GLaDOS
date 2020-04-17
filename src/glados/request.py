@@ -327,7 +327,7 @@ class GladosRequest:
         """Returns the interaction for the request"""
         if not self.has_interaction():
             return None
-        return self.interaction
+        return self._interaction
 
     @property
     def data(self) -> PyJSON:
