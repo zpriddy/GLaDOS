@@ -178,6 +178,10 @@ class GladosRequest:
 
         channel = container_payload.get("channel_id")
         message_ts = container_payload.get("message_ts")
+        try:
+            massage_ts = datetime.fromtimestamp(float(message_ts))
+        except Exception as e:
+            logging.warning(f"error parsing message ts: {message_ts} : {e}")
 
         if None in [channel, message_ts]:
             logging.warning(

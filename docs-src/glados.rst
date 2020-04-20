@@ -16,7 +16,7 @@ Modules
    glados.bot
    glados.configs
    glados.core
-   glados.db
+   glados.datastore
    glados.errors
    glados.message_blocks
    glados.plugin

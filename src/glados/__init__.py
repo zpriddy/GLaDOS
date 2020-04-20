@@ -40,7 +40,7 @@ def set_logging(level: str = None, format: str = None):
 
 from .utils import PyJSON, get_var, get_enc_var
 
-from .db import DataStore, DataStoreInteraction
+from .datastore import DataStore, DataStoreInteraction
 from .route_type import RouteType, EventRoutes, BOT_ROUTES, VERIFY_ROUTES
 from .request import GladosRequest, SlackVerification
 from .errors import (

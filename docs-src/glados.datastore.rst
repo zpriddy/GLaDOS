@@ -1,7 +1,7 @@
 DataStore
 =========
 
-.. automodule:: glados.db
+.. automodule:: glados.datastore
    :members:
    :no-undoc-members:
    :show-inheritance:
