@@ -326,6 +326,26 @@ class GladosPlugin:
         r = requests.post(request.response_url, json=kwargs)
         logging.info(f"slack response: {r}")
 
+    def has_route(self, route: str) -> bool:
+        """See if route exists.
+
+        Parameters
+        ----------
+        route : route to check
+
+        Returns
+        -------
+        True if route exists else false
+        """
+        route_extended = f"{self.bot.name}_{route}"
+        for r_type, route_entry in self._routes.items():
+            try:
+                if list(route_entry.keys())[0] in [route, route_extended]:
+                    return True
+            except IndexError:
+                continue
+        return False
+
     @property
     def routes(self) -> List[GladosRoute]:
         """List all routes for the plugin."""
