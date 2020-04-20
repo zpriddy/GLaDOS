@@ -60,7 +60,6 @@ def test_add_route(MockGladosPlugin):
     assert len(MockGladosPlugin.routes) == 1
 
     route = MockGladosPlugin.routes[0]
-    print(MockGladosPlugin._routes)
 
     assert MockGladosPlugin.has_route("send_message") == True
     assert route.route == "bot_send_message"
