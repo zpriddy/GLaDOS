@@ -34,9 +34,10 @@ Work is in progress to make GLaDOS run in Docker.
 
 ## Plugins Available 
 
-## [Documentation](https://zpriddy.github.io/GLaDOS/index.html) 
+## [Documentation](https://glados-slackbot.readthedocs.io/en/latest/) 
+Full documentation can be found on the ReadTheDocs for GLaDOS: https://glados-slackbot.readthedocs.io/en/latest/
 
-—
+-----
 ## GLaDOS Plugin
 Every GLaDOS plugin is its own module that is imported into your main handler application. This allows GLaDOS plugins to be community based and installed as wanted just by a simple import statement. 
 
