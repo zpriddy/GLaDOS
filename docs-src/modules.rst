@@ -1,17 +1,7 @@
-Modules
-=======
+glados
+======
 
 .. toctree::
-   :maxdepth: 7
+   :maxdepth: 4
 
-   glados.bot
-   glados.configs
-   glados.core
-   glados.datastore
-   glados.errors
-   glados.message_blocks
-   glados.plugin
-   glados.request
-   glados.route_type
-   glados.router
-   glados.utils
+   glados

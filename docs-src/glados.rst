@@ -1,4 +1,4 @@
-GLaDOS Package
+glados package
 ==============
 
 .. automodule:: glados
@@ -6,21 +6,102 @@ GLaDOS Package
    :undoc-members:
    :show-inheritance:
 
+Subpackages
+-----------
 
-
-Modules
--------
 .. toctree::
-   :maxdepth: 7
+   :maxdepth: 4
 
-   glados.bot
-   glados.configs
-   glados.core
-   glados.datastore
-   glados.errors
-   glados.message_blocks
-   glados.plugin
-   glados.request
-   glados.route_type
-   glados.router
-   glados.utils
+   glados.slack_classes
+
+Submodules
+----------
+
+glados.bot module
+-----------------
+
+.. automodule:: glados.bot
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.configs module
+---------------------
+
+.. automodule:: glados.configs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.core module
+------------------
+
+.. automodule:: glados.core
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.datastore module
+-----------------------
+
+.. automodule:: glados.datastore
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.errors module
+--------------------
+
+.. automodule:: glados.errors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.message\_blocks module
+-----------------------------
+
+.. automodule:: glados.message_blocks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.plugin module
+--------------------
+
+.. automodule:: glados.plugin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.request module
+---------------------
+
+.. automodule:: glados.request
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.route\_type module
+-------------------------
+
+.. automodule:: glados.route_type
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.router module
+--------------------
+
+.. automodule:: glados.router
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+glados.utils module
+-------------------
+
+.. automodule:: glados.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
