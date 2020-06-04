@@ -1,5 +1,5 @@
-glados.utils module
-=====================
+Utils
+=====
 
 .. automodule:: glados.utils
    :members:

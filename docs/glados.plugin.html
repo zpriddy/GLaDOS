@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.plugin module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>Plugin &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -34,9 +34,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="glados.request module" href="glados.request.html" />
-    <link rel="prev" title="glados.message_blocks module" href="glados.message_blocks.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,7 +78,7 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
@@ -94,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">glados</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="glados.html">glados package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3 current"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">glados.plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.request.html">glados.request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -160,11 +160,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="modules.html">glados</a> &raquo;</li>
-        
-          <li><a href="glados.html">glados package</a> &raquo;</li>
-        
-      <li>glados.plugin module</li>
+      <li>Plugin</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -184,92 +180,151 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-glados.plugin">
-<span id="glados-plugin-module"></span><h1>glados.plugin module<a class="headerlink" href="#module-glados.plugin" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<span id="plugin"></span><h1>Plugin<a class="headerlink" href="#module-glados.plugin" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
 <dt id="glados.plugin.GladosPlugin">
-<em class="property">class </em><code class="sig-prename descclassname">glados.plugin.</code><code class="sig-name descname">GladosPlugin</code><span class="sig-paren">(</span><em class="sig-param">config: glados.plugin.PluginConfig</em>, <em class="sig-param">bot: glados.bot.GladosBot</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.plugin.</code><code class="sig-name descname">GladosPlugin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">bot</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Parent class for a GLaDOS Plugin</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – the name of the plugin</p></li>
-<li><p><strong>bot</strong> (<a class="reference internal" href="glados.html#glados.GladosBot" title="glados.GladosBot"><em>GladosBot</em></a>) – the GLaDOS bot that this plugin will use</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#glados.plugin.PluginConfig" title="glados.plugin.PluginConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">PluginConfig</span></code></a>) – PluginConfig object for the plugin.</p></li>
+<li><p><strong>bot</strong> (<a class="reference internal" href="glados.bot.html#glados.bot.GladosBot" title="glados.bot.GladosBot"><code class="xref py py-class docutils literal notranslate"><span class="pre">GladosBot</span></code></a>) – the GLaDOS bot that this plugin will use</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="glados.plugin.GladosPlugin.add_route">
-<code class="sig-name descname">add_route</code><span class="sig-paren">(</span><em class="sig-param">route_type: glados.route_type.RouteType, route: Union[glados.route_type.EventRoutes, str], function: Callable</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin.add_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin.add_route" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_route</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">route_type</span></em>, <em class="sig-param"><span class="n">route</span></em>, <em class="sig-param"><span class="n">function</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin.add_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin.add_route" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a new route to the plugin</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.html#glados.RouteType" title="glados.RouteType"><em>RouteType</em></a>) – what type of route this is this</p></li>
-<li><p><strong>route</strong> (<em>Union</em><em>[</em><a class="reference internal" href="glados.html#glados.EventRoutes" title="glados.EventRoutes"><em>EventRoutes</em></a><em>, </em><em>str</em><em>]</em>) – what is the route to be added</p></li>
-<li><p><strong>function</strong> (<em>Callable</em>) – the function to be executed when this route runs</p></li>
+<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><code class="xref py py-class docutils literal notranslate"><span class="pre">RouteType</span></code></a>) – what type of route this is this</p></li>
+<li><p><strong>route</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="glados.route_type.html#glados.route_type.EventRoutes" title="glados.route_type.EventRoutes"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventRoutes</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – what is the route to be added</p></li>
+<li><p><strong>function</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – the function to be executed when this route runs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.plugin.GladosPlugin.has_route">
+<code class="sig-name descname">has_route</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">route</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin.has_route"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin.has_route" title="Permalink to this definition">¶</a></dt>
+<dd><p>See if route exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>route</strong> (<em>route to check</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>True if route exists else false</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.plugin.GladosPlugin.respond_to_url">
+<code class="sig-name descname">respond_to_url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin.respond_to_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin.respond_to_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>When you click on a link that was sent via slack it sends a callback, This is to handle that</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<a class="reference internal" href="glados.request.html#glados.request.GladosRequest" title="glados.request.GladosRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">GladosRequest</span></code></a>) – </p></li>
+<li><p><strong>text</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="glados.plugin.GladosPlugin.respond_to_url">
-<code class="sig-name descname">respond_to_url</code><span class="sig-paren">(</span><em class="sig-param">request: glados.request.GladosRequest</em>, <em class="sig-param">text: str</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin.respond_to_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin.respond_to_url" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
+<dl class="py method">
 <dt id="glados.plugin.GladosPlugin.routes">
 <em class="property">property </em><code class="sig-name descname">routes</code><a class="headerlink" href="#glados.plugin.GladosPlugin.routes" title="Permalink to this definition">¶</a></dt>
 <dd><p>List all routes for the plugin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="glados.router.html#glados.router.GladosRoute" title="glados.router.GladosRoute"><code class="xref py py-class docutils literal notranslate"><span class="pre">GladosRoute</span></code></a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="glados.plugin.GladosPlugin.send_request">
-<code class="sig-name descname">send_request</code><span class="sig-paren">(</span><em class="sig-param">request: glados.request.GladosRequest</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin.send_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin.send_request" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">send_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#GladosPlugin.send_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.GladosPlugin.send_request" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the function to be called when sending a request to a plugin.</p>
 <p>This function is responsible for validating the slack signature if needed. It also returns
 and empty string if the function called returns None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>request</strong> (<a class="reference internal" href="glados.html#glados.GladosRequest" title="glados.GladosRequest"><em>GladosRequest</em></a>) – the request object to be sent</p></li>
+<li><p><strong>request</strong> (<a class="reference internal" href="glados.request.html#glados.request.GladosRequest" title="glados.request.GladosRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">GladosRequest</span></code></a>) – the request object to be sent</p></li>
 <li><p><strong>kwargs</strong> – </p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="glados.plugin.PluginBotConfig">
-<em class="property">class </em><code class="sig-prename descclassname">glados.plugin.</code><code class="sig-name descname">PluginBotConfig</code><span class="sig-paren">(</span><em class="sig-param">name='NOT SET'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginBotConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginBotConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.plugin.</code><code class="sig-name descname">PluginBotConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'NOT SET'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginBotConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginBotConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
+<dl class="py method">
 <dt id="glados.plugin.PluginBotConfig.to_dict">
 <code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginBotConfig.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginBotConfig.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="glados.plugin.PluginConfig">
-<em class="property">class </em><code class="sig-prename descclassname">glados.plugin.</code><code class="sig-name descname">PluginConfig</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">config_file</em>, <em class="sig-param">module=None</em>, <em class="sig-param">enabled=False</em>, <em class="sig-param">bot=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.plugin.</code><code class="sig-name descname">PluginConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">config_file</span></em>, <em class="sig-param"><span class="n">module</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">enabled</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">bot</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
+<p>Plugin Config Object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Plugin Name</p></li>
+<li><p><strong>config_file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Path to config file for plugin</p></li>
+<li><p><strong>module</strong> – plugin python module name</p></li>
+<li><p><strong>enabled</strong> – enable this plugin</p></li>
+<li><p><strong>bot</strong> – what bot does this plugin use</p></li>
+<li><p><strong>kwargs</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
 <dt id="glados.plugin.PluginConfig.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param">user_config_only=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginConfig.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginConfig.to_dict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_config_only</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginConfig.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginConfig.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return config as dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_config_only</strong> – if True only get get waht is in the config file and not the running config.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="glados.plugin.PluginConfig.to_yaml">
-<code class="sig-name descname">to_yaml</code><span class="sig-paren">(</span><em class="sig-param">user_config_only=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginConfig.to_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginConfig.to_yaml" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">to_yaml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_config_only</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginConfig.to_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginConfig.to_yaml" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="glados.plugin.PluginConfig.update">
-<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">config: glados.plugin.PluginConfig</em>, <em class="sig-param">use_base_module: bool = True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginConfig.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginConfig.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">use_base_module</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginConfig.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginConfig.update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update a config object using the default values from the config object passed in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -279,50 +334,67 @@ the base config object only</p></li>
 <li><p><strong>use_base_module</strong> (<em>bool</em>) – if set true use the value of module and package from the base config object only.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="glados.plugin.PluginImporter">
-<em class="property">class </em><code class="sig-prename descclassname">glados.plugin.</code><code class="sig-name descname">PluginImporter</code><span class="sig-paren">(</span><em class="sig-param">plugins_folder: str</em>, <em class="sig-param">plugins_config_folder: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginImporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginImporter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.plugin.</code><code class="sig-name descname">PluginImporter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">plugins_folder</span></em>, <em class="sig-param"><span class="n">plugins_config_folder</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginImporter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginImporter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
+<p>Create the PluginImporter object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plugins_folder</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – plugin folder</p></li>
+<li><p><strong>plugins_config_folder</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – plugin config folder</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
 <dt id="glados.plugin.PluginImporter.discover_plugins">
 <code class="sig-name descname">discover_plugins</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginImporter.discover_plugins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginImporter.discover_plugins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discover all plugin config files in the plugins folder</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>list of all yaml config files</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="glados.plugin.PluginImporter.import_discovered_plugins">
-<code class="sig-name descname">import_discovered_plugins</code><span class="sig-paren">(</span><em class="sig-param">bots: Dict[str, glados.bot.GladosBot]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginImporter.import_discovered_plugins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginImporter.import_discovered_plugins" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">import_discovered_plugins</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">bots</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginImporter.import_discovered_plugins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginImporter.import_discovered_plugins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Import all discovered plugins and store them in self.plugins.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>bots</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="glados.html#glados.GladosBot" title="glados.GladosBot"><em>GladosBot</em></a><em>]</em>) – dict of all the imported bots</p>
+<dd class="field-odd"><p><strong>bots</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="glados.bot.html#glados.bot.GladosBot" title="glados.bot.GladosBot"><code class="xref py py-class docutils literal notranslate"><span class="pre">GladosBot</span></code></a>]) – dict of all the imported bots</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the results are updated in self.plugins</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>None</p>
+<dd class="field-odd"><p>obj: <cite>NoReturn</cite>:</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="glados.plugin.PluginImporter.load_discovered_plugins_config">
-<code class="sig-name descname">load_discovered_plugins_config</code><span class="sig-paren">(</span><em class="sig-param">write_to_user_config=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginImporter.load_discovered_plugins_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginImporter.load_discovered_plugins_config" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_discovered_plugins_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">write_to_user_config</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/plugin.html#PluginImporter.load_discovered_plugins_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.plugin.PluginImporter.load_discovered_plugins_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load all the yaml configs for the plugins</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>write_to_user_config</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -334,15 +406,6 @@ the base config object only</p></li>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="glados.request.html" class="btn btn-neutral float-right" title="glados.request module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="glados.message_blocks.html" class="btn btn-neutral float-left" title="glados.message_blocks module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

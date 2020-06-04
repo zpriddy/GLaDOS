@@ -1,5 +1,5 @@
-glados.router module
-====================
+Router
+======
 
 .. automodule:: glados.router
    :members:

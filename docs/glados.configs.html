@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.configs module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>Configs &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -92,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">glados</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="glados.html">glados package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.request.html">glados.request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +160,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>glados.configs module</li>
+      <li>Configs</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -177,28 +179,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="glados-configs-module">
-<h1>glados.configs module<a class="headerlink" href="#glados-configs-module" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-glados.configs"></span><dl class="class">
+  <div class="section" id="module-glados.configs">
+<span id="configs"></span><h1>Configs<a class="headerlink" href="#module-glados.configs" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
 <dt id="glados.configs.GladosConfig">
-<em class="property">class </em><code class="sig-prename descclassname">glados.configs.</code><code class="sig-name descname">GladosConfig</code><span class="sig-paren">(</span><em class="sig-param">config_file: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/configs.html#GladosConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.configs.GladosConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.configs.</code><code class="sig-name descname">GladosConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/configs.html#GladosConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.configs.GladosConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config_file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p>
+</dd>
+</dl>
+<dl class="py method">
 <dt id="glados.configs.GladosConfig.read_config">
 <code class="sig-name descname">read_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/configs.html#GladosConfig.read_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.configs.GladosConfig.read_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the config file into a config object</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="glados.configs.GladosConfig.sections">
 <em class="property">property </em><code class="sig-name descname">sections</code><a class="headerlink" href="#glados.configs.GladosConfig.sections" title="Permalink to this definition">¶</a></dt>
 <dd><p>what sections are there in the config file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>sorted list of sections in the yaml file</p>
+<dd class="field-odd"><p></p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[str]</p>
+<dd class="field-even"><p>sorted list of sections in the yaml file</p>
 </dd>
 </dl>
 </dd></dl>

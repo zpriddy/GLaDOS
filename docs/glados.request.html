@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.request module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>Request &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -34,9 +34,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="glados.route_type module" href="glados.route_type.html" />
-    <link rel="prev" title="glados.plugin module" href="glados.plugin.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,7 +78,7 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
@@ -94,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">glados</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="glados.html">glados package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3 current"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">glados.request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -160,11 +160,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="modules.html">glados</a> &raquo;</li>
-        
-          <li><a href="glados.html">glados package</a> &raquo;</li>
-        
-      <li>glados.request module</li>
+      <li>Request</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -184,26 +180,27 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-glados.request">
-<span id="glados-request-module"></span><h1>glados.request module<a class="headerlink" href="#module-glados.request" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<span id="request"></span><h1>Request<a class="headerlink" href="#module-glados.request" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
 <dt id="glados.request.GladosRequest">
-<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">GladosRequest</code><span class="sig-paren">(</span><em class="sig-param">route_type: glados.route_type.RouteType</em>, <em class="sig-param">route: str = None</em>, <em class="sig-param">slack_verify: glados.request.SlackVerification = None</em>, <em class="sig-param">bot_name: str = None</em>, <em class="sig-param">json: Union[str</em>, <em class="sig-param">dict] = None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">GladosRequest</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">route_type</span></em>, <em class="sig-param"><span class="n">route</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">slack_verify</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bot_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">json</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>GLaDOS Request Object. This holds all the data required to process the request.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.html#glados.RouteType" title="glados.RouteType"><em>RouteType</em></a>) – what type of route is this</p></li>
-<li><p><strong>route</strong> (<em>str</em>) – what is the route to be called</p></li>
-<li><p><strong>slack_verify</strong> (<a class="reference internal" href="#glados.request.SlackVerification" title="glados.request.SlackVerification"><em>SlackVerification</em></a>) – slack data used for verifying the request came from Slack</p></li>
-<li><p><strong>bot_name</strong> (<em>str</em>) – The name of the bot to send the request to. This is used for select RouteTypes</p></li>
-<li><p><strong>json</strong> – the json paylod of the request</p></li>
+<li><p><strong>route_type</strong> (<a class="reference internal" href="glados.route_type.html#glados.route_type.RouteType" title="glados.route_type.RouteType"><code class="xref py py-class docutils literal notranslate"><span class="pre">RouteType</span></code></a>) – what type of route is this</p></li>
+<li><p><strong>route</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – what is the route to be called</p></li>
+<li><p><strong>slack_verify</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#glados.request.SlackVerification" title="glados.request.SlackVerification"><code class="xref py py-class docutils literal notranslate"><span class="pre">SlackVerification</span></code></a>]) – slack data used for verifying the request came from Slack</p></li>
+<li><p><strong>bot_name</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – The name of the bot to send the request to. This is used for select RouteTypes</p></li>
+<li><p><strong>json</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – the json paylod of the request</p></li>
+<li><p><strong>data</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – data to send with the request. This should be from a database</p></li>
 <li><p><strong>kwargs</strong> – </p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">request</span> <span class="o">=</span> <span class="n">GladosRequest</span><span class="p">(</span><span class="n">RouteType</span><span class="o">.</span><span class="n">SendMessage</span><span class="p">,</span> <span class="s2">&quot;send_mock&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;my message&quot;</span><span class="p">})</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">request</span> <span class="o">=</span> <span class="n">GladosRequest</span><span class="p">(</span><span class="n">RouteType</span><span class="o">.</span><span class="n">SendMessage</span><span class="p">,</span> <span class="s2">&quot;send_mock&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;my message&quot;</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 <span class="go">my message</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
@@ -213,33 +210,246 @@
 <span class="go">ERROR</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
+<dt id="glados.request.GladosRequest.add_interaction_to_datastore">
+<code class="sig-name descname">add_interaction_to_datastore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interaction</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.add_interaction_to_datastore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.add_interaction_to_datastore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an interaction to the datastore and return the updated interaction.</p>
+<p class="rubric">Notes</p>
+<p>The interaction_id can be retrieved by doing interaction.interaction_id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>interaction</strong> (<a class="reference internal" href="glados.datastore.html#glados.datastore.DataStoreInteraction" title="glados.datastore.DataStoreInteraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataStoreInteraction</span></code></a>) – the interaction to be added</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="glados.datastore.html#glados.datastore.DataStoreInteraction" title="glados.datastore.DataStoreInteraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataStoreInteraction</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.close_session">
+<code class="sig-name descname">close_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.close_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.close_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close session for request</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.data">
+<em class="property">property </em><code class="sig-name descname">data</code><a class="headerlink" href="#glados.request.GladosRequest.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the data object of the request</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="glados.utils.html#glados.utils.PyJSON" title="glados.utils.PyJSON"><code class="xref py py-class docutils literal notranslate"><span class="pre">PyJSON</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.data_blob">
+<em class="property">property </em><code class="sig-name descname">data_blob</code><a class="headerlink" href="#glados.request.GladosRequest.data_blob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the raw dict of the data object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.gen_new_interaction">
+<code class="sig-name descname">gen_new_interaction</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">followup_action</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">followup_ts</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ttl</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auto_link</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">auto_set</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.gen_new_interaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.gen_new_interaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a new interaction object and set it as new_interaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>followup_action</strong> – </p></li>
+<li><p><strong>followup_ts</strong> – </p></li>
+<li><p><strong>ttl</strong> – </p></li>
+<li><p><strong>data</strong> – </p></li>
+<li><p><strong>auto_link</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – set this request to auto-link using the return payload. The return payload must be the response from sending a slack message.</p></li>
+<li><p><strong>auto_set</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – set this new interaction object as the request new_interaction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="glados.datastore.html#glados.datastore.DataStoreInteraction" title="glados.datastore.DataStoreInteraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataStoreInteraction</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.has_interaction">
+<code class="sig-name descname">has_interaction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.has_interaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.has_interaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if request has interaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.has_new_interaction">
+<code class="sig-name descname">has_new_interaction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.has_new_interaction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.has_new_interaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if request has a new interaction object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.interaction">
+<em class="property">property </em><code class="sig-name descname">interaction</code><a class="headerlink" href="#glados.request.GladosRequest.interaction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the interaction for the request</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="glados.datastore.html#glados.datastore.DataStoreInteraction" title="glados.datastore.DataStoreInteraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataStoreInteraction</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.interaction_id">
+<em class="property">property </em><code class="sig-name descname">interaction_id</code><a class="headerlink" href="#glados.request.GladosRequest.interaction_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the interaction_id of request.interaction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.link_interaction_to_message">
+<code class="sig-name descname">link_interaction_to_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interaction_id</span></em>, <em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="n">message_ts</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.link_interaction_to_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.link_interaction_to_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link interaction to message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interaction_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – interaction ID to link</p></li>
+<li><p><strong>channel</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – channel to be linked to</p></li>
+<li><p><strong>message_ts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code>) – ts to be linked to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.link_interaction_to_message_response">
+<code class="sig-name descname">link_interaction_to_message_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interaction_id</span></em>, <em class="sig-param"><span class="n">message_response</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.link_interaction_to_message_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.link_interaction_to_message_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Link interaction to message response</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interaction_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – interaction ID to be linked</p></li>
+<li><p><strong>message_response</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – JSON payload response from sending message on slack.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.rollback_session">
+<code class="sig-name descname">rollback_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.rollback_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.rollback_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rollback the session.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="glados.request.GladosRequest.route">
 <em class="property">property </em><code class="sig-name descname">route</code><a class="headerlink" href="#glados.request.GladosRequest.route" title="Permalink to this definition">¶</a></dt>
 <dd><p>the actual route</p>
 <p>If the route automatically prefixed the route with the bot name, it will return the route with the prefix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.set_datastore">
+<code class="sig-name descname">set_datastore</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">datastore</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.set_datastore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.set_datastore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the Datastore and session for the request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>datastore</strong> (<a class="reference internal" href="glados.datastore.html#glados.datastore.DataStore" title="glados.datastore.DataStore"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataStore</span></code></a>) – Datastore to use. This datastore will be used to create the session.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.set_interaction_from_datastore">
+<code class="sig-name descname">set_interaction_from_datastore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.set_interaction_from_datastore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.set_interaction_from_datastore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the interaction object from the datastore.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="glados.request.GladosRequest.set_session">
+<code class="sig-name descname">set_session</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#GladosRequest.set_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.GladosRequest.set_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the session for this request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>session</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code>) – session to use for this request.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ConnectionError</strong> – If the session is not active raise a ConnectionError</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">NoReturn</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="glados.request.SlackVerification">
-<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">SlackVerification</code><span class="sig-paren">(</span><em class="sig-param">data: str</em>, <em class="sig-param">timestamp: str = None</em>, <em class="sig-param">signature: str = None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#SlackVerification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.SlackVerification" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.request.</code><code class="sig-name descname">SlackVerification</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">timestamp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">signature</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/request.html#SlackVerification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.request.SlackVerification" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>An object to hold slack verification data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>str</em>) – raw request body. This is used to verify the message is from slack.</p></li>
-<li><p><strong>timestamp</strong> (<em>str</em>) – The X-Slack-Request-Timestamp from the headers of the request. This is used to verify the message is from slack.</p></li>
-<li><p><strong>signature</strong> (<em>str</em>) – The X-Slack-Signature from the headers of the request. This is used to verify the message is from slack.</p></li>
+<li><p><strong>data</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – raw request body. This is used to verify the message is from slack.</p></li>
+<li><p><strong>timestamp</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – The X-Slack-Request-Timestamp from the headers of the request. This is used to verify the message is from slack.</p></li>
+<li><p><strong>signature</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – The X-Slack-Signature from the headers of the request. This is used to verify the message is from slack.</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="glados.request.SlackVerification.json">
 <em class="property">property </em><code class="sig-name descname">json</code><a class="headerlink" href="#glados.request.SlackVerification.json" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the dict of the SlackVerification</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -250,15 +460,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="glados.route_type.html" class="btn btn-neutral float-right" title="glados.route_type module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="glados.plugin.html" class="btn btn-neutral float-left" title="glados.plugin module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

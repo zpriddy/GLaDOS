@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>glados.datastore &mdash; GLaDOS 0.0.1.dev24 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GLaDOS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glados_structure.html">GLaDOS Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../glados_structure.html#glados">GLaDOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados_structure.html#bot">Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados_structure.html#plugin">Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados_structure.html#routing">Routing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../glados_structure.html#route-types">Route Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../glados_structure.html#route">Route</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glados_plugin.html">GLaDOS Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.utils">glados.utils module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GLaDOS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../glados.html">glados</a> &raquo;</li>
+        
+      <li>glados.datastore</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for glados.datastore</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">NoReturn</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.dialects.postgresql</span> <span class="kn">import</span> <span class="n">JSONB</span><span class="p">,</span> <span class="n">UUID</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Query</span><span class="p">,</span> <span class="n">Session</span><span class="p">,</span> <span class="n">sessionmaker</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm.exc</span> <span class="kn">import</span> <span class="n">MultipleResultsFound</span>
+
+<span class="kn">from</span> <span class="nn">glados</span> <span class="kn">import</span> <span class="n">logging</span>
+
+<span class="n">Metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">Metadata</span><span class="p">)</span>
+
+<span class="n">TABLE_INTERACTIONS</span> <span class="o">=</span> <span class="s2">&quot;interactions&quot;</span>
+
+
+<div class="viewcode-block" id="DataStoreInteraction"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStoreInteraction">[docs]</a><span class="k">class</span> <span class="nc">DataStoreInteraction</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;DataStoreInteraction represents a row in the datastore. This is used to update data in the datastore.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    interaction_id: :obj:`str`</span>
+<span class="sd">        This is the primary key of the datastore. This is the ID of the entry in the datastore.</span>
+<span class="sd">    ts: :obj:`datetime`</span>
+<span class="sd">        This is the time the row was put into the database.</span>
+<span class="sd">    bot: :obj:`str`</span>
+<span class="sd">        This is the name of the bot it should use when completing followup actions.</span>
+<span class="sd">    data: :obj:`dict`</span>
+<span class="sd">        Any extra data stored with the interaction. This is a JSON blob.</span>
+<span class="sd">    message_channel: :obj:`str`</span>
+<span class="sd">        The channel that this interaction was sent to.</span>
+<span class="sd">    message_ts: :obj:`datetime`</span>
+<span class="sd">        The message timestamp when this interaction was sent.</span>
+<span class="sd">    ttl: :obj:`int`</span>
+<span class="sd">        How long this interaction should live for.</span>
+<span class="sd">    followup_ts: :obj:`datetime`</span>
+<span class="sd">        When should the follow up action happen.</span>
+<span class="sd">    followup_action: :obj:`str`</span>
+<span class="sd">        The action name to execute when following up. If None then no action will happen.</span>
+<span class="sd">    cron_followup_action: :obj:`str`</span>
+<span class="sd">        The action name to execute on a normal cron schedule like every 5 min. If None then no action will happen.</span>
+<span class="sd">    followed_up: :obj:`datetime`</span>
+<span class="sd">        This is the time when the action was followed up at. If it has not happened yet this value will be None.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="n">TABLE_INTERACTIONS</span>
+    <span class="n">interaction_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">UUID</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">()))</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+    <span class="n">bot</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">JSONB</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="nb">dict</span><span class="p">())</span>
+    <span class="n">message_channel</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">message_ts</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">ttl</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">followup_ts</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">followup_action</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">cron_followup_action</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">followed_up</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataStoreInteraction.update"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStoreInteraction.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the object dropping any arguments that are not valid&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="DataStore"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore">[docs]</a><span class="k">class</span> <span class="nc">DataStore</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;DataStore is how GLaDOS stores async data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    host</span>
+<span class="sd">        postgres host.</span>
+<span class="sd">    username</span>
+<span class="sd">        postgres username.</span>
+<span class="sd">    password</span>
+<span class="sd">        postgres password.</span>
+<span class="sd">    port</span>
+<span class="sd">        postgres port.</span>
+<span class="sd">    database</span>
+<span class="sd">        postgres database to use.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">,</span>
+        <span class="n">database</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;glados&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">database</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;postgres://</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="si">}</span><span class="s2">/&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_maker</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataStore.create_session"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.create_session">[docs]</a>    <span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Generate a new session with the existing connection.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_maker</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DataStore.table_exists"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.table_exists">[docs]</a>    <span class="k">def</span> <span class="nf">table_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">TABLE_INTERACTIONS</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Check to see if the GLaDOS table is found in postgres.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        table</span>
+<span class="sd">            table name to use.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">table</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DataStore.drop_table"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.drop_table">[docs]</a>    <span class="k">def</span> <span class="nf">drop_table</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">TABLE_INTERACTIONS</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Drop the GLaDOS table so that it can be re-created.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        table</span>
+<span class="sd">            table name to use.</span>
+<span class="sd">        force</span>
+<span class="sd">            if True will fill force drop the table without checks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">Metadata</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">checkfirst</span><span class="o">=</span><span class="ow">not</span> <span class="n">force</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataStore.create_table"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.create_table">[docs]</a>    <span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">tables</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Create the table.</span>
+
+<span class="sd">        If you set force to True then it will drop the existing tables and</span>
+<span class="sd">        then recreate them. ALL DATA WILL BE LOST</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tables</span>
+<span class="sd">            only take action on these tables. If None, then take action on all tables</span>
+<span class="sd">        force</span>
+<span class="sd">            drop existing tables and rebuild. (default: False)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;creating datastore table&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">force</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;DROPPING CURRENT TABLES! the &#39;force&#39; flag was passed when calling create table.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">tables</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">,</span> <span class="n">checkfirst</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">tables</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+                <span class="n">Table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">Metadata</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataStore.find_by_id"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.find_by_id">[docs]</a>    <span class="k">def</span> <span class="nf">find_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataStoreInteraction</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Find an interaction by interaction_id.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interaction_id</span>
+<span class="sd">            interaction ID to find</span>
+<span class="sd">        session</span>
+<span class="sd">            session to be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">DataStoreInteraction</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">interaction_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="DataStore.update_interaction"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.update_interaction">[docs]</a>    <span class="k">def</span> <span class="nf">update_interaction</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataStoreInteraction</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Find and update an interaction with the provided values.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interaction_id</span>
+<span class="sd">            interaction ID to update</span>
+<span class="sd">        session</span>
+<span class="sd">            session to be used</span>
+<span class="sd">        kwargs</span>
+<span class="sd">            fields and new values to update</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">interaction</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">DataStoreInteraction</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">interaction_id</span>
+        <span class="p">)</span>  <span class="c1"># type: DataStoreInteraction</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">interaction</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">interaction</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">interaction</span></div>
+
+<div class="viewcode-block" id="DataStore.insert_interaction"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.insert_interaction">[docs]</a>    <span class="k">def</span> <span class="nf">insert_interaction</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">DataStoreInteraction</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Insert an interaction object into the database.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interaction</span>
+<span class="sd">            The row to be inserted</span>
+<span class="sd">        session</span>
+<span class="sd">            session to be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">interaction</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">interaction</span></div>
+
+<div class="viewcode-block" id="DataStore.link_to_message_response"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.link_to_message_response">[docs]</a>    <span class="k">def</span> <span class="nf">link_to_message_response</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_response</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Add info from the Slack message into the database for the interaction.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interaction_id</span>
+<span class="sd">            The interaction ID that was returned on adding the message to the database.</span>
+<span class="sd">        message_response</span>
+<span class="sd">            The raw message response from slack. The channel and ts will be pulled from this.</span>
+<span class="sd">        session</span>
+<span class="sd">            session to be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ts_str</span> <span class="o">=</span> <span class="n">message_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ts&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ts_str</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ts missing from message body: </span><span class="si">{</span><span class="n">message_response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">message_response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">channel</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;channel missing from message body: </span><span class="si">{</span><span class="n">message_response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">ts_str</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_interaction</span><span class="p">(</span>
+            <span class="n">interaction_id</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">message_channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="n">message_ts</span><span class="o">=</span><span class="n">ts</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataStore.link_to_message"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.link_to_message">[docs]</a>    <span class="k">def</span> <span class="nf">link_to_message</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Session&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Link to message by setting message ts and channel.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interaction_id</span>
+<span class="sd">            interaction ID to link</span>
+<span class="sd">        channel</span>
+<span class="sd">            channel to link interaction to</span>
+<span class="sd">        ts</span>
+<span class="sd">            ts to link interaction to</span>
+<span class="sd">        session</span>
+<span class="sd">            session to be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_interaction</span><span class="p">(</span>
+            <span class="n">interaction_id</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">message_channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="n">message_ts</span><span class="o">=</span><span class="n">ts</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataStore.find_interaction_by_channel_ts"><a class="viewcode-back" href="../../glados.datastore.html#glados.datastore.DataStore.find_interaction_by_channel_ts">[docs]</a>    <span class="k">def</span> <span class="nf">find_interaction_by_channel_ts</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ts</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataStoreInteraction</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Find the interaction in the datastore by channel and message ts.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        channel</span>
+<span class="sd">            channel of the interaction youre looking for</span>
+<span class="sd">        ts</span>
+<span class="sd">            ts of the interaction you are looking for</span>
+<span class="sd">        session</span>
+<span class="sd">            session to be used</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ReferenceError</span>
+<span class="sd">            There were more than one interaction that matched the channel and message_ts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">DataStoreInteraction</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">DataStoreInteraction</span><span class="o">.</span><span class="n">message_ts</span> <span class="o">==</span> <span class="n">ts</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">DataStoreInteraction</span><span class="o">.</span><span class="n">message_channel</span> <span class="o">==</span> <span class="n">channel</span><span class="p">)</span>
+        <span class="p">)</span>  <span class="c1"># type: Query</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">one_or_none</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">except</span> <span class="n">MultipleResultsFound</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ReferenceError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Zachary Priddy
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

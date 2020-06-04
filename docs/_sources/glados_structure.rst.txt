@@ -7,9 +7,20 @@ GLaDOS
 
 Bot
 ---
+GLaDOS can support multiple Slack bots and applications at once. When you initialize a plugin you pass the GladosBot
+object of the bot you would like to be responsible for the actions of that plugin.
+
 
 Plugin
 ------
+Every GLaDOS plugin is its own module that is imported into your main handler application. This allows GLaDOS plugins to
+be community based and installed as wanted just by a simple import statement.
+
+.. note::
+    V2: Each GLaDOS Plug-in has to have the register_plugin decorator and match the Plugin Interface. The easiest way to
+    do this is to use the Plugin Class that is provided with GLaDOS. In the main GLaDOS function you will have to import
+    all of your plugin modules and kick off a scan for plugins. This same method applies for GLaDOS Bots.
+
 
 Routing
 -------

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.utils module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>Utils &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -92,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">glados</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="glados.html">glados package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.request.html">glados.request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +160,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>glados.utils module</li>
+      <li>Utils</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,63 +180,104 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-glados.utils">
-<span id="glados-utils-module"></span><h1>glados.utils module<a class="headerlink" href="#module-glados.utils" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<span id="utils"></span><h1>Utils<a class="headerlink" href="#module-glados.utils" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
 <dt id="glados.utils.PyJSON">
-<em class="property">class </em><code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">PyJSON</code><span class="sig-paren">(</span><em class="sig-param">d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#PyJSON"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.PyJSON" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">PyJSON</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#PyJSON"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.PyJSON" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
+<dl class="py method">
 <dt id="glados.utils.PyJSON.from_dict">
-<code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param">d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#PyJSON.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.PyJSON.from_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#PyJSON.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.PyJSON.from_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="glados.utils.PyJSON.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param">key</em>, <em class="sig-param">default=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#PyJSON.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.PyJSON.get" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#PyJSON.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.PyJSON.get" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="glados.utils.PyJSON.to_dict">
 <code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#PyJSON.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.PyJSON.to_dict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
+<dt id="glados.utils.check_for_env_vars">
+<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">check_for_env_vars</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#check_for_env_vars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.check_for_env_vars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check an input value to see if it is an env_var or enc_env_var and get the value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – input to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns the value of the var from either the passed in value, or the env var value.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>KeyError if the env var is not set for what youre tying to get.</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="glados.utils.decode_kms">
-<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">decode_kms</code><span class="sig-paren">(</span><em class="sig-param">ciphertext_blob: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/glados/utils.html#decode_kms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.decode_kms" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">decode_kms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ciphertext_blob</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#decode_kms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.decode_kms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decode a secret using the IAM role of the lambda function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ciphertext_blob</strong> – str
-ciphertext_blob to decode</p>
+<dd class="field-odd"><p><strong>ciphertext_blob</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – ciphertext_blob to decode</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>Decoded KMS data</p>
 </dd>
-</dl>
-<dl class="simple">
-<dt>str</dt><dd><p>decoded text</p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>obj: <cite>str</cite></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="glados.utils.get_enc_var">
-<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">get_enc_var</code><span class="sig-paren">(</span><em class="sig-param">var_name: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#get_enc_var"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.get_enc_var" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">get_enc_var</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#get_enc_var"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.get_enc_var" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get an encrypted ENV VAR</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>var_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="glados.utils.get_var">
-<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">get_var</code><span class="sig-paren">(</span><em class="sig-param">var_name: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#get_var"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.get_var" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">get_var</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#get_var"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.get_var" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get an ENV VAR</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>var_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="glados.utils.read_config">
-<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">read_config</code><span class="sig-paren">(</span><em class="sig-param">config_file: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#read_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.read_config" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">glados.utils.</code><code class="sig-name descname">read_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/glados/utils.html#read_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.utils.read_config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config_file</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – </p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 

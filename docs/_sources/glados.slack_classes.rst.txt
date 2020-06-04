@@ -9,6 +9,11 @@ glados.slack\_classes package
 Submodules
 ----------
 
-.. toctree::
+glados.slack\_classes.views module
+----------------------------------
 
-   glados.slack_classes.views
+.. automodule:: glados.slack_classes.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

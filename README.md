@@ -58,3 +58,11 @@ However a Response route type will be expecting the raw payload from Slack. GLaD
 
 The callback url for GLaDOS in Slack would be like: https://glados.io/Response
 The same URL can be used for all the Slack bots / Applications that GLaDOS is handling. 
+
+# Other Notes:
+Building with tox i had to do a workaround:
+```bash
+>> brew install openssl
+>> export LDFLAGS="-L/usr/local/opt/openssl/lib"
+>> export CPPFLAGS="-I/usr/local/opt/openssl/include"
+```

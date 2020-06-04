@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.core &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>glados.core &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -92,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">glados</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../glados.html">glados package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../glados.html#submodules">Submodules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.core.html">glados.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.errors.html">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.plugin.html">glados.plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.request.html">glados.request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.route_type.html">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -160,6 +162,8 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../glados.html">glados</a> &raquo;</li>
+        
       <li>glados.core</li>
     
     
@@ -176,34 +180,56 @@
            <div itemprop="articleBody">
             
   <h1>Source code for glados.core</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
-<span class="kn">import</span> <span class="nn">yaml</span>
-<span class="kn">import</span> <span class="nn">logging</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NoReturn</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">pkg_resources</span> <span class="kn">import</span> <span class="n">get_distribution</span>
 
-<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="p">(</span>
+<span class="kn">from</span> <span class="nn">glados</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BotImporter</span><span class="p">,</span>
+    <span class="n">DataStore</span><span class="p">,</span>
+    <span class="n">GladosBot</span><span class="p">,</span>
     <span class="n">GladosPlugin</span><span class="p">,</span>
     <span class="n">GladosRequest</span><span class="p">,</span>
     <span class="n">GladosRouter</span><span class="p">,</span>
-    <span class="n">GladosBot</span><span class="p">,</span>
-    <span class="n">BotImporter</span><span class="p">,</span>
+    <span class="n">LOGGING_FORMAT</span><span class="p">,</span>
+    <span class="n">LOGGING_LEVEL</span><span class="p">,</span>
     <span class="n">PluginImporter</span><span class="p">,</span>
+    <span class="n">logging</span><span class="p">,</span>
     <span class="n">read_config</span><span class="p">,</span>
+    <span class="n">set_logging</span><span class="p">,</span>
 <span class="p">)</span>
-
-<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">GladosConfig</span>
 
 
 <div class="viewcode-block" id="Glados"><a class="viewcode-back" href="../../glados.core.html#glados.Glados">[docs]</a><span class="k">class</span> <span class="nc">Glados</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Glados is the core of the GLaDOS package.&quot;&quot;&quot;</span>
+    <span class="n">__version__</span> <span class="o">=</span> <span class="n">get_distribution</span><span class="p">(</span><span class="s2">&quot;glados&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">version</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">config_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">plugins_folder</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">bots_config_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">plugins_config_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">config_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugins_folder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">bots_config_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">plugins_config_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Glados is the core of the GLaDOS package.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        config_file</span>
+<span class="sd">            path to config file</span>
+<span class="sd">        plugins_folder</span>
+<span class="sd">            path to plugins folder</span>
+<span class="sd">        bots_config_dir</span>
+<span class="sd">            path to bots config folder</span>
+<span class="sd">        plugins_config_dir</span>
+<span class="sd">            path to plugin config folder.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        If ``config_file`` is passed in and the file has ``plugins_folder``,</span>
+<span class="sd">        ``bots_config_dir``, ``plugins_config_dir`` in it , then the other</span>
+<span class="sd">        parameters are not required</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">router</span> <span class="o">=</span> <span class="n">GladosRouter</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>  <span class="c1"># type: List[GladosPlugin]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bots</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, GladosBot]</span>
@@ -212,11 +238,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins_folder</span> <span class="o">=</span> <span class="n">plugins_folder</span>  <span class="c1"># type: str</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bots_config_dir</span> <span class="o">=</span> <span class="n">bots_config_dir</span>  <span class="c1"># type: str</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_dir</span> <span class="o">=</span> <span class="n">plugins_config_dir</span>  <span class="c1"># type: str</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLevelName</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> :: </span><span class="si">%(levelname)-8s</span><span class="s2"> :: [</span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)s</span><span class="s2"> :: </span><span class="si">%(funcName)s</span><span class="s2">() ] </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span> <span class="o">=</span> <span class="n">LOGGING_LEVEL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span> <span class="o">=</span> <span class="n">LOGGING_FORMAT</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">global_config</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enable_datastore</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datastore</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: Optional[DataStore]</span>
 
-<div class="viewcode-block" id="Glados.read_config"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.read_config">[docs]</a>    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Glados.read_config"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.read_config">[docs]</a>    <span class="k">def</span> <span class="nf">read_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Read the GLaDOS config file. If a bot name is provided it will only install that bot. Else it will install all bots.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bot_name</span>
+<span class="sd">            If provided, install only the bot with this name.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Fix logging setup</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_file</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;glados config file not set.&quot;</span><span class="p">)</span>
@@ -229,12 +265,8 @@
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_config</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">glados</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logging_level&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logging_format&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-            <span class="n">level</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span><span class="p">,</span>
-            <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span><span class="p">,</span>
-            <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logging_format&quot;</span><span class="p">,</span> <span class="n">LOGGING_FORMAT</span><span class="p">)</span>
+        <span class="n">set_logging</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">logging_level</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">logging_format</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins_folder</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;plugins_folder&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;plugins_config_folder&quot;</span><span class="p">)</span>
@@ -249,18 +281,77 @@
         <span class="k">if</span> <span class="n">import_plugins</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">import_plugins</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">import_plugins</span> <span class="o">==</span> <span class="s2">&quot;limited&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">import_plugins</span><span class="p">(</span><span class="n">bot_name</span><span class="o">=</span><span class="n">bot_name</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">import_plugins</span><span class="p">(</span><span class="n">bot_name</span><span class="o">=</span><span class="n">bot_name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Glados.import_bots"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.import_bots">[docs]</a>    <span class="k">def</span> <span class="nf">import_bots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Config datastore</span>
+        <span class="k">if</span> <span class="s2">&quot;datastore&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_config</span><span class="o">.</span><span class="n">sections</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;setting up glados datastore&quot;</span><span class="p">)</span>
+            <span class="n">ds_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_config</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">datastore</span>
+            <span class="n">ds_enabled</span> <span class="o">=</span> <span class="n">ds_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;enabled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">ds_host</span> <span class="o">=</span> <span class="n">ds_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">)</span>
+            <span class="n">ds_port</span> <span class="o">=</span> <span class="n">ds_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="mi">5432</span><span class="p">)</span>
+            <span class="n">ds_username</span> <span class="o">=</span> <span class="n">ds_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">)</span>
+            <span class="n">ds_password</span> <span class="o">=</span> <span class="n">ds_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+            <span class="n">ds_database</span> <span class="o">=</span> <span class="n">ds_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;glados&quot;</span><span class="p">)</span>
+            <span class="n">ds_recreate</span> <span class="o">=</span> <span class="n">ds_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;recreate&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="n">ds_enabled</span><span class="p">,</span>
+                <span class="n">ds_host</span><span class="p">,</span>
+                <span class="n">ds_port</span><span class="p">,</span>
+                <span class="n">ds_username</span><span class="p">,</span>
+                <span class="n">ds_password</span><span class="p">,</span>
+                <span class="n">ds_database</span><span class="p">,</span>
+            <span class="p">]:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;missing datastore config item(s) or datastore disabled. disabling datastore.&quot;</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">enable_datastore</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">enable_datastore</span> <span class="o">=</span> <span class="n">ds_enabled</span>
+                <span class="k">if</span> <span class="n">ds_enabled</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">datastore</span> <span class="o">=</span> <span class="n">DataStore</span><span class="p">(</span>
+                        <span class="n">host</span><span class="o">=</span><span class="n">ds_host</span><span class="p">,</span>
+                        <span class="n">port</span><span class="o">=</span><span class="n">ds_port</span><span class="p">,</span>
+                        <span class="n">username</span><span class="o">=</span><span class="n">ds_username</span><span class="p">,</span>
+                        <span class="n">password</span><span class="o">=</span><span class="n">ds_password</span><span class="p">,</span>
+                        <span class="n">database</span><span class="o">=</span><span class="n">ds_database</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">datastore</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">ds_recreate</span><span class="p">)</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;testing datastore connection...&quot;</span><span class="p">)</span>
+                    <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datastore</span><span class="o">.</span><span class="n">create_session</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">session</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;datastore session is not active. </span><span class="si">{</span><span class="n">session</span><span class="o">.</span><span class="n">info</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;datastore connection is successful. </span><span class="si">{</span><span class="n">session</span><span class="o">.</span><span class="n">info</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="p">)</span>
+                    <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                        <span class="s2">&quot;datastore is not enabled. continuing without the datastore.&quot;</span>
+                    <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;datastore section not found in config file&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">enable_datastore</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Glados.import_bots"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.import_bots">[docs]</a>    <span class="k">def</span> <span class="nf">import_bots</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Import all discovered bots&quot;&quot;&quot;</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;importing bots...&quot;</span><span class="p">)</span>
         <span class="n">importer</span> <span class="o">=</span> <span class="n">BotImporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bots_config_dir</span><span class="p">)</span>
         <span class="n">importer</span><span class="o">.</span><span class="n">import_bots</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bots</span> <span class="o">=</span> <span class="n">importer</span><span class="o">.</span><span class="n">bots</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;successfully imported {len(self.bots)} bots&quot;</span><span class="p">)</span></div>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;successfully imported </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bots</span><span class="p">)</span><span class="si">}</span><span class="s2"> bots&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Glados.import_plugins"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.import_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">import_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Import all discovered plugins and add them to the plugin list.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Glados.import_plugins"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.import_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">import_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Import all discovered plugins and add them to the plugin list.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bot_name</span>
+<span class="sd">            If set GLaDOS will only import the bot name that is provided here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Importing plugins...&quot;</span><span class="p">)</span>
         <span class="n">importer</span> <span class="o">=</span> <span class="n">PluginImporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plugins_folder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_dir</span><span class="p">)</span>
         <span class="n">importer</span><span class="o">.</span><span class="n">discover_plugins</span><span class="p">()</span>
@@ -282,51 +373,79 @@
         <span class="n">importer</span><span class="o">.</span><span class="n">import_discovered_plugins</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bots</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">plugin</span> <span class="ow">in</span> <span class="n">importer</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_plugin</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;successfully imported {len(self.plugins)} plugins&quot;</span><span class="p">)</span></div>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;successfully imported </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="p">)</span><span class="si">}</span><span class="s2"> plugins&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Glados.add_plugin"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.add_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">add_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="n">GladosPlugin</span><span class="p">):</span>
+<div class="viewcode-block" id="Glados.add_plugin"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.add_plugin">[docs]</a>    <span class="k">def</span> <span class="nf">add_plugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin</span><span class="p">:</span> <span class="n">GladosPlugin</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Add a plugin to GLaDOS</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        plugin : GladosPlugin</span>
+<span class="sd">        plugin</span>
 <span class="sd">            the plugin to be added to GLaDOS</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;installing plugin: </span><span class="si">{plugin.name}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;installing plugin: </span><span class="si">{</span><span class="n">plugin</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">add_routes</span><span class="p">(</span><span class="n">plugin</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Glados.add_bot"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.add_bot">[docs]</a>    <span class="k">def</span> <span class="nf">add_bot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">GladosBot</span><span class="p">):</span>
+<div class="viewcode-block" id="Glados.add_bot"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.add_bot">[docs]</a>    <span class="k">def</span> <span class="nf">add_bot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">GladosBot</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Add a new bot to GLaDOS.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        bot : GladosBot</span>
+<span class="sd">        bot</span>
 <span class="sd">            the bot to be added to GLaDOS</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bots</span><span class="p">[</span><span class="n">bot</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">bot</span></div>
 
+<div class="viewcode-block" id="Glados.has_datastore"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.has_datastore">[docs]</a>    <span class="k">def</span> <span class="nf">has_datastore</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns True if there is a datastore else False&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="kc">True</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">enable_datastore</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">datastore</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">False</span>
+        <span class="p">)</span></div>
+
 <div class="viewcode-block" id="Glados.request"><a class="viewcode-back" href="../../glados.core.html#glados.Glados.request">[docs]</a>    <span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Send a request to GLaDOS.</span>
+        <span class="sd">&quot;&quot;&quot;Send a request to GLaDOS. This returns whatever the plugin returns.</span>
+
+<span class="sd">        This function will also set the datastore session for the request, try to find the interaction in the datastore and fetch it. This info is available in the request.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        request : GladosRequest</span>
+<span class="sd">        request</span>
 <span class="sd">            the request to be sent to GLaDOS</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">exec_route</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
+        <span class="c1"># DataStore actions if enabled</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_datastore</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">set_datastore</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datastore</span><span class="p">)</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">set_interaction_from_datastore</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;error setting up datastore or retrieving interaction : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2"> for request: </span><span class="si">{</span><span class="n">request</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">router</span><span class="o">.</span><span class="n">exec_route</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_datastore</span><span class="p">()</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">auto_link</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">new_interaction</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">link_interaction_to_message_response</span><span class="p">(</span>
+                    <span class="n">request</span><span class="o">.</span><span class="n">new_interaction</span><span class="p">,</span> <span class="n">response</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;error linking response to interaction: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2"> response: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">close_session</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">response</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_datastore</span><span class="p">():</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">close_session</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">response</span></div></div>
 </pre></div>
 
            </div>

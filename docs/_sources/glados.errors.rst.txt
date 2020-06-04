@@ -1,5 +1,5 @@
-glados.errors module
-====================
+Errors
+======
 
 .. automodule:: glados.errors
    :members:

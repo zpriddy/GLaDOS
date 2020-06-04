@@ -1,5 +1,5 @@
-glados.core module
-==================
+Core
+====
 
 .. automodule:: glados.core
    :members:

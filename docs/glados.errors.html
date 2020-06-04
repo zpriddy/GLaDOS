@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.errors module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>Errors &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -34,9 +34,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="glados.message_blocks module" href="glados.message_blocks.html" />
-    <link rel="prev" title="glados.core module" href="glados.core.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,7 +78,7 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
@@ -94,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">glados</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="glados.html">glados package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3 current"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.request.html">glados.request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.route_type.html">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -160,11 +160,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="modules.html">glados</a> &raquo;</li>
-        
-          <li><a href="glados.html">glados package</a> &raquo;</li>
-        
-      <li>glados.errors module</li>
+      <li>Errors</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -184,29 +180,29 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-glados.errors">
-<span id="glados-errors-module"></span><h1>glados.errors module<a class="headerlink" href="#module-glados.errors" title="Permalink to this headline">¶</a></h1>
-<dl class="exception">
+<span id="errors"></span><h1>Errors<a class="headerlink" href="#module-glados.errors" title="Permalink to this headline">¶</a></h1>
+<dl class="py exception">
 <dt id="glados.errors.GladosBotNotFoundError">
 <em class="property">exception </em><code class="sig-prename descclassname">glados.errors.</code><code class="sig-name descname">GladosBotNotFoundError</code><a class="reference internal" href="_modules/glados/errors.html#GladosBotNotFoundError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.errors.GladosBotNotFoundError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#glados.errors.GladosError" title="glados.errors.GladosError"><code class="xref py py-class docutils literal notranslate"><span class="pre">glados.errors.GladosError</span></code></a></p>
 <p>Error raised when GladosBot is not found</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="glados.errors.GladosError">
 <em class="property">exception </em><code class="sig-prename descclassname">glados.errors.</code><code class="sig-name descname">GladosError</code><a class="reference internal" href="_modules/glados/errors.html#GladosError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.errors.GladosError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Base class for Client errors</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="glados.errors.GladosPathExistsError">
 <em class="property">exception </em><code class="sig-prename descclassname">glados.errors.</code><code class="sig-name descname">GladosPathExistsError</code><a class="reference internal" href="_modules/glados/errors.html#GladosPathExistsError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.errors.GladosPathExistsError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#glados.errors.GladosError" title="glados.errors.GladosError"><code class="xref py py-class docutils literal notranslate"><span class="pre">glados.errors.GladosError</span></code></a></p>
 <p>Error raised when trying to add a path that already exists</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="glados.errors.GladosRouteNotFoundError">
 <em class="property">exception </em><code class="sig-prename descclassname">glados.errors.</code><code class="sig-name descname">GladosRouteNotFoundError</code><a class="reference internal" href="_modules/glados/errors.html#GladosRouteNotFoundError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.errors.GladosRouteNotFoundError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#glados.errors.GladosError" title="glados.errors.GladosError"><code class="xref py py-class docutils literal notranslate"><span class="pre">glados.errors.GladosError</span></code></a></p>
@@ -220,15 +216,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="glados.message_blocks.html" class="btn btn-neutral float-right" title="glados.message_blocks module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="glados.core.html" class="btn btn-neutral float-left" title="glados.core module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

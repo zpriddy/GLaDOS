@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.request &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>glados.request &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -92,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">glados</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../glados.html">glados package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../glados.html#submodules">Submodules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.core.html">glados.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.errors.html">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.plugin.html">glados.plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.request.html">glados.request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.route_type.html">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -160,6 +162,8 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../glados.html">glados</a> &raquo;</li>
+        
       <li>glados.request</li>
     
     
@@ -176,8 +180,21 @@
            <div itemprop="articleBody">
             
   <h1>Source code for glados.request</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">BOT_ROUTES</span><span class="p">,</span> <span class="n">PyJSON</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Union</span>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">NoReturn</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">glados</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BOT_ROUTES</span><span class="p">,</span>
+    <span class="n">DataStore</span><span class="p">,</span>
+    <span class="n">DataStoreInteraction</span><span class="p">,</span>
+    <span class="n">PyJSON</span><span class="p">,</span>
+    <span class="n">RouteType</span><span class="p">,</span>
+    <span class="n">logging</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>
 
 
 <div class="viewcode-block" id="SlackVerification"><a class="viewcode-back" href="../../glados.request.html#glados.SlackVerification">[docs]</a><span class="k">class</span> <span class="nc">SlackVerification</span><span class="p">:</span>
@@ -185,21 +202,22 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    data: str</span>
+<span class="sd">    data</span>
 <span class="sd">        raw request body. This is used to verify the message is from slack.</span>
-<span class="sd">    timestamp: str</span>
+<span class="sd">    timestamp</span>
 <span class="sd">        The X-Slack-Request-Timestamp from the headers of the request. This is used to verify the message is from slack.</span>
-<span class="sd">    signature: str</span>
+<span class="sd">    signature:</span>
 <span class="sd">        The X-Slack-Signature from the headers of the request. This is used to verify the message is from slack.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">signature</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">signature</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">timestamp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">signature</span> <span class="o">=</span> <span class="n">signature</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">json</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the dict of the SlackVerification&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
             <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
@@ -212,16 +230,18 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    route_type: RouteType</span>
+<span class="sd">    route_type</span>
 <span class="sd">        what type of route is this</span>
-<span class="sd">    route: str</span>
+<span class="sd">    route</span>
 <span class="sd">        what is the route to be called</span>
-<span class="sd">    slack_verify: SlackVerification</span>
+<span class="sd">    slack_verify</span>
 <span class="sd">        slack data used for verifying the request came from Slack</span>
-<span class="sd">    bot_name: str</span>
+<span class="sd">    bot_name</span>
 <span class="sd">        The name of the bot to send the request to. This is used for select RouteTypes</span>
-<span class="sd">    json:</span>
+<span class="sd">    json</span>
 <span class="sd">        the json paylod of the request</span>
+<span class="sd">    data</span>
+<span class="sd">        data to send with the request. This should be from a database</span>
 <span class="sd">    kwargs</span>
 
 <span class="sd">    Examples</span>
@@ -236,13 +256,14 @@
 <span class="sd">    ERROR</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span>
         <span class="n">route</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">slack_verify</span><span class="p">:</span> <span class="n">SlackVerification</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">bot_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">json</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 
@@ -257,6 +278,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">response_url</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trigger_id</span> <span class="o">=</span> <span class="kc">None</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_datastore</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#  type: Optional[DataStore]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="kc">None</span>
+        <span class="p">)</span>  <span class="c1"># type: Optional[Session] # This is the datastore session for this request.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_interaction</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">#  type: Optional[DataStoreInteraction] # This is the interaction database object for this request.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auto_link</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># if this is true, then it will expect the response from the plugin to want to try to autolink to the interaction datastore.</span>
+
         <span class="k">if</span> <span class="n">route_type</span> <span class="ow">is</span> <span class="n">RouteType</span><span class="o">.</span><span class="n">Interaction</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">response_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;response_url&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">trigger_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;trigger_id&quot;</span><span class="p">)</span>
@@ -268,6 +298,8 @@
         <span class="k">if</span> <span class="n">route_type</span> <span class="ow">is</span> <span class="n">RouteType</span><span class="o">.</span><span class="n">Events</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_route</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">type</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_interaction</span> <span class="o">=</span> <span class="kc">None</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">route</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;the actual route</span>
@@ -275,14 +307,235 @@
 <span class="sd">        If the route automatically prefixed the route with the bot name, it will return the route with the prefix</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
-            <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.bot_name}</span><span class="s2">_</span><span class="si">{self._route}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bot_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_route</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">route_type</span> <span class="ow">in</span> <span class="n">BOT_ROUTES</span>
             <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_route</span>
         <span class="p">)</span>
 
     <span class="nd">@route</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_route</span> <span class="o">=</span> <span class="n">value</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_route</span> <span class="o">=</span> <span class="n">value</span>
+
+<div class="viewcode-block" id="GladosRequest.set_session"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.set_session">[docs]</a>    <span class="k">def</span> <span class="nf">set_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Session&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set the session for this request.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        session</span>
+<span class="sd">            session to use for this request.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :obj:`ConnectionError`</span>
+<span class="sd">            If the session is not active raise a ConnectionError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">session</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">&quot;request session is not active&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GladosRequest.set_datastore"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.set_datastore">[docs]</a>    <span class="k">def</span> <span class="nf">set_datastore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datastore</span><span class="p">:</span> <span class="s2">&quot;DataStore&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set the Datastore and session for the request.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        datastore</span>
+<span class="sd">            Datastore to use. This datastore will be used to create the session.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_datastore</span> <span class="o">=</span> <span class="n">datastore</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_session</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_datastore</span><span class="o">.</span><span class="n">create_session</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="GladosRequest.set_interaction_from_datastore"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.set_interaction_from_datastore">[docs]</a>    <span class="k">def</span> <span class="nf">set_interaction_from_datastore</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Get the interaction object from the datastore.&quot;&quot;&quot;</span>
+        <span class="c1"># Get the interaction object from the datastore</span>
+        <span class="c1"># see if there is channel and message ts in the payload.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">&quot;session not set for request&quot;</span><span class="p">)</span>
+
+        <span class="n">container_payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;container&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">container_payload</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no container block in body: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_interaction</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction</span>
+
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">container_payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channel_id&quot;</span><span class="p">)</span>
+        <span class="n">message_ts</span> <span class="o">=</span> <span class="n">container_payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message_ts&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">massage_ts</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">message_ts</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error parsing message ts: </span><span class="si">{</span><span class="n">message_ts</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="kc">None</span> <span class="ow">in</span> <span class="p">[</span><span class="n">channel</span><span class="p">,</span> <span class="n">message_ts</span><span class="p">]:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;missing channel_id or message_ts in container: </span><span class="si">{</span><span class="n">container_payload</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_interaction</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction</span>
+
+        <span class="n">interaction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_datastore</span><span class="o">.</span><span class="n">find_interaction_by_channel_ts</span><span class="p">(</span>
+            <span class="n">channel</span><span class="p">,</span> <span class="n">message_ts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_interaction</span> <span class="o">=</span> <span class="n">interaction</span></div>
+
+<div class="viewcode-block" id="GladosRequest.add_interaction_to_datastore"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.add_interaction_to_datastore">[docs]</a>    <span class="k">def</span> <span class="nf">add_interaction_to_datastore</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">DataStoreInteraction</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataStoreInteraction</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Add an interaction to the datastore and return the updated interaction.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        The interaction_id can be retrieved by doing interaction.interaction_id</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interaction</span>
+<span class="sd">            the interaction to be added</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_datastore</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;datastore not set for request&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">&quot;session not set for request&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_datastore</span><span class="o">.</span><span class="n">insert_interaction</span><span class="p">(</span><span class="n">interaction</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GladosRequest.link_interaction_to_message_response"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.link_interaction_to_message_response">[docs]</a>    <span class="k">def</span> <span class="nf">link_interaction_to_message_response</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_response</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Link interaction to message response</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interaction_id</span>
+<span class="sd">            interaction ID to be linked</span>
+<span class="sd">        message_response</span>
+<span class="sd">            JSON payload response from sending message on slack.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">&quot;session not set for request&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_datastore</span><span class="o">.</span><span class="n">link_to_message_response</span><span class="p">(</span>
+            <span class="n">interaction_id</span><span class="p">,</span> <span class="n">message_response</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="GladosRequest.link_interaction_to_message"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.link_interaction_to_message">[docs]</a>    <span class="k">def</span> <span class="nf">link_interaction_to_message</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">interaction_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_ts</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Link interaction to message</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interaction_id</span>
+<span class="sd">            interaction ID to link</span>
+<span class="sd">        channel</span>
+<span class="sd">            channel to be linked to</span>
+<span class="sd">        message_ts</span>
+<span class="sd">            ts to be linked to</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">&quot;session not set for request&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_datastore</span><span class="o">.</span><span class="n">link_to_message</span><span class="p">(</span>
+            <span class="n">interaction_id</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">message_ts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="GladosRequest.close_session"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.close_session">[docs]</a>    <span class="k">def</span> <span class="nf">close_session</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Close session for request&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GladosRequest.rollback_session"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.rollback_session">[docs]</a>    <span class="k">def</span> <span class="nf">rollback_session</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Rollback the session.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="GladosRequest.has_interaction"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.has_interaction">[docs]</a>    <span class="k">def</span> <span class="nf">has_interaction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Check if request has interaction.        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interaction</span> <span class="k">else</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="GladosRequest.has_new_interaction"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.has_new_interaction">[docs]</a>    <span class="k">def</span> <span class="nf">has_new_interaction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;check if request has a new interaction object.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_interaction</span> <span class="k">else</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="GladosRequest.gen_new_interaction"><a class="viewcode-back" href="../../glados.request.html#glados.GladosRequest.gen_new_interaction">[docs]</a>    <span class="k">def</span> <span class="nf">gen_new_interaction</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">followup_action</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">followup_ts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ttl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">auto_link</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">auto_set</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataStoreInteraction</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Generate a new interaction object and set it as new_interaction.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        followup_action</span>
+<span class="sd">        followup_ts</span>
+<span class="sd">        ttl</span>
+<span class="sd">        data</span>
+<span class="sd">        auto_link</span>
+<span class="sd">            set this request to auto-link using the return payload. The return payload must be the response from sending a slack message.</span>
+<span class="sd">        auto_set</span>
+<span class="sd">            set this new interaction object as the request new_interaction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">auto_link</span> <span class="o">=</span> <span class="n">auto_link</span>
+
+        <span class="n">new_interaction</span> <span class="o">=</span> <span class="n">DataStoreInteraction</span><span class="p">(</span>
+            <span class="n">bot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bot_name</span><span class="p">,</span>
+            <span class="n">followup_action</span><span class="o">=</span><span class="n">followup_action</span><span class="p">,</span>
+            <span class="n">followup_ts</span><span class="o">=</span><span class="n">followup_ts</span><span class="p">,</span>
+            <span class="n">ttl</span><span class="o">=</span><span class="n">ttl</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">auto_set</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_interaction</span> <span class="o">=</span> <span class="n">new_interaction</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_interaction</span>
+
+        <span class="k">return</span> <span class="n">new_interaction</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">interaction_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the interaction_id of request.interaction&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_interaction</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">interaction</span><span class="o">.</span><span class="n">interaction_id</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">interaction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataStoreInteraction</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the interaction for the request&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_interaction</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_interaction</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PyJSON</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the data object of the request&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">PyJSON</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data_blob</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the raw dict of the data object&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+    <span class="nd">@data</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;JSONDecodeError on string </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2"> on parsing JSON from: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">value</span></div>
 </pre></div>
 
            </div>

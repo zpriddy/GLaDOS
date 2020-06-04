@@ -1,5 +1,5 @@
-glados.message\_blocks module
-=============================
+Message Blocks
+==============
 
 .. automodule:: glados.message_blocks
    :members:

@@ -1,5 +1,5 @@
-glados.route\_type module
-=========================
+Route Type
+==========
 
 .. automodule:: glados.route_type
    :members:

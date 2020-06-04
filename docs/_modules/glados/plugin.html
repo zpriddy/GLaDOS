@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.plugin &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>glados.plugin &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -92,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">glados</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../glados.html">glados package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../glados.html#submodules">Submodules</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.core.html">glados.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.errors.html">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.plugin.html">glados.plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.request.html">glados.request module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.route_type.html">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -160,6 +162,8 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../glados.html">glados</a> &raquo;</li>
+        
       <li>glados.plugin</li>
     
     
@@ -176,52 +180,68 @@
            <div itemprop="articleBody">
             
   <h1>Source code for glados.plugin</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
-<span class="kn">import</span> <span class="nn">yaml</span>
-<span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
-
+<span></span><span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NoReturn</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">glados</span> <span class="k">import</span> <span class="p">(</span>
-    <span class="n">GladosBot</span><span class="p">,</span>
-    <span class="n">RouteType</span><span class="p">,</span>
-    <span class="n">GladosRoute</span><span class="p">,</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">slack.web.classes.messages</span> <span class="kn">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">slack.web.classes.objects</span> <span class="kn">import</span> <span class="n">MarkdownTextObject</span><span class="p">,</span> <span class="n">PlainTextObject</span><span class="p">,</span> <span class="n">TextObject</span>
+
+<span class="kn">from</span> <span class="nn">glados</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BOT_ROUTES</span><span class="p">,</span>
-    <span class="n">GladosPathExistsError</span><span class="p">,</span>
+    <span class="n">EventRoutes</span><span class="p">,</span>
+    <span class="n">GladosBot</span><span class="p">,</span>
     <span class="n">GladosBotNotFoundError</span><span class="p">,</span>
     <span class="n">GladosError</span><span class="p">,</span>
+    <span class="n">GladosPathExistsError</span><span class="p">,</span>
     <span class="n">GladosRequest</span><span class="p">,</span>
-    <span class="n">VERIFY_ROUTES</span><span class="p">,</span>
-    <span class="n">EventRoutes</span><span class="p">,</span>
+    <span class="n">GladosRoute</span><span class="p">,</span>
     <span class="n">PyJSON</span><span class="p">,</span>
+    <span class="n">RouteType</span><span class="p">,</span>
+    <span class="n">VERIFY_ROUTES</span><span class="p">,</span>
+    <span class="n">logging</span><span class="p">,</span>
 <span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">slack.web.classes.messages</span> <span class="k">import</span> <span class="n">Message</span>
-<span class="kn">from</span> <span class="nn">slack.web.classes.objects</span> <span class="k">import</span> <span class="n">MarkdownTextObject</span><span class="p">,</span> <span class="n">TextObject</span><span class="p">,</span> <span class="n">PlainTextObject</span>
 
 <span class="n">SLACK_MESSAGE_TYPES</span> <span class="o">=</span> <span class="p">[</span><span class="n">Message</span><span class="p">,</span> <span class="n">MarkdownTextObject</span><span class="p">,</span> <span class="n">TextObject</span><span class="p">,</span> <span class="n">PlainTextObject</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="PluginBotConfig"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginBotConfig">[docs]</a><span class="k">class</span> <span class="nc">PluginBotConfig</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;NOT SET&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;NOT SET&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
 <div class="viewcode-block" id="PluginBotConfig.to_dict"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginBotConfig.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div></div>
 
 
-<span class="c1"># TODO</span>
-<span class="c1"># Read the plugin config</span>
-<span class="c1"># read the user config</span>
-<span class="c1"># running_config = plugin_config.update(user_config</span>
 <div class="viewcode-block" id="PluginConfig"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginConfig">[docs]</a><span class="k">class</span> <span class="nc">PluginConfig</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">config_file</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bot</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">config_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">bot</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Plugin Config Object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name</span>
+<span class="sd">            Plugin Name</span>
+<span class="sd">        config_file</span>
+<span class="sd">            Path to config file for plugin</span>
+<span class="sd">        module</span>
+<span class="sd">            plugin python module name</span>
+<span class="sd">        enabled</span>
+<span class="sd">            enable this plugin</span>
+<span class="sd">        bot</span>
+<span class="sd">            what bot does this plugin use</span>
+<span class="sd">        kwargs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">bot</span><span class="p">:</span>
             <span class="n">bot</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -235,7 +255,7 @@
         <span class="n">package</span> <span class="o">=</span> <span class="n">package</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.config.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">package</span> <span class="o">=</span> <span class="n">package</span>
 
-<div class="viewcode-block" id="PluginConfig.update"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginConfig.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;PluginConfig&quot;</span><span class="p">,</span> <span class="n">use_base_module</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="PluginConfig.update"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginConfig.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;PluginConfig&quot;</span><span class="p">,</span> <span class="n">use_base_module</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Update a config object using the default values from the config object passed in.</span>
 
 <span class="sd">        Parameters</span>
@@ -245,10 +265,6 @@
 <span class="sd">            the base config object only</span>
 <span class="sd">        use_base_module: bool</span>
 <span class="sd">            if set true use the value of module and package from the base config object only.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">self_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
@@ -258,7 +274,15 @@
         <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">self_config</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="n">config</span></div>
 
-<div class="viewcode-block" id="PluginConfig.to_dict"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginConfig.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_config_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="PluginConfig.to_dict"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginConfig.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_config_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return config as dict</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        user_config_only</span>
+<span class="sd">            if True only get get waht is in the config file and not the running config.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">enabled</span><span class="p">,</span> <span class="n">bot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">user_config_only</span><span class="p">:</span>
             <span class="n">config</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span>
@@ -269,25 +293,30 @@
 
 
 <div class="viewcode-block" id="PluginImporter"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginImporter">[docs]</a><span class="k">class</span> <span class="nc">PluginImporter</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugins_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plugins_config_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugins_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plugins_config_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create the PluginImporter object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        plugins_folder</span>
+<span class="sd">            plugin folder</span>
+<span class="sd">        plugins_config_folder</span>
+<span class="sd">            plugin config folder</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins_folder</span> <span class="o">=</span> <span class="n">plugins_folder</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_folder</span> <span class="o">=</span> <span class="n">plugins_config_folder</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">plugin_configs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>  <span class="c1"># type: Dict[str, PluginConfig]</span>
 
-<div class="viewcode-block" id="PluginImporter.discover_plugins"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginImporter.discover_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">discover_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Discover all plugin config files in the plugins folder</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        list:</span>
-<span class="sd">            list of all yaml config files</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">config_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.plugins_folder}</span><span class="s2">/**/*.yaml&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="viewcode-block" id="PluginImporter.discover_plugins"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginImporter.discover_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">discover_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Discover all plugin config files in the plugins folder&quot;&quot;&quot;</span>
+        <span class="n">config_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">plugins_folder</span><span class="si">}</span><span class="s2">/**/*.yaml&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config_files</span> <span class="o">=</span> <span class="n">config_files</span></div>
 
-<div class="viewcode-block" id="PluginImporter.load_discovered_plugins_config"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginImporter.load_discovered_plugins_config">[docs]</a>    <span class="k">def</span> <span class="nf">load_discovered_plugins_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">write_to_user_config</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="PluginImporter.load_discovered_plugins_config"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginImporter.load_discovered_plugins_config">[docs]</a>    <span class="k">def</span> <span class="nf">load_discovered_plugins_config</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">write_to_user_config</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Load all the yaml configs for the plugins&quot;&quot;&quot;</span>
         <span class="n">plugin_package_config</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">plugin_user_config</span> <span class="o">=</span> <span class="kc">None</span>
@@ -300,7 +329,7 @@
                 <span class="n">c</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
-                        <span class="n">f</span><span class="s2">&quot;zero or more than one object in config file: </span><span class="si">{config_file}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;zero or more than one object in config file: </span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
                     <span class="k">continue</span>
                 <span class="n">plugin_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
@@ -309,11 +338,11 @@
 
             <span class="k">if</span> <span class="n">plugin_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
-                    <span class="n">f</span><span class="s2">&quot;invalid or missing plugin name. config file: </span><span class="si">{config_file}</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;invalid or missing plugin name. config file: </span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
                 <span class="k">continue</span>
 
-            <span class="n">user_config_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_folder</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{plugin_name}</span><span class="s2">.yaml&quot;</span><span class="p">)</span>
+            <span class="n">user_config_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plugins_config_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">.yaml&quot;</span><span class="p">)</span>
 
             <span class="c1"># Write defaults to user file</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">user_config_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span> <span class="ow">and</span> <span class="n">write_to_user_config</span><span class="p">:</span>
@@ -322,7 +351,7 @@
                     <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">plugin_package_config</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="n">file</span><span class="p">)</span>
 
             <span class="k">elif</span> <span class="ow">not</span> <span class="n">user_config_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">write_to_user_config</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;no user plugin config for </span><span class="si">{plugin_name}</span><span class="s2">. skipping.&quot;</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no user plugin config for </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">. skipping.&quot;</span><span class="p">)</span>
                 <span class="k">continue</span>
 
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">user_config_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
@@ -330,7 +359,7 @@
 
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
-                        <span class="n">f</span><span class="s2">&quot;zero or more than one object in config file: </span><span class="si">{config_file}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;zero or more than one object in config file: </span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
                     <span class="k">continue</span>
 
@@ -341,26 +370,26 @@
 
     <span class="c1"># TODO(zpriddy): Filter out warnings and errors if importing plugins in a limited way.</span>
 
-<div class="viewcode-block" id="PluginImporter.import_discovered_plugins"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginImporter.import_discovered_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">import_discovered_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bots</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">GladosBot</span><span class="p">]):</span>
+<div class="viewcode-block" id="PluginImporter.import_discovered_plugins"><a class="viewcode-back" href="../../glados.plugin.html#glados.PluginImporter.import_discovered_plugins">[docs]</a>    <span class="k">def</span> <span class="nf">import_discovered_plugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bots</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">GladosBot</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Import all discovered plugins and store them in self.plugins.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        bots : Dict[str, GladosBot]</span>
+<span class="sd">        bots</span>
 <span class="sd">            dict of all the imported bots</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None:</span>
+<span class="sd">        :obj: `NoReturn`:</span>
 <span class="sd">            the results are updated in self.plugins</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="n">plugin_config</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_configs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">plugin_config</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;plugin </span><span class="si">{plugin_name}</span><span class="s2"> is disabled&quot;</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;plugin </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2"> is disabled&quot;</span><span class="p">)</span>
                 <span class="k">continue</span>
             <span class="n">plugin_config</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">plugin_name</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;importing plugin: </span><span class="si">{plugin_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;importing plugin: </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">plugin_config</span><span class="o">.</span><span class="n">package</span><span class="p">)</span>
 
             <span class="c1"># Check if required bot is imported</span>
@@ -368,21 +397,21 @@
                 <span class="n">bot_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bots</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">GladosBot</span><span class="p">]</span>
             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">GladosBot</span><span class="p">]:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">bot_name</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">GladosError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;no bot name set for plugin: </span><span class="si">{plugin_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="n">GladosError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;no bot name set for plugin: </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">bot</span> <span class="o">=</span> <span class="n">bots</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">bot_name</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">bot</span><span class="p">:</span>
                     <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-                        <span class="n">f</span><span class="s2">&quot;bot: </span><span class="si">{bot_name}</span><span class="s2"> is not found. disabling plugin: </span><span class="si">{plugin_name}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;bot: </span><span class="si">{</span><span class="n">bot_name</span><span class="si">}</span><span class="s2"> is not found. disabling plugin: </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
                     <span class="k">raise</span> <span class="n">GladosBotNotFoundError</span><span class="p">(</span>
-                        <span class="n">f</span><span class="s2">&quot;bot: </span><span class="si">{bot_name}</span><span class="s2"> is not found as required for </span><span class="si">{plugin_name}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;bot: </span><span class="si">{</span><span class="n">bot_name</span><span class="si">}</span><span class="s2"> is not found as required for </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
                 <span class="k">return</span> <span class="n">bot</span>
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">bot</span> <span class="o">=</span> <span class="n">get_required_bot</span><span class="p">(</span><span class="n">plugin_config</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">bots</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">GladosError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{e}</span><span class="s2"> :: disabling plugin: </span><span class="si">{plugin_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2"> :: disabling plugin: </span><span class="si">{</span><span class="n">plugin_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plugin_configs</span><span class="p">[</span><span class="n">plugin_name</span><span class="p">]</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">continue</span>
 
@@ -395,13 +424,13 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    name : str</span>
-<span class="sd">        the name of the plugin</span>
-<span class="sd">    bot : GladosBot</span>
+<span class="sd">    config</span>
+<span class="sd">        PluginConfig object for the plugin.</span>
+<span class="sd">    bot</span>
 <span class="sd">        the GLaDOS bot that this plugin will use</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">PluginConfig</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">GladosBot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">PluginConfig</span><span class="p">,</span> <span class="n">bot</span><span class="p">:</span> <span class="n">GladosBot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">config</span>
@@ -416,34 +445,30 @@
 
 <div class="viewcode-block" id="GladosPlugin.add_route"><a class="viewcode-back" href="../../glados.plugin.html#glados.GladosPlugin.add_route">[docs]</a>    <span class="k">def</span> <span class="nf">add_route</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">route_type</span><span class="p">:</span> <span class="n">RouteType</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">EventRoutes</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Add a new route to the plugin</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        route_type : RouteType</span>
+<span class="sd">        route_type</span>
 <span class="sd">            what type of route this is this</span>
-<span class="sd">        route : Union[EventRoutes, str]</span>
+<span class="sd">        route</span>
 <span class="sd">            what is the route to be added</span>
-<span class="sd">        function : Callable</span>
+<span class="sd">        function</span>
 <span class="sd">            the function to be executed when this route runs</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">route</span><span class="p">)</span> <span class="ow">is</span> <span class="n">EventRoutes</span><span class="p">:</span>
             <span class="n">route</span> <span class="o">=</span> <span class="n">route</span><span class="o">.</span><span class="n">name</span>
         <span class="n">new_route</span> <span class="o">=</span> <span class="n">GladosRoute</span><span class="p">(</span><span class="n">route_type</span><span class="p">,</span> <span class="n">route</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">route_type</span> <span class="ow">in</span> <span class="n">BOT_ROUTES</span><span class="p">:</span>
-            <span class="n">new_route</span><span class="o">.</span><span class="n">route</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.bot.name}</span><span class="s2">_</span><span class="si">{route}</span><span class="s2">&quot;</span>
+            <span class="n">new_route</span><span class="o">.</span><span class="n">route</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">route</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">if</span> <span class="n">new_route</span><span class="o">.</span><span class="n">route</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_routes</span><span class="p">[</span><span class="n">new_route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="n">GladosPathExistsError</span><span class="p">(</span>
-                <span class="n">f</span><span class="s2">&quot;a route with the name of </span><span class="si">{new_route.route}</span><span class="s2"> already exists in the route type: </span><span class="si">{new_route.route_type.name}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;a route with the name of </span><span class="si">{</span><span class="n">new_route</span><span class="o">.</span><span class="n">route</span><span class="si">}</span><span class="s2"> already exists in the route type: </span><span class="si">{</span><span class="n">new_route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_routes</span><span class="p">[</span><span class="n">new_route</span><span class="o">.</span><span class="n">route_type</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="n">new_route</span><span class="o">.</span><span class="n">route</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_route</span></div>
 
-<div class="viewcode-block" id="GladosPlugin.send_request"><a class="viewcode-back" href="../../glados.plugin.html#glados.GladosPlugin.send_request">[docs]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="GladosPlugin.send_request"><a class="viewcode-back" href="../../glados.plugin.html#glados.GladosPlugin.send_request">[docs]</a>    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;This is the function to be called when sending a request to a plugin.</span>
 
 <span class="sd">        This function is responsible for validating the slack signature if needed. It also returns</span>
@@ -451,13 +476,9 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        request : GladosRequest</span>
+<span class="sd">        request</span>
 <span class="sd">            the request object to be sent</span>
-<span class="sd">        kwargs :</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-
+<span class="sd">        kwargs</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">route_type</span> <span class="ow">in</span> <span class="n">VERIFY_ROUTES</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">validate_slack_signature</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -479,21 +500,37 @@
         <span class="k">return</span> <span class="n">response</span></div>
 
 <div class="viewcode-block" id="GladosPlugin.respond_to_url"><a class="viewcode-back" href="../../glados.plugin.html#glados.GladosPlugin.respond_to_url">[docs]</a>    <span class="k">def</span> <span class="nf">respond_to_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GladosRequest</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;When you click on a link that was sent via slack it sends a callback, This is to handle that&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">response_url</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;no response_url provided in request.&quot;</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">text</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">response_url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;slack response: </span><span class="si">{r}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;slack response: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">routes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;List all routes for the plugin.</span>
+<div class="viewcode-block" id="GladosPlugin.has_route"><a class="viewcode-back" href="../../glados.plugin.html#glados.GladosPlugin.has_route">[docs]</a>    <span class="k">def</span> <span class="nf">has_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;See if route exists.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        route : route to check</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-
+<span class="sd">        True if route exists else false</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">route_extended</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">route</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">r_type</span><span class="p">,</span> <span class="n">route_entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_routes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">list</span><span class="p">(</span><span class="n">route_entry</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="n">route</span><span class="p">,</span> <span class="n">route_extended</span><span class="p">]:</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">continue</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">routes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">GladosRoute</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;List all routes for the plugin.&quot;&quot;&quot;</span>
         <span class="n">routes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
         <span class="p">[</span>
             <span class="n">routes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">route_object</span><span class="p">)</span>

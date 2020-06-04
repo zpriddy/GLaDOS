@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>glados.route_type module &mdash; GLaDOS 0.0.1.dev14 documentation</title>
+  <title>Route Type &mdash; GLaDOS 0.0.1.dev24 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -34,9 +34,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="glados.router module" href="glados.router.html" />
-    <link rel="prev" title="glados.request module" href="glados.request.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,7 +78,7 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glados_structure.html">GLaDOS Structure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="glados_structure.html#glados">GLaDOS</a></li>
@@ -94,25 +92,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glados_plugin.html">GLaDOS Plugin</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">glados</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="glados.html">glados package</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a></li>
-</ul>
-</li>
-<li class="toctree-l3 current"><a class="reference internal" href="glados.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="glados.bot.html">glados.bot module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.core.html">glados.core module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.errors.html">glados.errors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.message_blocks.html">glados.message_blocks module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.plugin.html">glados.plugin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.request.html">glados.request module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">glados.route_type module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="glados.router.html">glados.router module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glados.html">glados package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="glados.slack_classes.html">glados.slack_classes package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="glados.slack_classes.html#module-glados.slack_classes.views">glados.slack_classes.views module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.bot">glados.bot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.configs">glados.configs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.core">glados.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.datastore">glados.datastore module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.errors">glados.errors module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.message_blocks">glados.message_blocks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.plugin">glados.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.request">glados.request module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.route_type">glados.route_type module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.router">glados.router module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glados.html#module-glados.utils">glados.utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -160,11 +160,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="modules.html">glados</a> &raquo;</li>
-        
-          <li><a href="glados.html">glados package</a> &raquo;</li>
-        
-      <li>glados.route_type module</li>
+      <li>Route Type</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -184,60 +180,60 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-glados.route_type">
-<span id="glados-route-type-module"></span><h1>glados.route_type module<a class="headerlink" href="#module-glados.route_type" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<span id="route-type"></span><h1>Route Type<a class="headerlink" href="#module-glados.route_type" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
 <dt id="glados.route_type.EventRoutes">
 <em class="property">class </em><code class="sig-prename descclassname">glados.route_type.</code><code class="sig-name descname">EventRoutes</code><a class="reference internal" href="_modules/glados/route_type.html#EventRoutes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.route_type.EventRoutes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>An enumeration.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.EventRoutes.app_home_opened">
 <code class="sig-name descname">app_home_opened</code><em class="property"> = 1</em><a class="headerlink" href="#glados.route_type.EventRoutes.app_home_opened" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.EventRoutes.message">
 <code class="sig-name descname">message</code><em class="property"> = 2</em><a class="headerlink" href="#glados.route_type.EventRoutes.message" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="glados.route_type.RouteType">
 <em class="property">class </em><code class="sig-prename descclassname">glados.route_type.</code><code class="sig-name descname">RouteType</code><a class="reference internal" href="_modules/glados/route_type.html#RouteType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#glados.route_type.RouteType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>An enumeration.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.RouteType.Callback">
 <code class="sig-name descname">Callback</code><em class="property"> = 3</em><a class="headerlink" href="#glados.route_type.RouteType.Callback" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.RouteType.Events">
 <code class="sig-name descname">Events</code><em class="property"> = 5</em><a class="headerlink" href="#glados.route_type.RouteType.Events" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.RouteType.Interaction">
 <code class="sig-name descname">Interaction</code><em class="property"> = 6</em><a class="headerlink" href="#glados.route_type.RouteType.Interaction" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.RouteType.Menu">
 <code class="sig-name descname">Menu</code><em class="property"> = 7</em><a class="headerlink" href="#glados.route_type.RouteType.Menu" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.RouteType.Response">
 <code class="sig-name descname">Response</code><em class="property"> = 2</em><a class="headerlink" href="#glados.route_type.RouteType.Response" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.RouteType.Slash">
 <code class="sig-name descname">Slash</code><em class="property"> = 4</em><a class="headerlink" href="#glados.route_type.RouteType.Slash" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="glados.route_type.RouteType.Webhook">
 <code class="sig-name descname">Webhook</code><em class="property"> = 1</em><a class="headerlink" href="#glados.route_type.RouteType.Webhook" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -251,15 +247,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="glados.router.html" class="btn btn-neutral float-right" title="glados.router module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="glados.request.html" class="btn btn-neutral float-left" title="glados.request module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
