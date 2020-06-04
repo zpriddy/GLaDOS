@@ -1,6 +1,1 @@
-Flask
-python-dotenv
-blinker
-
-# Uncomment this line if you want to use ngrok
-# pyngrok
+glados[servelocal]
