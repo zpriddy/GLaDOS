@@ -1,8 +1,7 @@
 import json
+import logging
 import os
 from base64 import b64decode
-
-from glados import logging
 from typing import Union
 
 

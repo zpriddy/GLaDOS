@@ -1,15 +1,11 @@
 import json
+import logging
 from datetime import datetime
-from typing import NoReturn, Optional, TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, NoReturn, Optional, Union
 
-from glados import (
-    BOT_ROUTES,
-    DataStore,
-    DataStoreInteraction,
-    PyJSON,
-    RouteType,
-    logging,
-)
+from .datastore import DataStore, DataStoreInteraction
+from .route_type import BOT_ROUTES, RouteType
+from .utils import PyJSON
 
 if TYPE_CHECKING:
     from sqlalchemy.orm import Session

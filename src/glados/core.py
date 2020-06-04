@@ -1,20 +1,14 @@
+import logging
 from typing import Dict, List, NoReturn, Optional
+
 from pkg_resources import get_distribution
 
-from glados import (
-    BotImporter,
-    DataStore,
-    GladosBot,
-    GladosPlugin,
-    GladosRequest,
-    GladosRouter,
-    LOGGING_FORMAT,
-    LOGGING_LEVEL,
-    PluginImporter,
-    logging,
-    read_config,
-    set_logging,
-)
+from .bot import BotImporter, GladosBot
+from .configs import GladosConfig, read_config
+from .datastore import DataStore
+from .plugin import GladosPlugin, PluginImporter
+from .request import GladosRequest
+from .router import GladosRouter
 
 
 class Glados:
@@ -56,8 +50,8 @@ class Glados:
         self.plugins_folder = plugins_folder  # type: str
         self.bots_config_dir = bots_config_dir  # type: str
         self.plugins_config_dir = plugins_config_dir  # type: str
-        self.logging_level = LOGGING_LEVEL
-        self.logging_format = LOGGING_FORMAT
+        # self.logging_level = LOGGING_LEVEL
+        # self.logging_format = LOGGING_FORMAT
         self.global_config = None
         self.enable_datastore = False
         self.datastore = None  # type: Optional[DataStore]
@@ -82,9 +76,9 @@ class Glados:
 
         config = self.global_config.config.glados
 
-        self.logging_level = config.get("logging_level", self.logging_level)
-        self.logging_format = config.get("logging_format", LOGGING_FORMAT)
-        set_logging(self.logging_level, self.logging_format)
+        # self.logging_level = config.get("logging_level", self.logging_level)
+        # self.logging_format = config.get("logging_format", LOGGING_FORMAT)
+        # TODO(zpriddy): Set Logging.
 
         self.plugins_folder = config.get("plugins_folder")
         self.plugins_config_dir = config.get("plugins_config_folder")

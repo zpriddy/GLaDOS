@@ -1,6 +1,9 @@
+import logging
 from typing import Callable, Dict, NoReturn
 
-from glados import GladosRequest, GladosRouteNotFoundError, RouteType, logging
+from .errors import GladosRouteNotFoundError
+from .request import GladosRequest
+from .route_type import RouteType
 
 
 class GladosRoute(object):

@@ -1,8 +1,17 @@
+import logging
 from typing import List, Union
 
 import yaml
 
-from glados import PyJSON, logging
+from .utils import PyJSON
+
+
+def read_config(config_file: str):
+    logging.debug(f"Reading GLaDOS config from {config_file}")
+    config = GladosConfig(config_file)
+    config.read_config()
+
+    return config
 
 
 class GladosConfig:

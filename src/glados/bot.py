@@ -1,4 +1,5 @@
 import glob
+import logging
 from typing import Dict, Union
 
 import yaml
@@ -7,7 +8,8 @@ from slack.errors import SlackRequestError
 from slack.web.classes.messages import Message
 from slack.web.slack_response import SlackResponse
 
-from glados import GladosRequest, check_for_env_vars, logging
+from .request import GladosRequest
+from .utils import get_enc_var, get_var, check_for_env_vars
 
 
 class BotImporter:
